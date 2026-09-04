@@ -38,127 +38,378 @@
   </div>
   <!-- Main Content Container -->
   <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+
+    <!-- ============================= -->
     <!-- Adults / General Beginners Track -->
-    <section id="adults-track" class="space-y-8">
-      <div>
-        <h1 class="text-2xl font-black text-slate-900">الوحدة 1: المحادثات اليومية والأساسيات</h1>
-        <p class="text-slate-500 text-sm mt-1">استمع للنطق الصحيح، اقرأ الشرح العربي، ثم تدرب فورياً على التحدث والتركيب.</p>
+    <!-- ============================= -->
+    <section id="adults-track" class="space-y-6">
+
+      <!-- Lesson selector -->
+      <div class="flex flex-wrap gap-2" id="adults-lesson-nav">
+        <button id="adults-pill-1" onclick="switchLesson('adults',1)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-indigo-600 text-white border-indigo-600 shadow-sm">الدرس 1: الحروف</button>
+        <button id="adults-pill-2" onclick="switchLesson('adults',2)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 2: التحيات</button>
+        <button id="adults-pill-3" onclick="switchLesson('adults',3)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 3: الأرقام</button>
+        <button id="adults-pill-4" onclick="switchLesson('adults',4)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 4: العائلة</button>
+        <button id="adults-pill-5" onclick="switchLesson('adults',5)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 5: المقهى</button>
       </div>
-      <!-- Mini Podcast / Audio Explanation -->
-      <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="space-y-1 text-center md:text-right">
-          <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
-            <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس (60 ثانية)
-          </h2>
-          <p class="text-indigo-100 text-sm">كيف تطلب القهوة والماء بلباقة دون أخطاء شائعة باللكنة الأمريكية.</p>
+
+      <!-- Lesson 1: Alphabet -->
+      <div id="adults-lesson-1" class="space-y-8">
+        <div>
+          <h1 class="text-2xl font-black text-slate-900">الدرس 1: الحروف الإنجليزية (The Alphabet)</h1>
+          <p class="text-slate-500 text-sm mt-1">الحروف الإنجليزية أساس النطق الصحيح. اضغط على أي بطاقة لتسمع نطق الحرف مع كلمة مثال، ثم حاول تكرارها بصوت مسموع.</p>
         </div>
-        <button onclick="playExplanation()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
-          <i class="fa-solid fa-play"></i> استمع للشرح الآن
-        </button>
-      </div>
-      <!-- Visual Flashcards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Card 1 -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
-          <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80" alt="Coffee" class="w-full h-full object-cover">
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="space-y-1 text-center md:text-right">
+            <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس (30 ثانية)
+            </h2>
+            <p class="text-indigo-100 text-sm">هناك 26 حرفاً في اللغة الإنجليزية، كل حرف له شكل كبير وشكل صغير، ولكل حرف صوت مختلف يجب حفظه جيداً.</p>
           </div>
-          <div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3 class="text-xl font-bold text-slate-900">Can I have a coffee?</h3>
-                <p class="text-slate-500 text-sm">هل يمكنني الحصول على قهوة؟</p>
+          <button onclick="playLessonAudio('هناك ستة وعشرون حرفاً في اللغة الإنجليزية. كل حرف له شكل كبير وشكل صغير، ولكل حرف صوت مختلف. اضغط على كل بطاقة لتسمع الحرف مع كلمة مثال، وحاول تكرار النطق بصوت مسموع.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-play"></i> استمع للشرح الآن
+          </button>
+        </div>
+        <div id="adults-alphabet-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+          </h3>
+          <p class="text-slate-700 font-medium mb-4">أي حرف تبدأ به كلمة Apple (تفاحة)؟</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="checkAnswer(true, 'feedback-adults-1', 'إجابة صحيحة! حرف A هو بداية كلمة Apple.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">A</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-1', 'ليست إجابة صحيحة، كلمة Apple تبدأ بحرف A.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">B</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-1', 'ليست إجابة صحيحة، كلمة Apple تبدأ بحرف A.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">C</button>
+          </div>
+          <div id="feedback-adults-1" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 2: Greetings -->
+      <div id="adults-lesson-2" class="space-y-8 hidden">
+        <div>
+          <h1 class="text-2xl font-black text-slate-900">الدرس 2: التحيات والمجاملات (Greetings)</h1>
+          <p class="text-slate-500 text-sm mt-1">التحيات هي أول ما نحتاجه لبدء أي محادثة. استمع للأمثلة ثم تدرب على الرد المناسب.</p>
+        </div>
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="space-y-1 text-center md:text-right">
+            <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+            </h2>
+            <p class="text-indigo-100 text-sm">كيف تبدأ حديثك بشكل مهذب مع أي شخص تقابله لأول مرة أو تعرفه جيداً.</p>
+          </div>
+          <button onclick="playLessonAudio('التحيات هي أول ما نحتاجه لبدء أي محادثة. عند مقابلة شخص جديد نقول نايس تو ميت يو، أي سعدت بلقائك. وعند السؤال عن الحال نرد بقول آي ايم فاين ثانك يو، أي أنا بخير شكراً.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-play"></i> استمع للشرح الآن
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+            <div class="relative h-32 rounded-xl overflow-hidden mb-4 bg-indigo-50 flex items-center justify-center text-5xl">👋</div>
+            <div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900">Good morning!</h3>
+                  <p class="text-slate-500 text-sm">صباح الخير!</p>
+                </div>
+                <button onclick="speakText('Good morning!')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+                  <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
               </div>
-              <button onclick="speakText('Can I have a coffee, please?')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
-                <i class="fa-solid fa-volume-high text-lg"></i>
-              </button>
+              <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+                استخدام: <span class="text-slate-700 font-semibold">التحية الصباحية الرسمية وغير الرسمية</span>
+              </div>
             </div>
-            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
-              استخدام: <span class="text-slate-700 font-semibold">الطلب المهذب في المقاهي والمطاعم</span>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+            <div class="relative h-32 rounded-xl overflow-hidden mb-4 bg-indigo-50 flex items-center justify-center text-5xl">🤝</div>
+            <div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900">Nice to meet you.</h3>
+                  <p class="text-slate-500 text-sm">سعدت بلقائك.</p>
+                </div>
+                <button onclick="speakText('Nice to meet you.')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+                  <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+              </div>
+              <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+                استخدام: <span class="text-slate-700 font-semibold">عند مقابلة شخص لأول مرة</span>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
-          <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
-            <img src="https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=600&auto=format&fit=crop&q=80" alt="Water" class="w-full h-full object-cover">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+          </h3>
+          <p class="text-slate-700 font-medium mb-4">ما هو الرد المناسب على: "How are you?"</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="checkAnswer(true, 'feedback-adults-2', 'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) I am fine, thank you.</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-2', 'حاول مجدداً، فكر في رد يصف شعورك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Yes, please.</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-2', 'حاول مجدداً، فكر في رد يصف شعورك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Goodbye.</button>
           </div>
-          <div>
-            <div class="flex justify-between items-start">
-              <div>
-                <h3 class="text-xl font-bold text-slate-900">Water, please.</h3>
-                <p class="text-slate-500 text-sm">ماء، من فضلك.</p>
-              </div>
-              <button onclick="speakText('Water, please.')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
-                <i class="fa-solid fa-volume-high text-lg"></i>
-              </button>
-            </div>
-            <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
-              ملاحظة نطق: <span class="text-slate-700 font-semibold">تنطق حرف T مخففاً مثل (Wader)</span>
-            </div>
-          </div>
+          <div id="feedback-adults-2" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
         </div>
       </div>
-      <!-- Interactive Quiz -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-        <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
-          <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
-        </h3>
-        <p class="text-slate-700 font-medium mb-4">ما هي الجملة الصحيحة لطلب كوب شاي في المطعم؟</p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <button onclick="checkAnswer(false, this)" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
-            أ) I want tea now.
-          </button>
-          <button onclick="checkAnswer(true, this)" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
-            ب) Can I have tea, please?
-          </button>
-          <button onclick="checkAnswer(false, this)" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
-            ج) Give me tea fast.
+
+      <!-- Lesson 3: Numbers -->
+      <div id="adults-lesson-3" class="space-y-8 hidden">
+        <div>
+          <h1 class="text-2xl font-black text-slate-900">الدرس 3: الأرقام (Numbers)</h1>
+          <p class="text-slate-500 text-sm mt-1">الأرقام من 1 إلى 10 من أهم أساسيات أي لغة. استمع لنطق كل رقم بالضغط عليه.</p>
+        </div>
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="space-y-1 text-center md:text-right">
+            <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+            </h2>
+            <p class="text-indigo-100 text-sm">ستحتاج الأرقام دائماً: عند الشراء، وذكر عمرك، ورقم هاتفك.</p>
+          </div>
+          <button onclick="playLessonAudio('الأرقام من واحد إلى عشرة من أهم أساسيات أي لغة. ستحتاجها دائماً عند الشراء، أو ذكر عمرك، أو رقم هاتفك. استمع لكل رقم وحاول تكراره بصوت مرتفع.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-play"></i> استمع للشرح الآن
           </button>
         </div>
-        <div id="quiz-feedback" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        <div id="adults-numbers-grid" class="grid grid-cols-3 sm:grid-cols-5 gap-3"></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+          </h3>
+          <p class="text-slate-700 font-medium mb-4">كيف نكتب الرقم 7 بالإنجليزية؟</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="checkAnswer(true, 'feedback-adults-3', 'إجابة صحيحة! Seven تعني سبعة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Seven</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-3', 'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Six</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-3', 'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Eight</button>
+          </div>
+          <div id="feedback-adults-3" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 4: Family -->
+      <div id="adults-lesson-4" class="space-y-8 hidden">
+        <div>
+          <h1 class="text-2xl font-black text-slate-900">الدرس 4: العائلة (Family)</h1>
+          <p class="text-slate-500 text-sm mt-1">تعرّف على كيفية تسمية أفراد العائلة بالإنجليزية، من أكثر الكلمات استخداماً في المحادثات اليومية.</p>
+        </div>
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="space-y-1 text-center md:text-right">
+            <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+            </h2>
+            <p class="text-indigo-100 text-sm">كيف تتحدث عن أفراد عائلتك بثقة في أي محادثة.</p>
+          </div>
+          <button onclick="playLessonAudio('تعرف الآن على كيفية تسمية أفراد العائلة بالإنجليزية. مذر تعني أم، وفاذر تعني أب، وسيستر تعني أخت، وبروذر تعني أخ. استمع لكل كلمة وحاول تكرارها.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-play"></i> استمع للشرح الآن
+          </button>
+        </div>
+        <div id="adults-family-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"></div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+          </h3>
+          <p class="text-slate-700 font-medium mb-4">ماذا نسمي "أخت" بالإنجليزية؟</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="checkAnswer(true, 'feedback-adults-4', 'إجابة صحيحة! Sister تعني أخت.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Sister</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-4', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Brother</button>
+            <button onclick="checkAnswer(false, 'feedback-adults-4', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Cousin</button>
+          </div>
+          <div id="feedback-adults-4" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 5: Cafe (original content) -->
+      <div id="adults-lesson-5" class="space-y-8 hidden">
+        <div>
+          <h1 class="text-2xl font-black text-slate-900">الدرس 5: المقهى والطعام (Café)</h1>
+          <p class="text-slate-500 text-sm mt-1">استمع للنطق الصحيح، اقرأ الشرح العربي، ثم تدرب فورياً على التحدث والتركيب.</p>
+        </div>
+        <!-- Mini Podcast / Audio Explanation -->
+        <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+          <div class="space-y-1 text-center md:text-right">
+            <h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+              <i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس (60 ثانية)
+            </h2>
+            <p class="text-indigo-100 text-sm">كيف تطلب القهوة والماء بلباقة دون أخطاء شائعة باللكنة الأمريكية.</p>
+          </div>
+          <button onclick="playLessonAudio('مرحباً بك في درس اليوم. عندما تطلب شيئاً في المطعم أو المقهى، استخدم دائماً صيغة كان آي هاف، متبوعة بالطلب، ثم كلمة بليز في النهاية لتكون مهذباً ولطيفاً.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+            <i class="fa-solid fa-play"></i> استمع للشرح الآن
+          </button>
+        </div>
+        <!-- Visual Flashcards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Card 1 -->
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+            <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+              <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80" alt="Coffee" class="w-full h-full object-cover">
+            </div>
+            <div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <h3 class="text-xl font-bold text-slate-900">Can I have a coffee?</h3>
+                  <p class="text-slate-500 text-sm">هل يمكنني الحصول على قهوة؟</p>
+                </div>
+                <button onclick="speakText('Water, please.')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+                  <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+              </div>
+              <div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+                ملاحظة نطق: <span class="text-slate-700 font-semibold">تنطق حرف T مخففاً مثل (Wader)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Interactive Quiz -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+          </h3>
+          <p class="text-slate-700 font-medium mb-4">ما هي الجملة الصحيحة لطلب كوب شاي في المطعم؟</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <button onclick="checkAnswer(false, 'feedback-adults-5', 'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+              أ) I want tea now.
+            </button>
+            <button onclick="checkAnswer(true, 'feedback-adults-5', 'إجابة صحيحة! أحسنت، صيغة Can I have... please هي الأسلوب اللبق.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+              ب) Can I have tea, please?
+            </button>
+            <button onclick="checkAnswer(false, 'feedback-adults-5', 'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+              ج) Give me tea fast.
+            </button>
+          </div>
+          <div id="feedback-adults-5" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
       </div>
     </section>
+
+    <!-- ============================= -->
     <!-- Kids Track (Playful & Phonics) -->
-    <section id="kids-track" class="space-y-8 hidden">
-      <div class="text-center space-y-2">
-        <h1 class="text-3xl font-black text-pink-500">عالم الصغار المرح 🎈</h1>
-        <p class="text-slate-600 text-sm">اضغط على الصورة لسماع صوت الكلمة والحصول على نجوم!</p>
+    <!-- ============================= -->
+    <section id="kids-track" class="space-y-6 hidden">
+
+      <!-- Lesson selector -->
+      <div class="flex flex-wrap gap-2" id="kids-lesson-nav">
+        <button id="kids-pill-1" onclick="switchLesson('kids',1)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-pink-500 text-white border-pink-500 shadow-sm">الدرس 1: الحروف</button>
+        <button id="kids-pill-2" onclick="switchLesson('kids',2)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 2: الألوان</button>
+        <button id="kids-pill-3" onclick="switchLesson('kids',3)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 3: الأرقام</button>
+        <button id="kids-pill-4" onclick="switchLesson('kids',4)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 4: الحيوانات</button>
+        <button id="kids-pill-5" onclick="switchLesson('kids',5)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 5: الأشكال</button>
       </div>
-      <!-- Game Board -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <!-- Item 1: Cat -->
-        <div onclick="playKidCard('Cat', 'مياو! القطة الذكية', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 text-center card-zoom hover:border-amber-400">
-          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
-          <h3 class="text-2xl font-black text-amber-900">Cat</h3>
-          <p class="text-amber-700 font-bold text-sm mt-1">قِطة</p>
-          <span class="inline-block mt-3 px-4 py-1 bg-amber-200 text-amber-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+
+      <!-- Lesson 1: Alphabet -->
+      <div id="kids-lesson-1" class="space-y-8">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-black text-pink-500">حروفي الإنجليزية 🔤</h1>
+          <p class="text-slate-600 text-sm">اضغط على أي بطاقة لتسمع الحرف والكلمة وتحصل على نجمة ⭐!</p>
         </div>
-        <!-- Item 2: Dog -->
-        <div onclick="playKidCard('Dog', 'هو هو! الكلب الوفي', 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-blue-50 border-2 border-blue-200 rounded-3xl p-5 text-center card-zoom hover:border-blue-400">
-          <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
-          <h3 class="text-2xl font-black text-blue-900">Dog</h3>
-          <p class="text-blue-700 font-bold text-sm mt-1">كَلْب</p>
-          <span class="inline-block mt-3 px-4 py-1 bg-blue-200 text-blue-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
-        </div>
-        <!-- Item 3: Lion -->
-        <div onclick="playKidCard('Lion', 'ملك الغابة القوي!', 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-orange-50 border-2 border-orange-200 rounded-3xl p-5 text-center card-zoom hover:border-orange-400">
-          <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
-          <h3 class="text-2xl font-black text-orange-900">Lion</h3>
-          <p class="text-orange-700 font-bold text-sm mt-1">أسَد</p>
-          <span class="inline-block mt-3 px-4 py-1 bg-orange-200 text-orange-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+        <div id="kids-alphabet-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+        <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+          <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+          <p class="text-slate-600 text-sm mb-4">أي حرف تبدأ به هذه الكلمة: 🐱 Cat؟</p>
+          <div class="flex justify-center gap-4">
+            <button onclick="checkAnswer(true, 'feedback-kids-1', 'رائع! حرف C هو بداية كلمة Cat 🎉', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">C</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-1', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">D</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-1', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">E</button>
+          </div>
+          <div id="feedback-kids-1" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
         </div>
       </div>
-      <!-- Kids Interactive Audio Quiz -->
-      <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
-        <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
-        <p class="text-slate-600 text-sm mb-4">استمع للصوت واعرف الحيوان الصحيح:</p>
-        <button onclick="speakText('Cat')" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold shadow-sm mb-4">
-          <i class="fa-solid fa-volume-high"></i> شغل الصوت المطلوب
-        </button>
-        <div class="flex justify-center gap-4">
-          <button onclick="alert('رائع يا بطل! إجابة صحيحة ⭐⭐⭐'); addScore(5);" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Cat</button>
-          <button onclick="alert('حاول ثانية يا بطل!')" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Dog</button>
+
+      <!-- Lesson 2: Colors -->
+      <div id="kids-lesson-2" class="space-y-8 hidden">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-black text-pink-500">عالم الألوان 🎨</h1>
+          <p class="text-slate-600 text-sm">الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالإنجليزية.</p>
+        </div>
+        <div id="kids-colors-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+        <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+          <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+          <p class="text-slate-600 text-sm mb-4">ما هو اللون الأحمر بالإنجليزية؟</p>
+          <div class="flex justify-center gap-4">
+            <button onclick="checkAnswer(true, 'feedback-kids-2', 'صحيح! Red يعني أحمر 🔴', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Red</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-2', 'قريب! حاول مرة ثانية.', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Blue</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-2', 'قريب! حاول مرة ثانية.', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Green</button>
+          </div>
+          <div id="feedback-kids-2" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 3: Numbers -->
+      <div id="kids-lesson-3" class="space-y-8 hidden">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-black text-pink-500">هيا نعد! 🔢</h1>
+          <p class="text-slate-600 text-sm">هيا نتعلم العد بالإنجليزية من 1 إلى 10!</p>
+        </div>
+        <div id="kids-numbers-grid" class="grid grid-cols-2 sm:grid-cols-5 gap-4"></div>
+        <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+          <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+          <p class="text-slate-600 text-sm mb-4">كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالإنجليزية</p>
+          <div class="flex justify-center gap-4">
+            <button onclick="checkAnswer(true, 'feedback-kids-3', 'ممتاز! 2 + 3 = Five (خمسة) 🌟', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Five</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-3', 'فكر مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Four</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-3', 'فكر مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Six</button>
+          </div>
+          <div id="feedback-kids-3" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+        </div>
+      </div>
+
+      <!-- Lesson 4: Animals (original content) -->
+      <div id="kids-lesson-4" class="space-y-8 hidden">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-black text-pink-500">عالم الصغار المرح 🎈</h1>
+          <p class="text-slate-600 text-sm">اضغط على الصورة لسماع صوت الكلمة والحصول على نجوم!</p>
+        </div>
+        <!-- Game Board -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <!-- Item 1: Cat -->
+          <div onclick="playKidCard('Cat', 'مياو! القطة الذكية', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 text-center card-zoom hover:border-amber-400">
+            <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+            <h3 class="text-2xl font-black text-amber-900">Cat</h3>
+            <p class="text-amber-700 font-bold text-sm mt-1">قِطة</p>
+            <span class="inline-block mt-3 px-4 py-1 bg-amber-200 text-amber-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+          </div>
+          <!-- Item 2: Dog -->
+          <div onclick="playKidCard('Dog', 'هو هو! الكلب الوفي', 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-blue-50 border-2 border-blue-200 rounded-3xl p-5 text-center card-zoom hover:border-blue-400">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+            <h3 class="text-2xl font-black text-blue-900">Dog</h3>
+            <p class="text-blue-700 font-bold text-sm mt-1">كَلْب</p>
+            <span class="inline-block mt-3 px-4 py-1 bg-blue-200 text-blue-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+          </div>
+          <!-- Item 3: Lion -->
+          <div onclick="playKidCard('Lion', 'ملك الغابة القوي!', 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-orange-50 border-2 border-orange-200 rounded-3xl p-5 text-center card-zoom hover:border-orange-400">
+            <img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+            <h3 class="text-2xl font-black text-orange-900">Lion</h3>
+            <p class="text-orange-700 font-bold text-sm mt-1">أسَد</p>
+            <span class="inline-block mt-3 px-4 py-1 bg-orange-200 text-orange-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+          </div>
+        </div>
+        <!-- Kids Interactive Audio Quiz -->
+        <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+          <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+          <p class="text-slate-600 text-sm mb-4">استمع للصوت واعرف الحيوان الصحيح:</p>
+          <button onclick="speakText('Cat')" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold shadow-sm mb-4">
+            <i class="fa-solid fa-volume-high"></i> شغل الصوت المطلوب
+          </button>
+          <div class="flex justify-center gap-4">
+            <button onclick="alert('رائع يا بطل! إجابة صحيحة ⭐⭐⭐'); addScore(5);" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Cat</button>
+            <button onclick="alert('حاول ثانية يا بطل!')" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Dog</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lesson 5: Shapes -->
+      <div id="kids-lesson-5" class="space-y-8 hidden">
+        <div class="text-center space-y-2">
+          <h1 class="text-3xl font-black text-pink-500">الأشكال من حولنا 🔺</h1>
+          <p class="text-slate-600 text-sm">اضغط على كل شكل لتسمع اسمه بالإنجليزية!</p>
+        </div>
+        <div id="kids-shapes-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+        <div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+          <h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+          <p class="text-slate-600 text-sm mb-4">ما اسم هذا الشكل: ⭐؟</p>
+          <div class="flex justify-center gap-4">
+            <button onclick="checkAnswer(true, 'feedback-kids-5', 'رائع! ⭐ هو Star (نجمة)', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Star</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-5', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Circle</button>
+            <button onclick="checkAnswer(false, 'feedback-kids-5', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Square</button>
+          </div>
+          <div id="feedback-kids-5" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
         </div>
       </div>
     </section>
@@ -169,6 +420,8 @@
       score += pts;
       document.getElementById('score-counter').innerText = `النقاط: ${score} ⭐`;
     }
+
+    // Top-level track switching (Adults <-> Kids)
     function switchSection(type) {
       const adultsSec = document.getElementById('adults-track');
       const kidsSec = document.getElementById('kids-track');
@@ -186,6 +439,27 @@
         btnAdults.className = "px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition";
       }
     }
+
+    // Lesson switching within a track (1-5)
+    function switchLesson(track, n) {
+      const activeClass = track === 'adults'
+        ? 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-indigo-600 text-white border-indigo-600 shadow-sm'
+        : 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-pink-500 text-white border-pink-500 shadow-sm';
+      const inactiveClass = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50';
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById(track + '-lesson-' + i);
+        const pill = document.getElementById(track + '-pill-' + i);
+        if (!panel || !pill) continue;
+        if (i === n) {
+          panel.classList.remove('hidden');
+          pill.className = activeClass;
+        } else {
+          panel.classList.add('hidden');
+          pill.className = inactiveClass;
+        }
+      }
+    }
+
     // Text-to-Speech Engine using Web Speech API
     function speakText(text) {
       if ('speechSynthesis' in window) {
@@ -198,33 +472,161 @@
         alert("متصفحك لا يدعم خاصية نطق الصوت تلقائياً.");
       }
     }
-    function playExplanation() {
+
+    function playLessonAudio(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const text = "مرحباً بك في درس اليوم. عندما تطلب شيئاً في المطعم أو المقهى، استخدم دائماً صيغة كان آي هاف، متبوعة بالطلب، ثم كلمة بليز في النهاية لتكون مهذباً ولطيفاً.";
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'ar-SA';
         utterance.rate = 0.95;
         window.speechSynthesis.speak(utterance);
       }
     }
-    function playKidCard(word, desc) {
+
+    function playKidCard(word) {
       speakText(word);
       addScore(1);
     }
-    function checkAnswer(isCorrect, element) {
-      const feedback = document.getElementById('quiz-feedback');
-      feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800');
 
+    function checkAnswer(isCorrect, feedbackId, msg, points) {
+      const feedback = document.getElementById(feedbackId);
+      feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800');
       if (isCorrect) {
         feedback.classList.add('bg-emerald-100', 'text-emerald-800');
-        feedback.innerText = "إجابة صحيحة! أحسنت، صيغة Can I have... please هي الأسلوب اللبق.";
-        addScore(3);
+        addScore(points || 3);
       } else {
         feedback.classList.add('bg-red-100', 'text-red-800');
-        feedback.innerText = "إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.";
       }
+      feedback.innerText = msg;
     }
+
+    // ---- Word bank data ----
+    const ALPHABET = [
+      {l:'A', w:'Apple', ar:'تفاحة', e:'🍎'},
+      {l:'B', w:'Ball', ar:'كرة', e:'⚽'},
+      {l:'C', w:'Cat', ar:'قطة', e:'🐱'},
+      {l:'D', w:'Dog', ar:'كلب', e:'🐶'},
+      {l:'E', w:'Elephant', ar:'فيل', e:'🐘'},
+      {l:'F', w:'Fish', ar:'سمكة', e:'🐟'},
+      {l:'G', w:'Grapes', ar:'عنب', e:'🍇'},
+      {l:'H', w:'Hat', ar:'قبعة', e:'🎩'},
+      {l:'I', w:'Ice Cream', ar:'آيس كريم', e:'🍦'},
+      {l:'J', w:'Juice', ar:'عصير', e:'🧃'},
+      {l:'K', w:'Kite', ar:'طائرة ورقية', e:'🪁'},
+      {l:'L', w:'Lion', ar:'أسد', e:'🦁'},
+      {l:'M', w:'Moon', ar:'قمر', e:'🌙'},
+      {l:'N', w:'Nest', ar:'عش', e:'🐦'},
+      {l:'O', w:'Orange', ar:'برتقال', e:'🍊'},
+      {l:'P', w:'Pencil', ar:'قلم رصاص', e:'✏️'},
+      {l:'Q', w:'Queen', ar:'ملكة', e:'👸'},
+      {l:'R', w:'Rainbow', ar:'قوس قزح', e:'🌈'},
+      {l:'S', w:'Sun', ar:'شمس', e:'☀️'},
+      {l:'T', w:'Tiger', ar:'نمر', e:'🐯'},
+      {l:'U', w:'Umbrella', ar:'مظلة', e:'☂️'},
+      {l:'V', w:'Van', ar:'شاحنة صغيرة', e:'🚐'},
+      {l:'W', w:'Watermelon', ar:'بطيخ', e:'🍉'},
+      {l:'X', w:'Xylophone', ar:'إكسيليفون', e:'🎼'},
+      {l:'Y', w:'Yo-yo', ar:'يويو', e:'🪀'},
+      {l:'Z', w:'Zebra', ar:'حمار وحشي', e:'🦓'}
+    ];
+
+    const NUMBERS = [
+      {n:1, w:'One', ar:'واحد'}, {n:2, w:'Two', ar:'اثنان'}, {n:3, w:'Three', ar:'ثلاثة'},
+      {n:4, w:'Four', ar:'أربعة'}, {n:5, w:'Five', ar:'خمسة'}, {n:6, w:'Six', ar:'ستة'},
+      {n:7, w:'Seven', ar:'سبعة'}, {n:8, w:'Eight', ar:'ثمانية'}, {n:9, w:'Nine', ar:'تسعة'},
+      {n:10, w:'Ten', ar:'عشرة'}
+    ];
+
+    const FAMILY = [
+      {w:'Mother', ar:'أم', e:'👩'}, {w:'Father', ar:'أب', e:'👨'},
+      {w:'Sister', ar:'أخت', e:'👧'}, {w:'Brother', ar:'أخ', e:'👦'},
+      {w:'Grandmother', ar:'جدة', e:'👵'}, {w:'Grandfather', ar:'جد', e:'👴'}
+    ];
+
+    const SHAPES = [
+      {w:'Circle', ar:'دائرة', e:'⚪'}, {w:'Square', ar:'مربع', e:'⬛'},
+      {w:'Triangle', ar:'مثلث', e:'🔺'}, {w:'Star', ar:'نجمة', e:'⭐'},
+      {w:'Heart', ar:'قلب', e:'❤️'}
+    ];
+
+    const COLORS = [
+      {w:'Red', ar:'أحمر', hex:'#ef4444'}, {w:'Blue', ar:'أزرق', hex:'#3b82f6'},
+      {w:'Yellow', ar:'أصفر', hex:'#eab308'}, {w:'Green', ar:'أخضر', hex:'#22c55e'},
+      {w:'Purple', ar:'بنفسجي', hex:'#a855f7'}, {w:'Orange', ar:'برتقالي', hex:'#f97316'}
+    ];
+
+    // ---- Render grids ----
+    function renderAdultAlphabet() {
+      document.getElementById('adults-alphabet-grid').innerHTML = ALPHABET.map(x => `
+        <div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.l}, ${x.w}')">
+          <span class="text-2xl font-black text-indigo-600">${x.l}${x.l.toLowerCase()}</span>
+          <span class="text-xs font-semibold text-slate-700">${x.w}</span>
+          <span class="text-[11px] text-slate-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderKidAlphabet() {
+      document.getElementById('kids-alphabet-grid').innerHTML = ALPHABET.map(x => `
+        <div class="bg-white border-2 border-indigo-100 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.l}, ${x.w}')">
+          <span class="text-3xl">${x.e}</span>
+          <span class="text-xl font-black text-indigo-600">${x.l}${x.l.toLowerCase()}</span>
+          <span class="text-xs font-bold text-slate-600">${x.w}</span>
+          <span class="text-[11px] text-slate-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderAdultNumbers() {
+      document.getElementById('adults-numbers-grid').innerHTML = NUMBERS.map(x => `
+        <div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+          <span class="text-2xl font-black text-indigo-600">${x.n}</span>
+          <span class="text-xs font-semibold text-slate-700">${x.w}</span>
+          <span class="text-[11px] text-slate-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderKidNumbers() {
+      document.getElementById('kids-numbers-grid').innerHTML = NUMBERS.map(x => `
+        <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+          <span class="text-3xl font-black text-blue-700">${x.n}</span>
+          <span class="text-sm font-bold text-blue-900">${x.w}</span>
+          <span class="text-[11px] text-blue-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderFamily() {
+      document.getElementById('adults-family-grid').innerHTML = FAMILY.map(x => `
+        <div class="bg-white border border-slate-200 rounded-xl p-4 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+          <span class="text-3xl">${x.e}</span>
+          <span class="text-sm font-bold text-slate-800 mt-1">${x.w}</span>
+          <span class="text-[11px] text-slate-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderShapes() {
+      document.getElementById('kids-shapes-grid').innerHTML = SHAPES.map(x => `
+        <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+          <span class="text-4xl">${x.e}</span>
+          <span class="text-sm font-black text-amber-900 mt-1">${x.w}</span>
+          <span class="text-[11px] text-amber-600">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    function renderColors() {
+      document.getElementById('kids-colors-grid').innerHTML = COLORS.map(x => `
+        <div class="bg-white border-2 rounded-2xl p-4 flex flex-col items-center gap-2 card-zoom cursor-pointer shadow-sm" style="border-color:${x.hex}" onclick="playKidCard('${x.w}')">
+          <span class="block w-12 h-12 rounded-full" style="background:${x.hex}"></span>
+          <span class="text-sm font-black text-slate-800">${x.w}</span>
+          <span class="text-[11px] text-slate-400">${x.ar}</span>
+        </div>`).join('');
+    }
+
+    renderAdultAlphabet();
+    renderKidAlphabet();
+    renderAdultNumbers();
+    renderKidNumbers();
+    renderFamily();
+    renderShapes();
+    renderColors();
   </script>
 </body>
 </html>
