@@ -6,49 +6,79 @@
 <title>منصة English Step | لتعلم الإنجليزية مجاناً</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        indigo: {50:'#EEF0FF',100:'#E0E3FF',200:'#C6CBFF',300:'#A5A9FC',400:'#8184F5',500:'#635FEA',600:'#4F3FD6',700:'#4230B0',800:'#362A8C',900:'#2C2470'},
+        blue:   {50:'#EAF3FC',100:'#D3E7F9',200:'#A7CFF3',300:'#71B0EA',400:'#3D8ED9',500:'#1C71C2',600:'#0F5AA3',700:'#0D4A85',800:'#0C3D6C',900:'#0A3158'},
+        red:    {50:'#FDECEC',100:'#FBD4D4',200:'#F7AEAF',300:'#F17E80',400:'#EB4A4F',500:'#E5171F',600:'#CC0E17',700:'#A80D16',800:'#870E17',900:'#6E0F17'},
+        cyan:   {50:'#EAF6F2',100:'#CFEBE1',200:'#9FD6C4',300:'#6EC0A8',400:'#45AA8E',500:'#2E9078',600:'#227562',700:'#1D5F51',800:'#194C42',900:'#143E36'},
+        amber:  {50:'#FDF6E9',100:'#FBEACB',200:'#F5D28C',300:'#EFBB56',400:'#E5A430',500:'#D68E1D',600:'#B87415',700:'#955C12',800:'#784A10',900:'#623C0E'},
+        emerald:{50:'#EAFBF3',100:'#C9F4E1',200:'#97E8C4',300:'#62D6A5',400:'#35BD89',500:'#1DA271',600:'#14855C',700:'#106B4B',800:'#0E553D',900:'#0C4633'}
+      },
+      fontFamily: { sans: ['Cairo','Noto Sans KR','Noto Sans SC','sans-serif'] },
+      screens: { xs: '380px' }
+    }
+  }
+}
+</script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
-body { font-family: 'Tajawal', 'Noto Sans KR', 'Noto Sans SC', sans-serif; }
-.card-zoom:hover { transform: translateY(-4px); transition: all 0.2s ease-in-out; }
+body {
+  font-family: 'Cairo', 'Noto Sans KR', 'Noto Sans SC', sans-serif;
+  background-color: #F8F8FC;
+  background-image: radial-gradient(circle at 1px 1px, rgba(79,63,214,0.08) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+.card-zoom:hover { transform: translateY(-4px); transition: all 0.2s ease-in-out; box-shadow: 0 12px 24px -8px rgba(44,36,112,0.18); }
+[id$="kids-track"] .card-zoom:hover, [id*="-kids-track"] .card-zoom:hover { transform: translateY(-4px) rotate(-1.5deg); }
+::-webkit-scrollbar { height: 6px; }
+::-webkit-scrollbar-thumb { background: #C6CBFF; border-radius: 3px; }
+#lang-switch-bar button, #adults-lesson-nav button, [id$="lesson-nav"] button { min-height: 38px; }
+.progress-track { background: #E7E5FA; border-radius: 999px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 999px; transition: width 0.4s ease; background: linear-gradient(90deg, var(--acc-from,#4F3FD6), var(--acc-to,#635FEA)); }
 </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<body class="text-slate-800 min-h-screen flex flex-col">
 <!-- Navigation Bar -->
-<header class="bg-white border-b sticky top-0 z-50">
-<div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+<header class="bg-white/90 backdrop-blur border-b sticky top-0 z-50">
+<div class="max-w-5xl mx-auto px-4 py-3 sm:py-4 flex flex-wrap justify-between items-center gap-2">
 <div class="flex items-center space-x-3 space-x-reverse">
-<span class="text-2xl font-black text-indigo-600 tracking-tight">English<span class="text-emerald-500">Step</span></span>
+<span class="text-xl sm:text-2xl font-black text-indigo-600 tracking-tight">English<span class="text-emerald-500">Step</span></span>
 </div>
 <div class="flex space-x-2 space-x-reverse bg-slate-100 p-1 rounded-xl">
-<button id="btn-adults" onclick="switchSection('adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-indigo-600 shadow-sm transition">
-<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+<button id="btn-adults" onclick="switchSection('adults')" class="px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm bg-white text-indigo-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i><span class="hidden xs:inline"> مسار المبتدئين</span><span class="xs:hidden"> المبتدئين</span>
 </button>
-<button id="btn-kids" onclick="switchSection('kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition">
-<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+<button id="btn-kids" onclick="switchSection('kids')" class="px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm text-slate-600 hover:text-indigo-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i><span class="hidden xs:inline"> قسم الأطفال</span><span class="xs:hidden"> الأطفال</span>
 </button>
 </div>
 </div>
 <!-- Language Switcher -->
 <div class="border-t border-slate-100 bg-slate-50">
 <div class="max-w-5xl mx-auto px-4 py-2 flex items-center gap-2 overflow-x-auto">
-<span class="text-xs font-bold text-slate-400 shrink-0">اختر اللغة:</span>
+<span class="text-xs font-bold text-slate-400 shrink-0 hidden sm:inline">اختر اللغة:</span>
 <div class="flex gap-1.5 shrink-0" id="lang-switch-bar">
-<button data-lang="en" onclick="switchLang('en')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm">🇬🇧 English</button>
-<button data-lang="fr" onclick="switchLang('fr')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇫🇷 Français</button>
-<button data-lang="tr" onclick="switchLang('tr')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇹🇷 Türkçe</button>
-<button data-lang="ko" onclick="switchLang('ko')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇰🇷 한국어</button>
-<button data-lang="zh" onclick="switchLang('zh')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇨🇳 中文</button>
+<button data-lang="en" onclick="switchLang('en')" class="langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm">🇬🇧 English</button>
+<button data-lang="fr" onclick="switchLang('fr')" class="langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇫🇷 Français</button>
+<button data-lang="tr" onclick="switchLang('tr')" class="langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇹🇷 Türkçe</button>
+<button data-lang="ko" onclick="switchLang('ko')" class="langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇰🇷 한국어</button>
+<button data-lang="zh" onclick="switchLang('zh')" class="langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇨🇳 中文</button>
 </div>
 </div>
 </div>
 </header>
-<!-- Progress Ribbon -->
-<div class="bg-indigo-50 border-b border-indigo-100 py-2">
-<div class="max-w-5xl mx-auto px-4 flex justify-between items-center text-sm font-semibold text-indigo-900">
-<span>التقدم في الدرس:</span>
-<span id="score-counter">النقاط: 0 ⭐</span>
+<!-- Progress Bar -->
+<div class="bg-indigo-50 border-b border-indigo-100 py-2.5" id="progress-ribbon">
+<div class="max-w-5xl mx-auto px-4 flex items-center gap-3 text-sm font-semibold text-indigo-900">
+<span class="shrink-0 hidden sm:inline">التقدم:</span>
+<div class="progress-track flex-grow h-2" id="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+<span id="score-counter" class="shrink-0">النقاط: 0 ⭐</span>
 </div>
 </div>
 <!-- Main Content Container -->
@@ -761,6 +791,17 @@ let score = 0;
 function addScore(pts) {
 score += pts;
 document.getElementById('score-counter').innerText = `النقاط: ${score} ⭐`;
+const fill = document.getElementById('progress-fill');
+if (fill) fill.style.width = Math.min(100, (score / 30) * 100) + '%';
+}
+const ACCENT_HEX = {
+en: ['#4F3FD6','#362A8C'], fr: ['#0F5AA3','#0C3D6C'], tr: ['#CC0E17','#870E17'],
+ko: ['#227562','#194C42'], zh: ['#B87415','#784A10'], kids: ['#DB2777','#9D174D']
+};
+function setProgressAccent(key) {
+const c = ACCENT_HEX[key] || ACCENT_HEX.en;
+const fill = document.getElementById('progress-fill');
+if (fill) { fill.style.setProperty('--acc-from', c[0]); fill.style.setProperty('--acc-to', c[1]); }
 }
 
 // Top-level track switching (Adults <-> Kids)
@@ -772,13 +813,15 @@ const btnKids = document.getElementById('btn-kids');
 if (type === 'adults') {
 adultsSec.classList.remove('hidden');
 kidsSec.classList.add('hidden');
-btnAdults.className = "px-4 py-2 rounded-lg font-bold text-sm bg-white text-indigo-600 shadow-sm transition";
-btnKids.className = "px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition";
+btnAdults.className = "px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm bg-white text-indigo-600 shadow-sm transition";
+btnKids.className = "px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm text-slate-600 hover:text-indigo-600 transition";
+if (typeof setProgressAccent === 'function') setProgressAccent('en');
 } else {
 kidsSec.classList.remove('hidden');
 adultsSec.classList.add('hidden');
-btnKids.className = "px-4 py-2 rounded-lg font-bold text-sm bg-white text-pink-600 shadow-sm transition";
-btnAdults.className = "px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition";
+btnKids.className = "px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm bg-white text-pink-600 shadow-sm transition";
+btnAdults.className = "px-3 sm:px-4 py-2 rounded-lg font-bold text-xs sm:text-sm text-slate-600 hover:text-indigo-600 transition";
+if (typeof setProgressAccent === 'function') setProgressAccent('kids');
 }
 }
 
@@ -1165,9 +1208,10 @@ function switchLang(code) {
   document.querySelectorAll('.langbtn').forEach(b => {
     const active = b.dataset.lang === code;
     b.className = active
-      ? 'langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm'
-      : 'langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white';
+      ? 'langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm'
+      : 'langbtn px-3 py-2 sm:py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white';
   });
+  if (typeof setProgressAccent === 'function') setProgressAccent(code);
 }
 
 // Per-language accent configuration
@@ -1197,10 +1241,12 @@ function switchLangTrack(prefix, type) {
     adultsSec.classList.remove('hidden'); kidsSec.classList.add('hidden');
     btnA.className = accent.adultBtnActive;
     btnK.className = KIDS_BTN_INACTIVE_HOVER;
+    if (typeof setProgressAccent === 'function') setProgressAccent(key);
   } else {
     kidsSec.classList.remove('hidden'); adultsSec.classList.add('hidden');
     btnK.className = KIDS_BTN_ACTIVE;
     btnA.className = accent.adultBtnInactive;
+    if (typeof setProgressAccent === 'function') setProgressAccent('kids');
   }
 }
 
