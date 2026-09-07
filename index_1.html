@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منصة English Step | لتعلم الإنجليزية مجاناً</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
+body { font-family: 'Tajawal', 'Noto Sans KR', 'Noto Sans SC', sans-serif; }
+.card-zoom:hover { transform: translateY(-4px); transition: all 0.2s ease-in-out; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+<!-- Navigation Bar -->
+<header class="bg-white border-b sticky top-0 z-50">
+<div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
+<div class="flex items-center space-x-3 space-x-reverse">
+<span class="text-2xl font-black text-indigo-600 tracking-tight">English<span class="text-emerald-500">Step</span></span>
+</div>
+<div class="flex space-x-2 space-x-reverse bg-slate-100 p-1 rounded-xl">
+<button id="btn-adults" onclick="switchSection('adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-indigo-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+</button>
+<button id="btn-kids" onclick="switchSection('kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+</button>
+</div>
+</div>
+<!-- Language Switcher -->
+<div class="border-t border-slate-100 bg-slate-50">
+<div class="max-w-5xl mx-auto px-4 py-2 flex items-center gap-2 overflow-x-auto">
+<span class="text-xs font-bold text-slate-400 shrink-0">اختر اللغة:</span>
+<div class="flex gap-1.5 shrink-0" id="lang-switch-bar">
+<button data-lang="en" onclick="switchLang('en')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm">🇬🇧 English</button>
+<button data-lang="fr" onclick="switchLang('fr')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇫🇷 Français</button>
+<button data-lang="tr" onclick="switchLang('tr')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇹🇷 Türkçe</button>
+<button data-lang="ko" onclick="switchLang('ko')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇰🇷 한국어</button>
+<button data-lang="zh" onclick="switchLang('zh')" class="langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white">🇨🇳 中文</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Progress Ribbon -->
+<div class="bg-indigo-50 border-b border-indigo-100 py-2">
+<div class="max-w-5xl mx-auto px-4 flex justify-between items-center text-sm font-semibold text-indigo-900">
+<span>التقدم في الدرس:</span>
+<span id="score-counter">النقاط: 0 ⭐</span>
+</div>
+</div>
+<!-- Main Content Container -->
+<main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+<div id="lang-en">
+
+<!-- ============================= -->
+<!-- Adults / General Beginners Track -->
+<!-- ============================= -->
+<section id="adults-track" class="space-y-6">
+
+<!-- Lesson selector -->
+<div class="flex flex-wrap gap-2" id="adults-lesson-nav">
+<button id="adults-pill-1" onclick="switchLesson('adults',1)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-indigo-600 text-white border-indigo-600 shadow-sm">الدرس 1: الحروف</button>
+<button id="adults-pill-2" onclick="switchLesson('adults',2)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 2: التحيات</button>
+<button id="adults-pill-3" onclick="switchLesson('adults',3)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 3: الأرقام</button>
+<button id="adults-pill-4" onclick="switchLesson('adults',4)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 4: العائلة</button>
+<button id="adults-pill-5" onclick="switchLesson('adults',5)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 5: المقهى</button>
+<button id="adults-pill-6" onclick="switchLesson('adults',6)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 6: الوقت والأيام</button>
+<button id="adults-pill-7" onclick="switchLesson('adults',7)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 7: الطعام</button>
+<button id="adults-pill-8" onclick="switchLesson('adults',8)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 8: التسوق</button>
+<button id="adults-pill-9" onclick="switchLesson('adults',9)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 9: الاتجاهات</button>
+<button id="adults-pill-10" onclick="switchLesson('adults',10)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 10: الأفعال اليومية</button>
+</div>
+
+<!-- Lesson 1: Alphabet -->
+<div id="adults-lesson-1" class="space-y-8">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 1: الحروف الإنجليزية (The Alphabet)</h1>
+<p class="text-slate-500 text-sm mt-1">الحروف الإنجليزية أساس النطق الصحيح. اضغط على أي بطاقة لتسمع نطق الحرف مع كلمة مثال، ثم حاول تكرارها بصوت مسموع.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس (30 ثانية)
+</h2>
+<p class="text-indigo-100 text-sm">هناك 26 حرفاً في اللغة الإنجليزية، كل حرف له شكل كبير وشكل صغير، ولكل حرف صوت مختلف يجب حفظه جيداً.</p>
+</div>
+<button onclick="playLessonAudio('هناك ستة وعشرون حرفاً في اللغة الإنجليزية. كل حرف له شكل كبير وشكل صغير، ولكل حرف صوت مختلف. اضغط على كل بطاقة لتسمع الحرف مع كلمة مثال، وحاول تكرار النطق بصوت مسموع.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-alphabet-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">أي حرف تبدأ به كلمة Apple (تفاحة)؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-1', 'إجابة صحيحة! حرف A هو بداية كلمة Apple.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">A</button>
+<button onclick="checkAnswer(false, 'feedback-adults-1', 'ليست إجابة صحيحة، كلمة Apple تبدأ بحرف A.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">B</button>
+<button onclick="checkAnswer(false, 'feedback-adults-1', 'ليست إجابة صحيحة، كلمة Apple تبدأ بحرف A.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">C</button>
+</div>
+<div id="feedback-adults-1" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 2: Greetings -->
+<div id="adults-lesson-2" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 2: التحيات والمجاملات (Greetings)</h1>
+<p class="text-slate-500 text-sm mt-1">التحيات هي أول ما نحتاجه لبدء أي محادثة. استمع للأمثلة ثم تدرب على الرد المناسب.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">كيف تبدأ حديثك بشكل مهذب مع أي شخص تقابله لأول مرة أو تعرفه جيداً.</p>
+</div>
+<button onclick="playLessonAudio('التحيات هي أول ما نحتاجه لبدء أي محادثة. عند مقابلة شخص جديد نقول نايس تو ميت يو، أي سعدت بلقائك. وعند السؤال عن الحال نرد بقول آي ايم فاين ثانك يو، أي أنا بخير شكراً.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+<div class="relative h-32 rounded-xl overflow-hidden mb-4 bg-indigo-50 flex items-center justify-center text-5xl">👋</div>
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900">Good morning!</h3>
+<p class="text-slate-500 text-sm">صباح الخير!</p>
+</div>
+<button onclick="speakText('Good morning!')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+<i class="fa-solid fa-volume-high text-lg"></i>
+</button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+استخدام: <span class="text-slate-700 font-semibold">التحية الصباحية الرسمية وغير الرسمية</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+<div class="relative h-32 rounded-xl overflow-hidden mb-4 bg-indigo-50 flex items-center justify-center text-5xl">🤝</div>
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900">Nice to meet you.</h3>
+<p class="text-slate-500 text-sm">سعدت بلقائك.</p>
+</div>
+<button onclick="speakText('Nice to meet you.')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+<i class="fa-solid fa-volume-high text-lg"></i>
+</button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+استخدام: <span class="text-slate-700 font-semibold">عند مقابلة شخص لأول مرة</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">ما هو الرد المناسب على: "How are you?"</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-2', 'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) I am fine, thank you.</button>
+<button onclick="checkAnswer(false, 'feedback-adults-2', 'حاول مجدداً، فكر في رد يصف شعورك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Yes, please.</button>
+<button onclick="checkAnswer(false, 'feedback-adults-2', 'حاول مجدداً، فكر في رد يصف شعورك.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Goodbye.</button>
+</div>
+<div id="feedback-adults-2" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 3: Numbers -->
+<div id="adults-lesson-3" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 3: الأرقام (Numbers)</h1>
+<p class="text-slate-500 text-sm mt-1">الأرقام من 1 إلى 10 من أهم أساسيات أي لغة. استمع لنطق كل رقم بالضغط عليه.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">ستحتاج الأرقام دائماً: عند الشراء، وذكر عمرك، ورقم هاتفك.</p>
+</div>
+<button onclick="playLessonAudio('الأرقام من واحد إلى عشرة من أهم أساسيات أي لغة. ستحتاجها دائماً عند الشراء، أو ذكر عمرك، أو رقم هاتفك. استمع لكل رقم وحاول تكراره بصوت مرتفع.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-numbers-grid" class="grid grid-cols-3 sm:grid-cols-5 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">كيف نكتب الرقم 7 بالإنجليزية؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-3', 'إجابة صحيحة! Seven تعني سبعة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Seven</button>
+<button onclick="checkAnswer(false, 'feedback-adults-3', 'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Six</button>
+<button onclick="checkAnswer(false, 'feedback-adults-3', 'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Eight</button>
+</div>
+<div id="feedback-adults-3" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 4: Family -->
+<div id="adults-lesson-4" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 4: العائلة (Family)</h1>
+<p class="text-slate-500 text-sm mt-1">تعرّف على كيفية تسمية أفراد العائلة بالإنجليزية، من أكثر الكلمات استخداماً في المحادثات اليومية.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">كيف تتحدث عن أفراد عائلتك بثقة في أي محادثة.</p>
+</div>
+<button onclick="playLessonAudio('تعرف الآن على كيفية تسمية أفراد العائلة بالإنجليزية. مذر تعني أم، وفاذر تعني أب، وسيستر تعني أخت، وبروذر تعني أخ. استمع لكل كلمة وحاول تكرارها.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-family-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">ماذا نسمي "أخت" بالإنجليزية؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-4', 'إجابة صحيحة! Sister تعني أخت.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Sister</button>
+<button onclick="checkAnswer(false, 'feedback-adults-4', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Brother</button>
+<button onclick="checkAnswer(false, 'feedback-adults-4', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Cousin</button>
+</div>
+<div id="feedback-adults-4" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 5: Cafe (original content) -->
+<div id="adults-lesson-5" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 5: المقهى والطعام (Café)</h1>
+<p class="text-slate-500 text-sm mt-1">استمع للنطق الصحيح، اقرأ الشرح العربي، ثم تدرب فورياً على التحدث والتركيب.</p>
+</div>
+<!-- Mini Podcast / Audio Explanation -->
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس (60 ثانية)
+</h2>
+<p class="text-indigo-100 text-sm">كيف تطلب القهوة والماء بلباقة دون أخطاء شائعة باللكنة الأمريكية.</p>
+</div>
+<button onclick="playLessonAudio('مرحباً بك في درس اليوم. عندما تطلب شيئاً في المطعم أو المقهى، استخدم دائماً صيغة كان آي هاف، متبوعة بالطلب، ثم كلمة بليز في النهاية لتكون مهذباً ولطيفاً.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<!-- Visual Flashcards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Card 1 -->
+<div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm card-zoom flex flex-col justify-between">
+<div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-slate-100">
+<img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&auto=format&fit=crop&q=80" alt="Coffee" class="w-full h-full object-cover">
+</div>
+<div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-bold text-slate-900">Can I have a coffee?</h3>
+<p class="text-slate-500 text-sm">هل يمكنني الحصول على قهوة؟</p>
+</div>
+<button onclick="speakText('Water, please.')" class="p-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-600 rounded-full transition" title="استمع">
+<i class="fa-solid fa-volume-high text-lg"></i>
+</button>
+</div>
+<div class="mt-4 pt-4 border-t border-slate-100 text-xs text-slate-400">
+ملاحظة نطق: <span class="text-slate-700 font-semibold">تنطق حرف T مخففاً مثل (Wader)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Quiz -->
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">ما هي الجملة الصحيحة لطلب كوب شاي في المطعم؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(false, 'feedback-adults-5', 'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+أ) I want tea now.
+</button>
+<button onclick="checkAnswer(true, 'feedback-adults-5', 'إجابة صحيحة! أحسنت، صيغة Can I have... please هي الأسلوب اللبق.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+ب) Can I have tea, please?
+</button>
+<button onclick="checkAnswer(false, 'feedback-adults-5', 'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">
+ج) Give me tea fast.
+</button>
+</div>
+<div id="feedback-adults-5" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 6: Days & Time -->
+<div id="adults-lesson-6" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 6: الوقت والأيام (Days &amp; Time)</h1>
+<p class="text-slate-500 text-sm mt-1">تعرّف على أيام الأسبوع بالإنجليزية وكيفية السؤال عن الوقت في أي محادثة يومية.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">أيام الأسبوع تبدأ في أمريكا وبريطانيا بيوم الأحد، وللسؤال عن الوقت نقول وات تايم إز إت.</p>
+</div>
+<button onclick="playLessonAudio('أيام الأسبوع سبعة أيام تبدأ عادة بيوم الأحد. للسؤال عن الوقت نقول وات تايم إز إت، أي كم الساعة الآن. استمع لكل يوم وحاول حفظ ترتيبه.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-days-grid" class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">كيف نسأل بأدب عن الوقت الحالي بالإنجليزية؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-6', 'إجابة صحيحة! What time is it? تعني كم الساعة الآن.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) What time is it?</button>
+<button onclick="checkAnswer(false, 'feedback-adults-6', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) What is your name?</button>
+<button onclick="checkAnswer(false, 'feedback-adults-6', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) How old are you?</button>
+</div>
+<div id="feedback-adults-6" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 7: Food -->
+<div id="adults-lesson-7" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 7: الطعام (Food)</h1>
+<p class="text-slate-500 text-sm mt-1">تعلّم أسماء الأطعمة الأساسية، وكيفية طلب ما تريد بلباقة باستخدام I would like.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">لطلب الطعام بلباقة، استخدم عبارة آي وود لايك، أي أنا أرغب في.</p>
+</div>
+<button onclick="playLessonAudio('لطلب الطعام بأدب، استخدم عبارة آي وود لايك متبوعة باسم الطعام، أي أنا أرغب في. مثال: آي وود لايك رايس، أي أرغب في أرز. استمع لكل كلمة وحاول تكرارها.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-food-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">ما هي الترجمة الصحيحة لكلمة "أرز"؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-7', 'إجابة صحيحة! Rice تعني أرز.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Rice</button>
+<button onclick="checkAnswer(false, 'feedback-adults-7', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Bread</button>
+<button onclick="checkAnswer(false, 'feedback-adults-7', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Egg</button>
+</div>
+<div id="feedback-adults-7" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 8: Shopping -->
+<div id="adults-lesson-8" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 8: التسوق والملابس (Shopping)</h1>
+<p class="text-slate-500 text-sm mt-1">تعلّم أسماء الملابس الشائعة، وكيفية السؤال عن السعر عند التسوق.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">للسؤال عن السعر في المتجر نقول هاو ماتش إز ذيس، أي كم سعر هذا.</p>
+</div>
+<button onclick="playLessonAudio('عند التسوق، للسؤال عن سعر أي شيء نقول هاو ماتش إز ذيس، أي كم سعر هذا. استمع لأسماء الملابس التالية وحاول تكرارها بصوت مسموع.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-clothes-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">كيف تسأل بأدب عن سعر شيء ما بالإنجليزية؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-8', 'إجابة صحيحة! How much is this? تعني كم سعر هذا.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) How much is this?</button>
+<button onclick="checkAnswer(false, 'feedback-adults-8', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) What is this?</button>
+<button onclick="checkAnswer(false, 'feedback-adults-8', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) Where is this?</button>
+</div>
+<div id="feedback-adults-8" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 9: Directions & Places -->
+<div id="adults-lesson-9" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 9: الاتجاهات والأماكن (Places)</h1>
+<p class="text-slate-500 text-sm mt-1">تعرّف على أسماء الأماكن الشائعة في المدينة، وكيفية السؤال بأدب عن الاتجاهات.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">للسؤال عن مكان ما نقول إكسكيوز مي، وير إز ذا بانك، أي المعذرة، أين البنك.</p>
+</div>
+<button onclick="playLessonAudio('للسؤال بأدب عن مكان ما، نبدأ بكلمة إكسكيوز مي أي المعذرة، ثم نقول وير إز، أي أين يوجد، متبوعة باسم المكان. مثال: إكسكيوز مي، وير إز ذا بانك، أي المعذرة أين البنك.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-places-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">كيف تسأل بأدب عن مكان البنك؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-9', 'إجابة صحيحة! هذا هو الأسلوب المهذب للسؤال عن الاتجاهات.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) Excuse me, where is the bank?</button>
+<button onclick="checkAnswer(false, 'feedback-adults-9', 'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) Bank now, fast!</button>
+<button onclick="checkAnswer(false, 'feedback-adults-9', 'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) I want bank.</button>
+</div>
+<div id="feedback-adults-9" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 10: Daily Routine Verbs -->
+<div id="adults-lesson-10" class="space-y-8 hidden">
+<div>
+<h1 class="text-2xl font-black text-slate-900">الدرس 10: الأفعال اليومية (Daily Routine)</h1>
+<p class="text-slate-500 text-sm mt-1">تعلّم أهم الأفعال التي تصف روتينك اليومي، وهي أساس بناء أي جملة بسيطة عن حياتك.</p>
+</div>
+<div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+<p class="text-indigo-100 text-sm">جملة بسيطة مثل آي ويك أب آت سيفن، أي أستيقظ في الساعة السابعة، تصف روتينك اليومي.</p>
+</div>
+<button onclick="playLessonAudio('الأفعال اليومية تساعدك على وصف روتينك بجمل بسيطة. مثال: آي ويك أب آت سيفن، أي أستيقظ في الساعة السابعة. استمع لكل فعل وحاول تكوين جملة بسيطة به.')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="adults-verbs-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"></div>
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">ماذا تعني كلمة "Sleep"؟</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<button onclick="checkAnswer(true, 'feedback-adults-10', 'إجابة صحيحة! Sleep تعني أنام.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">أ) أنام</button>
+<button onclick="checkAnswer(false, 'feedback-adults-10', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ب) أعمل</button>
+<button onclick="checkAnswer(false, 'feedback-adults-10', 'غير صحيحة، حاول مرة أخرى.')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">ج) أدرس</button>
+</div>
+<div id="feedback-adults-10" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+</section>
+
+<!-- ============================= -->
+<!-- Kids Track (Playful & Phonics) -->
+<!-- ============================= -->
+<section id="kids-track" class="space-y-6 hidden">
+
+<!-- Lesson selector -->
+<div class="flex flex-wrap gap-2" id="kids-lesson-nav">
+<button id="kids-pill-1" onclick="switchLesson('kids',1)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-pink-500 text-white border-pink-500 shadow-sm">الدرس 1: الحروف</button>
+<button id="kids-pill-2" onclick="switchLesson('kids',2)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 2: الألوان</button>
+<button id="kids-pill-3" onclick="switchLesson('kids',3)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 3: الأرقام</button>
+<button id="kids-pill-4" onclick="switchLesson('kids',4)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 4: الحيوانات</button>
+<button id="kids-pill-5" onclick="switchLesson('kids',5)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 5: الأشكال</button>
+<button id="kids-pill-6" onclick="switchLesson('kids',6)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 6: الفواكه</button>
+<button id="kids-pill-7" onclick="switchLesson('kids',7)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 7: عائلتي</button>
+<button id="kids-pill-8" onclick="switchLesson('kids',8)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 8: الطقس</button>
+<button id="kids-pill-9" onclick="switchLesson('kids',9)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 9: النقل</button>
+<button id="kids-pill-10" onclick="switchLesson('kids',10)" class="px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50">الدرس 10: مشاعري</button>
+</div>
+
+<!-- Lesson 1: Alphabet -->
+<div id="kids-lesson-1" class="space-y-8">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">حروفي الإنجليزية 🔤</h1>
+<p class="text-slate-600 text-sm">اضغط على أي بطاقة لتسمع الحرف والكلمة وتحصل على نجمة ⭐!</p>
+</div>
+<div id="kids-alphabet-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">أي حرف تبدأ به هذه الكلمة: 🐱 Cat؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-1', 'رائع! حرف C هو بداية كلمة Cat 🎉', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">C</button>
+<button onclick="checkAnswer(false, 'feedback-kids-1', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">D</button>
+<button onclick="checkAnswer(false, 'feedback-kids-1', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">E</button>
+</div>
+<div id="feedback-kids-1" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 2: Colors -->
+<div id="kids-lesson-2" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">عالم الألوان 🎨</h1>
+<p class="text-slate-600 text-sm">الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالإنجليزية.</p>
+</div>
+<div id="kids-colors-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">ما هو اللون الأحمر بالإنجليزية؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-2', 'صحيح! Red يعني أحمر 🔴', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Red</button>
+<button onclick="checkAnswer(false, 'feedback-kids-2', 'قريب! حاول مرة ثانية.', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Blue</button>
+<button onclick="checkAnswer(false, 'feedback-kids-2', 'قريب! حاول مرة ثانية.', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Green</button>
+</div>
+<div id="feedback-kids-2" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 3: Numbers -->
+<div id="kids-lesson-3" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">هيا نعد! 🔢</h1>
+<p class="text-slate-600 text-sm">هيا نتعلم العد بالإنجليزية من 1 إلى 10!</p>
+</div>
+<div id="kids-numbers-grid" class="grid grid-cols-2 sm:grid-cols-5 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالإنجليزية</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-3', 'ممتاز! 2 + 3 = Five (خمسة) 🌟', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Five</button>
+<button onclick="checkAnswer(false, 'feedback-kids-3', 'فكر مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Four</button>
+<button onclick="checkAnswer(false, 'feedback-kids-3', 'فكر مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Six</button>
+</div>
+<div id="feedback-kids-3" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 4: Animals (original content) -->
+<div id="kids-lesson-4" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">عالم الصغار المرح 🎈</h1>
+<p class="text-slate-600 text-sm">اضغط على الصورة لسماع صوت الكلمة والحصول على نجوم!</p>
+</div>
+<!-- Game Board -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+<!-- Item 1: Cat -->
+<div onclick="playKidCard('Cat', 'مياو! القطة الذكية', 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-amber-50 border-2 border-amber-200 rounded-3xl p-5 text-center card-zoom hover:border-amber-400">
+<img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+<h3 class="text-2xl font-black text-amber-900">Cat</h3>
+<p class="text-amber-700 font-bold text-sm mt-1">قِطة</p>
+<span class="inline-block mt-3 px-4 py-1 bg-amber-200 text-amber-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+</div>
+<!-- Item 2: Dog -->
+<div onclick="playKidCard('Dog', 'هو هو! الكلب الوفي', 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-blue-50 border-2 border-blue-200 rounded-3xl p-5 text-center card-zoom hover:border-blue-400">
+<img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+<h3 class="text-2xl font-black text-blue-900">Dog</h3>
+<p class="text-blue-700 font-bold text-sm mt-1">كَلْب</p>
+<span class="inline-block mt-3 px-4 py-1 bg-blue-200 text-blue-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+</div>
+<!-- Item 3: Lion -->
+<div onclick="playKidCard('Lion', 'ملك الغابة القوي!', 'https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80')" class="cursor-pointer bg-orange-50 border-2 border-orange-200 rounded-3xl p-5 text-center card-zoom hover:border-orange-400">
+<img src="https://images.unsplash.com/photo-1534188753412-3e26d0d618d6?w=500&auto=format&fit=crop&q=80" class="w-32 h-32 mx-auto rounded-2xl object-cover mb-4 border-2 border-white shadow">
+<h3 class="text-2xl font-black text-orange-900">Lion</h3>
+<p class="text-orange-700 font-bold text-sm mt-1">أسَد</p>
+<span class="inline-block mt-3 px-4 py-1 bg-orange-200 text-orange-800 rounded-full text-xs font-bold">اضغط للاستماع 🔊</span>
+</div>
+</div>
+<!-- Kids Interactive Audio Quiz -->
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">استمع للصوت واعرف الحيوان الصحيح:</p>
+<button onclick="speakText('Cat')" class="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2.5 rounded-full font-bold shadow-sm mb-4">
+<i class="fa-solid fa-volume-high"></i> شغل الصوت المطلوب
+</button>
+<div class="flex justify-center gap-4">
+<button onclick="alert('رائع يا بطل! إجابة صحيحة ⭐⭐⭐'); addScore(5);" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Cat</button>
+<button onclick="alert('حاول ثانية يا بطل!')" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Dog</button>
+</div>
+</div>
+</div>
+
+<!-- Lesson 5: Shapes -->
+<div id="kids-lesson-5" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">الأشكال من حولنا 🔺</h1>
+<p class="text-slate-600 text-sm">اضغط على كل شكل لتسمع اسمه بالإنجليزية!</p>
+</div>
+<div id="kids-shapes-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">ما اسم هذا الشكل: ⭐؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-5', 'رائع! ⭐ هو Star (نجمة)', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Star</button>
+<button onclick="checkAnswer(false, 'feedback-kids-5', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Circle</button>
+<button onclick="checkAnswer(false, 'feedback-kids-5', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Square</button>
+</div>
+<div id="feedback-kids-5" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 6: Fruits -->
+<div id="kids-lesson-6" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">الفواكه اللذيذة 🍉</h1>
+<p class="text-slate-600 text-sm">اضغط على كل فاكهة لتسمع اسمها بالإنجليزية!</p>
+</div>
+<div id="kids-fruits-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">ما هي الفاكهة الصفراء المنحنية؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-6', 'رائع! Banana هي الموزة 🍌', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Banana</button>
+<button onclick="checkAnswer(false, 'feedback-kids-6', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Apple</button>
+<button onclick="checkAnswer(false, 'feedback-kids-6', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Grapes</button>
+</div>
+<div id="feedback-kids-6" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 7: My Family (kid version) -->
+<div id="kids-lesson-7" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">عائلتي الصغيرة 👨‍👩‍👧‍👦</h1>
+<p class="text-slate-600 text-sm">اضغط على كل بطاقة لتسمع اسم فرد العائلة بالإنجليزية!</p>
+</div>
+<div id="kids-family-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">كيف نقول "ماما" بالإنجليزية؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-7', 'صحيح! Mom تعني ماما 👩', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Mom</button>
+<button onclick="checkAnswer(false, 'feedback-kids-7', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Dad</button>
+<button onclick="checkAnswer(false, 'feedback-kids-7', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Baby</button>
+</div>
+<div id="feedback-kids-7" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 8: Weather -->
+<div id="kids-lesson-8" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">أحوال الطقس ☀️</h1>
+<p class="text-slate-600 text-sm">كيف حال الطقس اليوم؟ اضغط لتسمع كل حالة بالإنجليزية!</p>
+</div>
+<div id="kids-weather-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">كيف نقول "ممطر" بالإنجليزية؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-8', 'رائع! Rainy تعني ممطر 🌧️', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Rainy</button>
+<button onclick="checkAnswer(false, 'feedback-kids-8', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Sunny</button>
+<button onclick="checkAnswer(false, 'feedback-kids-8', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Snowy</button>
+</div>
+<div id="feedback-kids-8" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 9: Transportation -->
+<div id="kids-lesson-9" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">وسائل النقل 🚗</h1>
+<p class="text-slate-600 text-sm">كيف نتنقل من مكان لآخر؟ اضغط لتسمع اسم كل وسيلة!</p>
+</div>
+<div id="kids-transport-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">أي وسيلة نقل تطير في السماء؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-9', 'رائع! Plane تطير في السماء ✈️', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Plane</button>
+<button onclick="checkAnswer(false, 'feedback-kids-9', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Car</button>
+<button onclick="checkAnswer(false, 'feedback-kids-9', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Bike</button>
+</div>
+<div id="feedback-kids-9" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+
+<!-- Lesson 10: Feelings -->
+<div id="kids-lesson-10" class="space-y-8 hidden">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">مشاعري 🤗</h1>
+<p class="text-slate-600 text-sm">كيف تشعر اليوم؟ اضغط على كل بطاقة لتسمع اسم الشعور بالإنجليزية!</p>
+</div>
+<div id="kids-emotions-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4"></div>
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">كيف نقول "سعيد" بالإنجليزية؟</p>
+<div class="flex justify-center gap-4">
+<button onclick="checkAnswer(true, 'feedback-kids-10', 'رائع! Happy تعني سعيد 😄', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Happy</button>
+<button onclick="checkAnswer(false, 'feedback-kids-10', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Sad</button>
+<button onclick="checkAnswer(false, 'feedback-kids-10', 'حاول مرة أخرى يا بطل!', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">Angry</button>
+</div>
+<div id="feedback-kids-10" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>
+</div>
+</section>
+</div>
+<!-- ============================= -->
+<!-- French (fr) — generated by JS engine below -->
+<!-- ============================= -->
+<div id="lang-fr" class="hidden">
+<div class="flex gap-2 bg-slate-100 p-1 rounded-xl w-fit mb-6">
+<button id="fr-btn-adults" onclick="switchLangTrack('fr-','adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-blue-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+</button>
+<button id="fr-btn-kids" onclick="switchLangTrack('fr-','kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-blue-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+</button>
+</div>
+<section id="fr-adults-track" class="space-y-6"></section>
+<section id="fr-kids-track" class="space-y-6 hidden"></section>
+</div>
+<!-- ============================= -->
+<!-- Turkish (tr) — generated by JS engine below -->
+<!-- ============================= -->
+<div id="lang-tr" class="hidden">
+<div class="flex gap-2 bg-slate-100 p-1 rounded-xl w-fit mb-6">
+<button id="tr-btn-adults" onclick="switchLangTrack('tr-','adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-red-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+</button>
+<button id="tr-btn-kids" onclick="switchLangTrack('tr-','kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-red-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+</button>
+</div>
+<section id="tr-adults-track" class="space-y-6"></section>
+<section id="tr-kids-track" class="space-y-6 hidden"></section>
+</div>
+<!-- ============================= -->
+<!-- Korean (ko) — generated by JS engine below -->
+<!-- ============================= -->
+<div id="lang-ko" class="hidden">
+<div class="flex gap-2 bg-slate-100 p-1 rounded-xl w-fit mb-6">
+<button id="ko-btn-adults" onclick="switchLangTrack('ko-','adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-cyan-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+</button>
+<button id="ko-btn-kids" onclick="switchLangTrack('ko-','kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-cyan-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+</button>
+</div>
+<section id="ko-adults-track" class="space-y-6"></section>
+<section id="ko-kids-track" class="space-y-6 hidden"></section>
+</div>
+<!-- ============================= -->
+<!-- Chinese (zh) — generated by JS engine below -->
+<!-- ============================= -->
+<div id="lang-zh" class="hidden">
+<div class="flex gap-2 bg-slate-100 p-1 rounded-xl w-fit mb-6">
+<button id="zh-btn-adults" onclick="switchLangTrack('zh-','adults')" class="px-4 py-2 rounded-lg font-bold text-sm bg-white text-amber-600 shadow-sm transition">
+<i class="fa-solid fa-graduation-cap ml-1"></i> مسار المبتدئين
+</button>
+<button id="zh-btn-kids" onclick="switchLangTrack('zh-','kids')" class="px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-amber-600 transition">
+<i class="fa-solid fa-shapes ml-1 text-pink-500"></i> قسم الأطفال
+</button>
+</div>
+<section id="zh-adults-track" class="space-y-6"></section>
+<section id="zh-kids-track" class="space-y-6 hidden"></section>
+</div>
+</main>
+<script>
+let score = 0;
+function addScore(pts) {
+score += pts;
+document.getElementById('score-counter').innerText = `النقاط: ${score} ⭐`;
+}
+
+// Top-level track switching (Adults <-> Kids)
+function switchSection(type) {
+const adultsSec = document.getElementById('adults-track');
+const kidsSec = document.getElementById('kids-track');
+const btnAdults = document.getElementById('btn-adults');
+const btnKids = document.getElementById('btn-kids');
+if (type === 'adults') {
+adultsSec.classList.remove('hidden');
+kidsSec.classList.add('hidden');
+btnAdults.className = "px-4 py-2 rounded-lg font-bold text-sm bg-white text-indigo-600 shadow-sm transition";
+btnKids.className = "px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition";
+} else {
+kidsSec.classList.remove('hidden');
+adultsSec.classList.add('hidden');
+btnKids.className = "px-4 py-2 rounded-lg font-bold text-sm bg-white text-pink-600 shadow-sm transition";
+btnAdults.className = "px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-indigo-600 transition";
+}
+}
+
+// Lesson switching within a track (1-10)
+function switchLesson(track, n) {
+const activeClass = track === 'adults'
+? 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-indigo-600 text-white border-indigo-600 shadow-sm'
+: 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-pink-500 text-white border-pink-500 shadow-sm';
+const inactiveClass = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50';
+for (let i = 1; i <= 10; i++) {
+const panel = document.getElementById(track + '-lesson-' + i);
+const pill = document.getElementById(track + '-pill-' + i);
+if (!panel || !pill) continue;
+if (i === n) {
+panel.classList.remove('hidden');
+pill.className = activeClass;
+} else {
+panel.classList.add('hidden');
+pill.className = inactiveClass;
+}
+}
+}
+
+// Text-to-Speech Engine using Web Speech API
+function speakText(text) {
+if ('speechSynthesis' in window) {
+window.speechSynthesis.cancel();
+const utterance = new SpeechSynthesisUtterance(text);
+utterance.lang = 'en-US';
+utterance.rate = 0.85; // Slightly slower for beginners
+window.speechSynthesis.speak(utterance);
+} else {
+alert("متصفحك لا يدعم خاصية نطق الصوت تلقائياً.");
+}
+}
+
+function playLessonAudio(text) {
+if ('speechSynthesis' in window) {
+window.speechSynthesis.cancel();
+const utterance = new SpeechSynthesisUtterance(text);
+utterance.lang = 'ar-SA';
+utterance.rate = 0.95;
+window.speechSynthesis.speak(utterance);
+}
+}
+
+function playKidCard(word) {
+speakText(word);
+addScore(1);
+}
+
+function checkAnswer(isCorrect, feedbackId, msg, points) {
+const feedback = document.getElementById(feedbackId);
+feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-red-100', 'text-red-800');
+if (isCorrect) {
+feedback.classList.add('bg-emerald-100', 'text-emerald-800');
+addScore(points || 3);
+} else {
+feedback.classList.add('bg-red-100', 'text-red-800');
+}
+feedback.innerText = msg;
+}
+
+// ---- Word bank data ----
+const ALPHABET = [
+{l:'A', w:'Apple', ar:'تفاحة', e:'🍎'},
+{l:'B', w:'Ball', ar:'كرة', e:'⚽'},
+{l:'C', w:'Cat', ar:'قطة', e:'🐱'},
+{l:'D', w:'Dog', ar:'كلب', e:'🐶'},
+{l:'E', w:'Elephant', ar:'فيل', e:'🐘'},
+{l:'F', w:'Fish', ar:'سمكة', e:'🐟'},
+{l:'G', w:'Grapes', ar:'عنب', e:'🍇'},
+{l:'H', w:'Hat', ar:'قبعة', e:'🎩'},
+{l:'I', w:'Ice Cream', ar:'آيس كريم', e:'🍦'},
+{l:'J', w:'Juice', ar:'عصير', e:'🧃'},
+{l:'K', w:'Kite', ar:'طائرة ورقية', e:'🪁'},
+{l:'L', w:'Lion', ar:'أسد', e:'🦁'},
+{l:'M', w:'Moon', ar:'قمر', e:'🌙'},
+{l:'N', w:'Nest', ar:'عش', e:'🐦'},
+{l:'O', w:'Orange', ar:'برتقال', e:'🍊'},
+{l:'P', w:'Pencil', ar:'قلم رصاص', e:'✏️'},
+{l:'Q', w:'Queen', ar:'ملكة', e:'👸'},
+{l:'R', w:'Rainbow', ar:'قوس قزح', e:'🌈'},
+{l:'S', w:'Sun', ar:'شمس', e:'☀️'},
+{l:'T', w:'Tiger', ar:'نمر', e:'🐯'},
+{l:'U', w:'Umbrella', ar:'مظلة', e:'☂️'},
+{l:'V', w:'Van', ar:'شاحنة صغيرة', e:'🚐'},
+{l:'W', w:'Watermelon', ar:'بطيخ', e:'🍉'},
+{l:'X', w:'Xylophone', ar:'إكسيليفون', e:'🎼'},
+{l:'Y', w:'Yo-yo', ar:'يويو', e:'🪀'},
+{l:'Z', w:'Zebra', ar:'حمار وحشي', e:'🦓'}
+];
+
+const NUMBERS = [
+{n:1, w:'One', ar:'واحد'}, {n:2, w:'Two', ar:'اثنان'}, {n:3, w:'Three', ar:'ثلاثة'},
+{n:4, w:'Four', ar:'أربعة'}, {n:5, w:'Five', ar:'خمسة'}, {n:6, w:'Six', ar:'ستة'},
+{n:7, w:'Seven', ar:'سبعة'}, {n:8, w:'Eight', ar:'ثمانية'}, {n:9, w:'Nine', ar:'تسعة'},
+{n:10, w:'Ten', ar:'عشرة'}
+];
+
+const FAMILY = [
+{w:'Mother', ar:'أم', e:'👩'}, {w:'Father', ar:'أب', e:'👨'},
+{w:'Sister', ar:'أخت', e:'👧'}, {w:'Brother', ar:'أخ', e:'👦'},
+{w:'Grandmother', ar:'جدة', e:'👵'}, {w:'Grandfather', ar:'جد', e:'👴'}
+];
+
+const SHAPES = [
+{w:'Circle', ar:'دائرة', e:'⚪'}, {w:'Square', ar:'مربع', e:'⬛'},
+{w:'Triangle', ar:'مثلث', e:'🔺'}, {w:'Star', ar:'نجمة', e:'⭐'},
+{w:'Heart', ar:'قلب', e:'❤️'}
+];
+
+const COLORS = [
+{w:'Red', ar:'أحمر', hex:'#ef4444'}, {w:'Blue', ar:'أزرق', hex:'#3b82f6'},
+{w:'Yellow', ar:'أصفر', hex:'#eab308'}, {w:'Green', ar:'أخضر', hex:'#22c55e'},
+{w:'Purple', ar:'بنفسجي', hex:'#a855f7'}, {w:'Orange', ar:'برتقالي', hex:'#f97316'}
+];
+
+const DAYS = [
+{w:'Sunday', ar:'الأحد'}, {w:'Monday', ar:'الاثنين'}, {w:'Tuesday', ar:'الثلاثاء'},
+{w:'Wednesday', ar:'الأربعاء'}, {w:'Thursday', ar:'الخميس'}, {w:'Friday', ar:'الجمعة'},
+{w:'Saturday', ar:'السبت'}
+];
+
+const FOOD = [
+{w:'Bread', ar:'خبز', e:'🍞'}, {w:'Rice', ar:'أرز', e:'🍚'},
+{w:'Chicken', ar:'دجاج', e:'🍗'}, {w:'Vegetables', ar:'خضار', e:'🥦'},
+{w:'Milk', ar:'حليب', e:'🥛'}, {w:'Egg', ar:'بيض', e:'🥚'},
+{w:'Fruit', ar:'فاكهة', e:'🍎'}, {w:'Fish', ar:'سمك', e:'🐟'}
+];
+
+const CLOTHES = [
+{w:'Shirt', ar:'قميص', e:'👕'}, {w:'Pants', ar:'بنطال', e:'👖'},
+{w:'Shoes', ar:'حذاء', e:'👟'}, {w:'Dress', ar:'فستان', e:'👗'},
+{w:'Jacket', ar:'جاكيت', e:'🧥'}, {w:'Hat', ar:'قبعة', e:'🎩'}
+];
+
+const PLACES = [
+{w:'Hospital', ar:'مستشفى', e:'🏥'}, {w:'School', ar:'مدرسة', e:'🏫'},
+{w:'Bank', ar:'بنك', e:'🏦'}, {w:'Airport', ar:'مطار', e:'✈️'},
+{w:'Restaurant', ar:'مطعم', e:'🍽️'}, {w:'Market', ar:'سوق', e:'🏬'}
+];
+
+const VERBS = [
+{w:'Wake up', ar:'أستيقظ', e:'⏰'}, {w:'Eat', ar:'آكل', e:'🍽️'},
+{w:'Study', ar:'أدرس', e:'📚'}, {w:'Work', ar:'أعمل', e:'💼'},
+{w:'Drink', ar:'أشرب', e:'🥤'}, {w:'Sleep', ar:'أنام', e:'😴'}
+];
+
+const FRUITS = [
+{w:'Apple', ar:'تفاحة', e:'🍎'}, {w:'Banana', ar:'موزة', e:'🍌'},
+{w:'Orange', ar:'برتقالة', e:'🍊'}, {w:'Grapes', ar:'عنب', e:'🍇'},
+{w:'Strawberry', ar:'فراولة', e:'🍓'}, {w:'Watermelon', ar:'بطيخ', e:'🍉'}
+];
+
+const KIDFAMILY = [
+{w:'Mom', ar:'ماما', e:'👩'}, {w:'Dad', ar:'بابا', e:'👨'},
+{w:'Sister', ar:'أختي', e:'👧'}, {w:'Brother', ar:'أخي', e:'👦'},
+{w:'Baby', ar:'طفل', e:'👶'}, {w:'Grandma', ar:'جدتي', e:'👵'}
+];
+
+const WEATHER = [
+{w:'Sunny', ar:'مشمس', e:'☀️'}, {w:'Rainy', ar:'ممطر', e:'🌧️'},
+{w:'Cloudy', ar:'غائم', e:'☁️'}, {w:'Snowy', ar:'ثلجي', e:'❄️'},
+{w:'Windy', ar:'عاصف', e:'💨'}, {w:'Hot', ar:'حار', e:'🔥'}
+];
+
+const TRANSPORT = [
+{w:'Car', ar:'سيارة', e:'🚗'}, {w:'Bus', ar:'حافلة', e:'🚌'},
+{w:'Bike', ar:'دراجة', e:'🚲'}, {w:'Train', ar:'قطار', e:'🚆'},
+{w:'Plane', ar:'طائرة', e:'✈️'}, {w:'Boat', ar:'قارب', e:'🚤'}
+];
+
+const EMOTIONS = [
+{w:'Happy', ar:'سعيد', e:'😄'}, {w:'Sad', ar:'حزين', e:'😢'},
+{w:'Angry', ar:'غاضب', e:'😠'}, {w:'Scared', ar:'خائف', e:'😱'},
+{w:'Sleepy', ar:'نعسان', e:'😴'}, {w:'Excited', ar:'متحمس', e:'🤩'}
+];
+
+// ---- Render grids ----
+function renderAdultAlphabet() {
+document.getElementById('adults-alphabet-grid').innerHTML = ALPHABET.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.l}, ${x.w}')">
+<span class="text-2xl font-black text-indigo-600">${x.l}${x.l.toLowerCase()}</span>
+<span class="text-xs font-semibold text-slate-700">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderKidAlphabet() {
+document.getElementById('kids-alphabet-grid').innerHTML = ALPHABET.map(x => `
+<div class="bg-white border-2 border-indigo-100 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.l}, ${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-xl font-black text-indigo-600">${x.l}${x.l.toLowerCase()}</span>
+<span class="text-xs font-bold text-slate-600">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderAdultNumbers() {
+document.getElementById('adults-numbers-grid').innerHTML = NUMBERS.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-2xl font-black text-indigo-600">${x.n}</span>
+<span class="text-xs font-semibold text-slate-700">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderKidNumbers() {
+document.getElementById('kids-numbers-grid').innerHTML = NUMBERS.map(x => `
+<div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-3xl font-black text-blue-700">${x.n}</span>
+<span class="text-sm font-bold text-blue-900">${x.w}</span>
+<span class="text-[11px] text-blue-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderFamily() {
+document.getElementById('adults-family-grid').innerHTML = FAMILY.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-4 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-sm font-bold text-slate-800 mt-1">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderShapes() {
+document.getElementById('kids-shapes-grid').innerHTML = SHAPES.map(x => `
+<div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-amber-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-amber-600">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderColors() {
+document.getElementById('kids-colors-grid').innerHTML = COLORS.map(x => `
+<div class="bg-white border-2 rounded-2xl p-4 flex flex-col items-center gap-2 card-zoom cursor-pointer shadow-sm" style="border-color:${x.hex}" onclick="playKidCard('${x.w}')">
+<span class="block w-12 h-12 rounded-full" style="background:${x.hex}"></span>
+<span class="text-sm font-black text-slate-800">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderDays() {
+document.getElementById('adults-days-grid').innerHTML = DAYS.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-sm font-black text-indigo-600">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderFood() {
+document.getElementById('adults-food-grid').innerHTML = FOOD.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderClothes() {
+document.getElementById('adults-clothes-grid').innerHTML = CLOTHES.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderPlaces() {
+document.getElementById('adults-places-grid').innerHTML = PLACES.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderVerbs() {
+document.getElementById('adults-verbs-grid').innerHTML = VERBS.map(x => `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakText('${x.w}')">
+<span class="text-3xl">${x.e}</span>
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderFruits() {
+document.getElementById('kids-fruits-grid').innerHTML = FRUITS.map(x => `
+<div class="bg-rose-50 border-2 border-rose-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-rose-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-rose-600">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderKidFamily() {
+document.getElementById('kids-family-grid').innerHTML = KIDFAMILY.map(x => `
+<div class="bg-violet-50 border-2 border-violet-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-violet-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-violet-600">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderWeather() {
+document.getElementById('kids-weather-grid').innerHTML = WEATHER.map(x => `
+<div class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-sky-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-sky-600">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderTransport() {
+document.getElementById('kids-transport-grid').innerHTML = TRANSPORT.map(x => `
+<div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-emerald-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-emerald-600">${x.ar}</span>
+</div>`).join('');
+}
+
+function renderEmotions() {
+document.getElementById('kids-emotions-grid').innerHTML = EMOTIONS.map(x => `
+<div class="bg-teal-50 border-2 border-teal-200 rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCard('${x.w}')">
+<span class="text-4xl">${x.e}</span>
+<span class="text-sm font-black text-teal-900 mt-1">${x.w}</span>
+<span class="text-[11px] text-teal-600">${x.ar}</span>
+</div>`).join('');
+}
+
+renderAdultAlphabet();
+renderKidAlphabet();
+renderAdultNumbers();
+renderKidNumbers();
+renderFamily();
+renderShapes();
+renderColors();
+renderDays();
+renderFood();
+renderClothes();
+renderPlaces();
+renderVerbs();
+renderFruits();
+renderKidFamily();
+renderWeather();
+renderTransport();
+renderEmotions();
+
+// =====================================================================
+// MULTI-LANGUAGE ENGINE (generic, used by French/Turkish/Korean/Chinese)
+// Does not touch any existing English function or data above this point.
+// =====================================================================
+
+function esc(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+
+// Speak in an arbitrary target language without altering the original
+// speakText()/playKidCard() used by the English section.
+function speakTextLang(text, langCode) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = langCode || 'en-US';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert("متصفحك لا يدعم خاصية نطق الصوت تلقائياً.");
+  }
+}
+function playKidCardLang(word, langCode) {
+  speakTextLang(word, langCode);
+  addScore(1);
+}
+
+// Top-level language switch (English <-> French <-> ...)
+const ALL_LANGS = ['en', 'fr'];
+function switchLang(code) {
+  ALL_LANGS.forEach(l => {
+    const panel = document.getElementById('lang-' + l);
+    if (panel) panel.classList.toggle('hidden', l !== code);
+  });
+  document.querySelectorAll('.langbtn').forEach(b => {
+    const active = b.dataset.lang === code;
+    b.className = active
+      ? 'langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-white text-indigo-600 border-indigo-200 shadow-sm'
+      : 'langbtn px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold border transition bg-transparent text-slate-500 border-transparent hover:bg-white';
+  });
+}
+
+// Per-language accent configuration
+const LAX = {
+  fr: {
+    code: 'fr-FR',
+    gradient: 'from-blue-600 to-blue-800',
+    adultPillActive: 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-blue-600 text-white border-blue-600 shadow-sm',
+    adultBtnActive: 'px-4 py-2 rounded-lg font-bold text-sm bg-white text-blue-600 shadow-sm transition',
+    adultBtnInactive: 'px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-blue-600 transition'
+  }
+};
+const KID_PILL_ACTIVE = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-pink-500 text-white border-pink-500 shadow-sm';
+const PILL_INACTIVE = 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-white text-slate-600 border-slate-200 hover:bg-slate-50';
+const KIDS_BTN_ACTIVE = 'px-4 py-2 rounded-lg font-bold text-sm bg-white text-pink-600 shadow-sm transition';
+const KIDS_BTN_INACTIVE_HOVER = 'px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-pink-600 transition';
+
+// Generic adults/kids track toggle for a language panel (prefix e.g. 'fr-')
+function switchLangTrack(prefix, type) {
+  const key = prefix.replace('-', '');
+  const accent = LAX[key];
+  const adultsSec = document.getElementById(prefix + 'adults-track');
+  const kidsSec = document.getElementById(prefix + 'kids-track');
+  const btnA = document.getElementById(prefix + 'btn-adults');
+  const btnK = document.getElementById(prefix + 'btn-kids');
+  if (type === 'adults') {
+    adultsSec.classList.remove('hidden'); kidsSec.classList.add('hidden');
+    btnA.className = accent.adultBtnActive;
+    btnK.className = KIDS_BTN_INACTIVE_HOVER;
+  } else {
+    kidsSec.classList.remove('hidden'); adultsSec.classList.add('hidden');
+    btnK.className = KIDS_BTN_ACTIVE;
+    btnA.className = accent.adultBtnInactive;
+  }
+}
+
+// Generic vocab grid renderers (reused by every new language)
+function renderAdultGrid(gridId, arr, langCode) {
+  const el = document.getElementById(gridId); if (!el) return;
+  el.innerHTML = arr.map(x => {
+    let top = '';
+    if (x.l) top = `<span class="text-2xl font-black text-slate-700">${x.l}${x.l.toLowerCase()}</span>`;
+    else if (x.e) top = `<span class="text-3xl">${x.e}</span>`;
+    else if (x.n != null) top = `<span class="text-2xl font-black text-slate-700">${x.n}</span>`;
+    return `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakTextLang('${esc(x.w)}','${langCode}')">
+${top}
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+${x.ph ? `<span class="text-[10px] text-slate-400 italic">${x.ph}</span>` : ''}
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`;
+  }).join('');
+}
+
+const KID_THEME = {
+  1: { bg: 'bg-white', border: 'border-indigo-100', text: 'text-indigo-600', sub: 'text-slate-400' },
+  2: { isColor: true },
+  3: { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-900', sub: 'text-blue-400' },
+  4: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', sub: 'text-amber-600' },
+  5: { bg: 'bg-amber-50', border: 'border-amber-200', text: 'text-amber-900', sub: 'text-amber-600' },
+  6: { bg: 'bg-rose-50', border: 'border-rose-200', text: 'text-rose-900', sub: 'text-rose-600' },
+  7: { bg: 'bg-violet-50', border: 'border-violet-200', text: 'text-violet-900', sub: 'text-violet-600' },
+  8: { bg: 'bg-sky-50', border: 'border-sky-200', text: 'text-sky-900', sub: 'text-sky-600' },
+  9: { bg: 'bg-emerald-50', border: 'border-emerald-200', text: 'text-emerald-900', sub: 'text-emerald-600' },
+  10: { bg: 'bg-teal-50', border: 'border-teal-200', text: 'text-teal-900', sub: 'text-teal-600' }
+};
+function renderKidGrid(gridId, arr, langCode, themeIdx) {
+  const el = document.getElementById(gridId); if (!el) return;
+  const t = KID_THEME[themeIdx] || KID_THEME[1];
+  if (t.isColor) {
+    el.innerHTML = arr.map(x => `
+<div class="bg-white border-2 rounded-2xl p-4 flex flex-col items-center gap-2 card-zoom cursor-pointer shadow-sm" style="border-color:${x.hex}" onclick="playKidCardLang('${esc(x.w)}','${langCode}')">
+<span class="block w-12 h-12 rounded-full" style="background:${x.hex}"></span>
+<span class="text-sm font-black text-slate-800">${x.w}</span>
+${x.ph ? `<span class="text-[10px] text-slate-400 italic">${x.ph}</span>` : ''}
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+    return;
+  }
+  el.innerHTML = arr.map(x => `
+<div class="${t.bg} border-2 ${t.border} rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCardLang('${esc(x.w)}','${langCode}')">
+<span class="text-4xl">${x.e || ''}</span>
+<span class="text-sm font-black ${t.text} mt-1">${x.w}</span>
+${x.ph ? `<span class="text-[10px] ${t.sub} italic">${x.ph}</span>` : ''}
+<span class="text-[11px] ${t.sub}">${x.ar}</span>
+</div>`).join('');
+}
+
+// Generic quiz builders
+function buildAdultQuizHTML(feedbackId, q, options) {
+  return `
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+<h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+<i class="fa-solid fa-circle-question text-indigo-600"></i> اختبار الفهم التفاعلي:
+</h3>
+<p class="text-slate-700 font-medium mb-4">${q}</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+${options.map(o => `<button onclick="checkAnswer(${o.correct}, '${feedbackId}', '${esc(o.feedback)}')" class="w-full text-right p-3 rounded-xl border border-slate-200 hover:bg-slate-50 font-medium text-sm transition">${o.text}</button>`).join('\n')}
+</div>
+<div id="${feedbackId}" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>`;
+}
+function buildKidQuizHTML(feedbackId, q, options) {
+  return `
+<div class="bg-pink-50 border-2 border-pink-200 rounded-3xl p-6 text-center">
+<h3 class="text-xl font-black text-pink-700 mb-2">تحدي النجوم الصغير 🌟</h3>
+<p class="text-slate-600 text-sm mb-4">${q}</p>
+<div class="flex justify-center gap-4 flex-wrap">
+${options.map(o => `<button onclick="checkAnswer(${o.correct}, '${feedbackId}', '${esc(o.feedback)}', 5)" class="px-6 py-2 bg-white rounded-xl font-bold border border-pink-200 hover:bg-pink-100">${o.text}</button>`).join('\n')}
+</div>
+<div id="${feedbackId}" class="mt-4 hidden p-3 rounded-xl text-sm font-bold"></div>
+</div>`;
+}
+
+// Generic lesson panel builders
+function buildAdultLessonHTML(prefix, n, title, desc, audioScript, gridId, gridCols, quizHTML, accent) {
+  return `
+<div id="${prefix}adults-lesson-${n}" class="space-y-8 ${n === 1 ? '' : 'hidden'}">
+<div>
+<h1 class="text-2xl font-black text-slate-900">${title}</h1>
+<p class="text-slate-500 text-sm mt-1">${desc}</p>
+</div>
+<div class="bg-gradient-to-r ${accent.gradient} rounded-2xl p-6 text-white shadow-md flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="space-y-1 text-center md:text-right">
+<h2 class="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
+<i class="fa-solid fa-podcast text-emerald-400"></i> الشرح الصوتي للدرس
+</h2>
+</div>
+<button onclick="playLessonAudio('${esc(audioScript)}')" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 shrink-0">
+<i class="fa-solid fa-play"></i> استمع للشرح الآن
+</button>
+</div>
+<div id="${gridId}" class="grid ${gridCols} gap-3"></div>
+${quizHTML}
+</div>`;
+}
+function buildKidLessonHTML(prefix, n, titleEmoji, introP, gridId, gridCols, quizHTML) {
+  return `
+<div id="${prefix}kids-lesson-${n}" class="space-y-8 ${n === 1 ? '' : 'hidden'}">
+<div class="text-center space-y-2">
+<h1 class="text-3xl font-black text-pink-500">${titleEmoji}</h1>
+<p class="text-slate-600 text-sm">${introP}</p>
+</div>
+<div id="${gridId}" class="grid ${gridCols} gap-4"></div>
+${quizHTML}
+</div>`;
+}
+
+function buildPillNav(prefix, track, titles, activeClass) {
+  let html = `<div class="flex flex-wrap gap-2" id="${prefix}${track}-lesson-nav">`;
+  titles.forEach((t, i) => {
+    const n = i + 1;
+    const cls = n === 1 ? activeClass : PILL_INACTIVE;
+    html += `<button id="${prefix}${track}-pill-${n}" onclick="switchLesson('${prefix}${track}',${n},'${activeClass}')" class="${cls}">${t}</button>`;
+  });
+  html += `</div>`;
+  return html;
+}
+
+// Assemble a full adults track (nav + 10 lesson panels) from lesson data, then render grids.
+function buildAdultTrack(prefix, key, lessons) {
+  const accent = LAX[key];
+  let html = buildPillNav(prefix, 'adults', lessons.map(l => l.pill), accent.adultPillActive);
+  lessons.forEach((l, i) => {
+    const n = i + 1;
+    const gridId = `${prefix}adults-${l.topic}-grid`;
+    const quizHtml = buildAdultQuizHTML(`feedback-${prefix}adults-${n}`, l.quiz.q, l.quiz.options);
+    html += buildAdultLessonHTML(prefix, n, l.title, l.desc, l.audio, gridId, l.gridCols || 'grid-cols-2 sm:grid-cols-4', quizHtml, accent);
+  });
+  document.getElementById(prefix + 'adults-track').innerHTML = html;
+  lessons.forEach((l, i) => {
+    renderAdultGrid(`${prefix}adults-${l.topic}-grid`, l.vocab, accent.code);
+  });
+}
+// Assemble a full kids track (nav + 10 lesson panels) from lesson data, then render grids.
+function buildKidTrack(prefix, key, lessons) {
+  const accent = LAX[key];
+  let html = buildPillNav(prefix, 'kids', lessons.map(l => l.pill), KID_PILL_ACTIVE);
+  lessons.forEach((l, i) => {
+    const n = i + 1;
+    const gridId = `${prefix}kids-${l.topic}-grid`;
+    const quizHtml = buildKidQuizHTML(`feedback-${prefix}kids-${n}`, l.quiz.q, l.quiz.options);
+    html += buildKidLessonHTML(prefix, n, l.title, l.desc, gridId, l.gridCols || 'grid-cols-2 sm:grid-cols-3', quizHtml);
+  });
+  document.getElementById(prefix + 'kids-track').innerHTML = html;
+  lessons.forEach((l, i) => {
+    renderKidGrid(`${prefix}kids-${l.topic}-grid`, l.vocab, accent.code, i + 1);
+  });
+}
+
+// =====================================================================
+// FRENCH (fr-FR) CONTENT
+// =====================================================================
+
+const FR_ALPHABET = [
+  {l:'A', w:'Avion', ar:'طائرة', e:'✈️'},
+  {l:'B', w:'Ballon', ar:'بالون', e:'🎈'},
+  {l:'C', w:'Chat', ar:'قطة', e:'🐱'},
+  {l:'D', w:'Dauphin', ar:'دولفين', e:'🐬'},
+  {l:'E', w:'École', ar:'مدرسة', e:'🏫'},
+  {l:'F', w:'Fleur', ar:'زهرة', e:'🌸'},
+  {l:'G', w:'Gâteau', ar:'كعكة', e:'🎂'},
+  {l:'H', w:'Hibou', ar:'بومة', e:'🦉'},
+  {l:'I', w:'Île', ar:'جزيرة', e:'🏝️'},
+  {l:'J', w:'Jus', ar:'عصير', e:'🧃'},
+  {l:'K', w:'Kiwi', ar:'كيوي', e:'🥝'},
+  {l:'L', w:'Lion', ar:'أسد', e:'🦁'},
+  {l:'M', w:'Maison', ar:'منزل', e:'🏠'},
+  {l:'N', w:'Nuage', ar:'غيمة', e:'☁️'},
+  {l:'O', w:'Orange', ar:'برتقال', e:'🍊'},
+  {l:'P', w:'Poisson', ar:'سمكة', e:'🐟'},
+  {l:'Q', w:'Quatre', ar:'أربعة', e:'4️⃣'},
+  {l:'R', w:'Renard', ar:'ثعلب', e:'🦊'},
+  {l:'S', w:'Soleil', ar:'شمس', e:'☀️'},
+  {l:'T', w:'Tigre', ar:'نمر', e:'🐯'},
+  {l:'U', w:'Usine', ar:'مصنع', e:'🏭'},
+  {l:'V', w:'Voiture', ar:'سيارة', e:'🚗'},
+  {l:'W', w:'Wagon', ar:'عربة قطار', e:'🚃'},
+  {l:'X', w:'Xylophone', ar:'إكسيليفون', e:'🎼'},
+  {l:'Y', w:'Yaourt', ar:'زبادي', e:'🥣'},
+  {l:'Z', w:'Zèbre', ar:'حمار وحشي', e:'🦓'}
+];
+
+const FR_NUMBERS = [
+  {n:1, w:'Un', ar:'واحد'}, {n:2, w:'Deux', ar:'اثنان'}, {n:3, w:'Trois', ar:'ثلاثة'},
+  {n:4, w:'Quatre', ar:'أربعة'}, {n:5, w:'Cinq', ar:'خمسة'}, {n:6, w:'Six', ar:'ستة'},
+  {n:7, w:'Sept', ar:'سبعة'}, {n:8, w:'Huit', ar:'ثمانية'}, {n:9, w:'Neuf', ar:'تسعة'},
+  {n:10, w:'Dix', ar:'عشرة'}
+];
+
+const FR_ADULT_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:FR_ALPHABET, gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-6',
+    title:"الدرس 1: الأبجدية الفرنسية (L'alphabet)",
+    desc:'الأبجدية الفرنسية تستخدم نفس الحروف اللاتينية الإنجليزية، لكن نطقها مختلف تماماً. اضغط على كل بطاقة لتسمع الحرف مع كلمة مثال.',
+    audio:"الأبجدية الفرنسية فيها ستة وعشرون حرفاً مثل الإنجليزية تماماً، لكن نطق كل حرف مختلف. مثلاً حرف A ينطق آه، وحرف E ينطق أو. استمع لكل بطاقة وحاول تكرار النطق بصوت مسموع.",
+    quiz:{ q:'بأي حرف تبدأ كلمة Chat (قطة) بالفرنسية؟', options:[
+      {text:'C', correct:true, feedback:'إجابة صحيحة! حرف C هو بداية كلمة Chat.'},
+      {text:'D', correct:false, feedback:'ليست إجابة صحيحة، كلمة Chat تبدأ بحرف C.'},
+      {text:'E', correct:false, feedback:'ليست إجابة صحيحة، كلمة Chat تبدأ بحرف C.'}
+    ]} },
+  { pill:'الدرس 2: التحيات', topic:'greetings', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'Bonjour', ar:'صباح الخير / مرحباً', e:'👋'},
+      {w:'Bonsoir', ar:'مساء الخير', e:'🌆'},
+      {w:'Salut', ar:'أهلاً (غير رسمية)', e:'✋'},
+      {w:"Comment ça va ?", ar:'كيف حالك؟', e:'🤔'},
+      {w:'Ça va bien, merci.', ar:'أنا بخير، شكراً', e:'😊'},
+      {w:'Enchanté(e).', ar:'سعدت بلقائك', e:'🤝'},
+      {w:'Au revoir.', ar:'إلى اللقاء', e:'👋'},
+      {w:'Merci beaucoup.', ar:'شكراً جزيلاً', e:'🙏'}
+    ],
+    title:'الدرس 2: التحيات والمجاملات (Les salutations)',
+    desc:'التحيات هي أول ما نحتاجه لبدء أي محادثة بالفرنسية. استمع للأمثلة ثم تدرب على الرد المناسب.',
+    audio:"عند مقابلة شخص جديد نقول أونشونتيه، أي سعدت بلقائك. وعند السؤال عن الحال نقول كومون سا فا، أي كيف حالك، ونرد بقول سا فا بيان ميرسي، أي أنا بخير شكراً.",
+    quiz:{ q:'ما هو الرد المناسب على: "Comment ça va ?"', options:[
+      {text:'أ) Ça va bien, merci.', correct:true, feedback:'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.'},
+      {text:'ب) Au revoir.', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'},
+      {text:'ج) S\'il vous plaît.', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:FR_NUMBERS, gridCols:'grid-cols-3 sm:grid-cols-5',
+    title:'الدرس 3: الأرقام (Les nombres)',
+    desc:'الأرقام من 1 إلى 10 من أهم أساسيات أي لغة. استمع لنطق كل رقم بالضغط عليه.',
+    audio:'الأرقام من واحد إلى عشرة من أهم أساسيات اللغة الفرنسية. واحد يُنطق آن، واثنان يُنطق دو، وثلاثة يُنطق تغوا. استمع لكل رقم وحاول تكراره بصوت مرتفع.',
+    quiz:{ q:'كيف نكتب الرقم 7 بالفرنسية؟', options:[
+      {text:'أ) Sept', correct:true, feedback:'إجابة صحيحة! Sept تعني سبعة.'},
+      {text:'ب) Six', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'},
+      {text:'ج) Huit', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 4: العائلة', topic:'family', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Mère', ar:'أم', e:'👩'}, {w:'Père', ar:'أب', e:'👨'},
+      {w:'Sœur', ar:'أخت', e:'👧'}, {w:'Frère', ar:'أخ', e:'👦'},
+      {w:'Grand-mère', ar:'جدة', e:'👵'}, {w:'Grand-père', ar:'جد', e:'👴'}
+    ],
+    title:'الدرس 4: العائلة (La famille)',
+    desc:'تعرّف على كيفية تسمية أفراد العائلة بالفرنسية، من أكثر الكلمات استخداماً في المحادثات اليومية.',
+    audio:'ماغ تعني أم، وپير تعني أب، وسوغ تعني أخت، وفغيغ تعني أخ. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ماذا نسمي "أخت" بالفرنسية؟', options:[
+      {text:'أ) Sœur', correct:true, feedback:'إجابة صحيحة! Sœur تعني أخت.'},
+      {text:'ب) Frère', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Cousine', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 5: المقهى', topic:'cafe', gridCols:'grid-cols-2 sm:grid-cols-2',
+    vocab:[
+      {w:'Je voudrais un café, s\'il vous plaît.', ar:'أريد قهوة من فضلك', e:'☕'},
+      {w:"Je voudrais de l'eau, s'il vous plaît.", ar:'أريد ماء من فضلك', e:'💧'},
+      {w:"L'addition, s'il vous plaît.", ar:'الفاتورة من فضلك', e:'🧾'},
+      {w:"C'est délicieux !", ar:'هذا لذيذ!', e:'😋'}
+    ],
+    title:'الدرس 5: المقهى والطعام (Au café)',
+    desc:'كيف تطلب القهوة والماء بلباقة في المقهى أو المطعم الفرنسي.',
+    audio:'عندما تطلب شيئاً في المقهى، استخدم دائماً صيغة جو ووندغيه، أي أريد، متبوعة بالطلب، ثم عبارة سيل فو پليه في النهاية لتكون مهذباً.',
+    quiz:{ q:'ما هي الجملة الصحيحة لطلب كوب شاي بأدب؟', options:[
+      {text:"أ) Je voudrais du thé, s'il vous plaît.", correct:true, feedback:'إجابة صحيحة! هذه هي الصيغة المهذبة لطلب الشاي.'},
+      {text:'ب) Donne-moi du thé vite.', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'},
+      {text:'ج) Je veux thé maintenant.', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 6: الوقت والأيام', topic:'days', gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-7',
+    vocab:[
+      {w:'Dimanche', ar:'الأحد'}, {w:'Lundi', ar:'الاثنين'}, {w:'Mardi', ar:'الثلاثاء'},
+      {w:'Mercredi', ar:'الأربعاء'}, {w:'Jeudi', ar:'الخميس'}, {w:'Vendredi', ar:'الجمعة'},
+      {w:'Samedi', ar:'السبت'}
+    ],
+    title:'الدرس 6: الوقت والأيام (Les jours et l\'heure)',
+    desc:'تعرّف على أيام الأسبوع بالفرنسية وكيفية السؤال عن الوقت.',
+    audio:'أيام الأسبوع بالفرنسية سبعة أيام. للسؤال عن الوقت نقول كيل يور إيتيل، أي كم الساعة الآن. استمع لكل يوم وحاول حفظ ترتيبه.',
+    quiz:{ q:'كيف نسأل بأدب عن الوقت الحالي بالفرنسية؟', options:[
+      {text:'أ) Quelle heure est-il ?', correct:true, feedback:'إجابة صحيحة! Quelle heure est-il؟ تعني كم الساعة الآن.'},
+      {text:'ب) Comment tu t\'appelles ?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Quel âge as-tu ?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 7: الطعام', topic:'food', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'Pain', ar:'خبز', e:'🍞'}, {w:'Riz', ar:'أرز', e:'🍚'},
+      {w:'Poulet', ar:'دجاج', e:'🍗'}, {w:'Légumes', ar:'خضار', e:'🥦'},
+      {w:'Lait', ar:'حليب', e:'🥛'}, {w:'Œuf', ar:'بيض', e:'🥚'},
+      {w:'Fruit', ar:'فاكهة', e:'🍎'}, {w:'Poisson', ar:'سمك', e:'🐟'}
+    ],
+    title:'الدرس 7: الطعام (La nourriture)',
+    desc:'تعلّم أسماء الأطعمة الأساسية بالفرنسية، وكيفية طلب ما تريد بلباقة.',
+    audio:'لطلب الطعام بأدب، استخدم عبارة جو ووندغيه متبوعة باسم الطعام. مثال: جو ووندغيه دو ري، أي أرغب في أرز. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ما هي الترجمة الصحيحة لكلمة "أرز"؟', options:[
+      {text:'أ) Riz', correct:true, feedback:'إجابة صحيحة! Riz تعني أرز.'},
+      {text:'ب) Pain', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Œuf', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 8: التسوق', topic:'clothes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Chemise', ar:'قميص', e:'👕'}, {w:'Pantalon', ar:'بنطال', e:'👖'},
+      {w:'Chaussures', ar:'حذاء', e:'👟'}, {w:'Robe', ar:'فستان', e:'👗'},
+      {w:'Veste', ar:'جاكيت', e:'🧥'}, {w:'Chapeau', ar:'قبعة', e:'🎩'}
+    ],
+    title:'الدرس 8: التسوق والملابس (Les vêtements)',
+    desc:'تعلّم أسماء الملابس الشائعة بالفرنسية، وكيفية السؤال عن السعر عند التسوق.',
+    audio:'للسؤال عن السعر في المتجر نقول كومبيان سا كوت، أي كم سعر هذا. استمع لأسماء الملابس التالية وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'كيف تسأل بأدب عن سعر شيء ما بالفرنسية؟', options:[
+      {text:'أ) Combien ça coûte ?', correct:true, feedback:'إجابة صحيحة! Combien ça coûte؟ تعني كم سعر هذا.'},
+      {text:'ب) Qu\'est-ce que c\'est ?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Où est-ce ?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 9: الاتجاهات', topic:'places', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Hôpital', ar:'مستشفى', e:'🏥'}, {w:'École', ar:'مدرسة', e:'🏫'},
+      {w:'Banque', ar:'بنك', e:'🏦'}, {w:'Aéroport', ar:'مطار', e:'✈️'},
+      {w:'Restaurant', ar:'مطعم', e:'🍽️'}, {w:'Marché', ar:'سوق', e:'🏬'}
+    ],
+    title:'الدرس 9: الاتجاهات والأماكن (Les endroits)',
+    desc:'تعرّف على أسماء الأماكن الشائعة في المدينة بالفرنسية، وكيفية السؤال بأدب عن الاتجاهات.',
+    audio:'للسؤال بأدب عن مكان ما، نبدأ بعبارة إكسكيوزيه موا أي المعذرة، ثم نقول أو إيست، أي أين يوجد، متبوعة باسم المكان. مثال: إكسكيوزيه موا، أو إيست لا بونك، أي المعذرة أين البنك.',
+    quiz:{ q:'كيف تسأل بأدب عن مكان البنك؟', options:[
+      {text:'أ) Excusez-moi, où est la banque ?', correct:true, feedback:'إجابة صحيحة! هذا هو الأسلوب المهذب للسؤال عن الاتجاهات.'},
+      {text:'ب) Banque vite !', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'},
+      {text:'ج) Je veux banque.', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 10: الأفعال اليومية', topic:'verbs', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Se réveiller', ar:'أستيقظ', e:'⏰'}, {w:'Manger', ar:'آكل', e:'🍽️'},
+      {w:'Étudier', ar:'أدرس', e:'📚'}, {w:'Travailler', ar:'أعمل', e:'💼'},
+      {w:'Boire', ar:'أشرب', e:'🥤'}, {w:'Dormir', ar:'أنام', e:'😴'}
+    ],
+    title:'الدرس 10: الأفعال اليومية (Les verbes du quotidien)',
+    desc:'تعلّم أهم الأفعال التي تصف روتينك اليومي بالفرنسية.',
+    audio:'الأفعال اليومية تساعدك على وصف روتينك بجمل بسيطة. مثال: جو مو غيفيّ آ سيت هير، أي أستيقظ في الساعة السابعة. استمع لكل فعل وحاول تكوين جملة بسيطة به.',
+    quiz:{ q:'ماذا تعني كلمة "Dormir"؟', options:[
+      {text:'أ) أنام', correct:true, feedback:'إجابة صحيحة! Dormir تعني أنام.'},
+      {text:'ب) أعمل', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) أدرس', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} }
+];
+
+const FR_COLORS = [
+  {w:'Rouge', ar:'أحمر', hex:'#ef4444'}, {w:'Bleu', ar:'أزرق', hex:'#3b82f6'},
+  {w:'Jaune', ar:'أصفر', hex:'#eab308'}, {w:'Vert', ar:'أخضر', hex:'#22c55e'},
+  {w:'Violet', ar:'بنفسجي', hex:'#a855f7'}, {w:'Orange', ar:'برتقالي', hex:'#f97316'}
+];
+
+const FR_KID_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:FR_ALPHABET, gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    title:'حروفي الفرنسية 🔤', desc:'اضغط على أي بطاقة لتسمع الحرف والكلمة وتحصل على نجمة ⭐!',
+    quiz:{ q:'بأي حرف تبدأ هذه الكلمة: 🐱 Chat؟', options:[
+      {text:'C', correct:true, feedback:'رائع! حرف C هو بداية كلمة Chat 🎉'},
+      {text:'D', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'E', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 2: الألوان', topic:'colors', vocab:FR_COLORS, gridCols:'grid-cols-2 sm:grid-cols-3',
+    title:'عالم الألوان 🎨', desc:'الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالفرنسية.',
+    quiz:{ q:'ما هو اللون الأحمر بالفرنسية؟', options:[
+      {text:'Rouge', correct:true, feedback:'صحيح! Rouge يعني أحمر 🔴'},
+      {text:'Bleu', correct:false, feedback:'قريب! حاول مرة ثانية.'},
+      {text:'Vert', correct:false, feedback:'قريب! حاول مرة ثانية.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:FR_NUMBERS, gridCols:'grid-cols-2 sm:grid-cols-5',
+    title:'هيا نعد! 🔢', desc:'هيا نتعلم العد بالفرنسية من 1 إلى 10!',
+    quiz:{ q:'كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالفرنسية', options:[
+      {text:'Cinq', correct:true, feedback:'ممتاز! 2 + 3 = Cinq (خمسة) 🌟'},
+      {text:'Quatre', correct:false, feedback:'فكر مرة أخرى يا بطل!'},
+      {text:'Six', correct:false, feedback:'فكر مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 4: الحيوانات', topic:'animals', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'Chat', ar:'قطة', e:'🐱'}, {w:'Chien', ar:'كلب', e:'🐶'}, {w:'Lion', ar:'أسد', e:'🦁'},
+      {w:'Éléphant', ar:'فيل', e:'🐘'}, {w:'Poisson', ar:'سمكة', e:'🐟'}, {w:'Oiseau', ar:'عصفور', e:'🐦'}
+    ],
+    title:'عالم الحيوانات 🎈', desc:'اضغط على كل حيوان لسماع اسمه بالفرنسية والحصول على نجوم!',
+    quiz:{ q:'ما اسم هذا الحيوان: 🐶؟', options:[
+      {text:'Chien', correct:true, feedback:'رائع! 🐶 هو Chien (كلب)'},
+      {text:'Chat', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Lion', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 5: الأشكال', topic:'shapes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    vocab:[
+      {w:'Cercle', ar:'دائرة', e:'⚪'}, {w:'Carré', ar:'مربع', e:'⬛'},
+      {w:'Triangle', ar:'مثلث', e:'🔺'}, {w:'Étoile', ar:'نجمة', e:'⭐'}, {w:'Cœur', ar:'قلب', e:'❤️'}
+    ],
+    title:'الأشكال من حولنا 🔺', desc:'اضغط على كل شكل لتسمع اسمه بالفرنسية!',
+    quiz:{ q:'ما اسم هذا الشكل: ⭐؟', options:[
+      {text:'Étoile', correct:true, feedback:'رائع! ⭐ هو Étoile (نجمة)'},
+      {text:'Cercle', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Carré', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 6: الفواكه', topic:'fruits', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Pomme', ar:'تفاحة', e:'🍎'}, {w:'Banane', ar:'موزة', e:'🍌'}, {w:'Orange', ar:'برتقالة', e:'🍊'},
+      {w:'Raisin', ar:'عنب', e:'🍇'}, {w:'Fraise', ar:'فراولة', e:'🍓'}, {w:'Pastèque', ar:'بطيخ', e:'🍉'}
+    ],
+    title:'الفواكه اللذيذة 🍉', desc:'اضغط على كل فاكهة لتسمع اسمها بالفرنسية!',
+    quiz:{ q:'ما هي الفاكهة الصفراء المنحنية؟', options:[
+      {text:'Banane', correct:true, feedback:'رائع! Banane هي الموزة 🍌'},
+      {text:'Pomme', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Raisin', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 7: عائلتي', topic:'kidfamily', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Maman', ar:'ماما', e:'👩'}, {w:'Papa', ar:'بابا', e:'👨'},
+      {w:'Sœur', ar:'أختي', e:'👧'}, {w:'Frère', ar:'أخي', e:'👦'},
+      {w:'Bébé', ar:'طفل', e:'👶'}, {w:'Mamie', ar:'جدتي', e:'👵'}
+    ],
+    title:'عائلتي الصغيرة 👨‍👩‍👧‍👦', desc:'اضغط على كل بطاقة لتسمع اسم فرد العائلة بالفرنسية!',
+    quiz:{ q:'كيف نقول "ماما" بالفرنسية؟', options:[
+      {text:'Maman', correct:true, feedback:'صحيح! Maman تعني ماما 👩'},
+      {text:'Papa', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Bébé', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 8: الطقس', topic:'weather', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Ensoleillé', ar:'مشمس', e:'☀️'}, {w:'Pluvieux', ar:'ممطر', e:'🌧️'},
+      {w:'Nuageux', ar:'غائم', e:'☁️'}, {w:'Neigeux', ar:'ثلجي', e:'❄️'},
+      {w:'Venteux', ar:'عاصف', e:'💨'}, {w:'Chaud', ar:'حار', e:'🔥'}
+    ],
+    title:'أحوال الطقس ☀️', desc:'كيف حال الطقس اليوم؟ اضغط لتسمع كل حالة بالفرنسية!',
+    quiz:{ q:'كيف نقول "ممطر" بالفرنسية؟', options:[
+      {text:'Pluvieux', correct:true, feedback:'رائع! Pluvieux تعني ممطر 🌧️'},
+      {text:'Ensoleillé', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Neigeux', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 9: النقل', topic:'transport', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Voiture', ar:'سيارة', e:'🚗'}, {w:'Bus', ar:'حافلة', e:'🚌'},
+      {w:'Vélo', ar:'دراجة', e:'🚲'}, {w:'Train', ar:'قطار', e:'🚆'},
+      {w:'Avion', ar:'طائرة', e:'✈️'}, {w:'Bateau', ar:'قارب', e:'🚤'}
+    ],
+    title:'وسائل النقل 🚗', desc:'كيف نتنقل من مكان لآخر؟ اضغط لتسمع اسم كل وسيلة بالفرنسية!',
+    quiz:{ q:'أي وسيلة نقل تطير في السماء؟', options:[
+      {text:'Avion', correct:true, feedback:'رائع! Avion تطير في السماء ✈️'},
+      {text:'Voiture', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Vélo', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 10: مشاعري', topic:'emotions', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Content', ar:'سعيد', e:'😄'}, {w:'Triste', ar:'حزين', e:'😢'},
+      {w:'Fâché', ar:'غاضب', e:'😠'}, {w:'Effrayé', ar:'خائف', e:'😱'},
+      {w:'Fatigué', ar:'نعسان', e:'😴'}, {w:'Excité', ar:'متحمس', e:'🤩'}
+    ],
+    title:'مشاعري 🤗', desc:'كيف تشعر اليوم؟ اضغط على كل بطاقة لتسمع اسم الشعور بالفرنسية!',
+    quiz:{ q:'كيف نقول "سعيد" بالفرنسية؟', options:[
+      {text:'Content', correct:true, feedback:'رائع! Content تعني سعيد 😄'},
+      {text:'Triste', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Fâché', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} }
+];
+
+// Build the French panels now that the DOM containers exist.
+buildAdultTrack('fr-', 'fr', FR_ADULT_LESSONS);
+buildKidTrack('fr-', 'fr', FR_KID_LESSONS);
+
+// =====================================================================
+// Engine refinements (apply to all languages, including a re-render of
+// French so it also benefits) — adds support for an explicit lowercase
+// override (x.ll) needed for scripts like Turkish (dotless ı / dotted İ),
+// and shows the letter badge on kid alphabet cards too (parity with the
+// original English kids-alphabet page).
+// =====================================================================
+function renderAdultGrid(gridId, arr, langCode) {
+  const el = document.getElementById(gridId); if (!el) return;
+  el.innerHTML = arr.map(x => {
+    let top = '';
+    if (x.l) top = `<span class="text-2xl font-black text-slate-700">${x.l}${x.ll || x.l.toLowerCase()}</span>`;
+    else if (x.e) top = `<span class="text-3xl">${x.e}</span>`;
+    else if (x.n != null) top = `<span class="text-2xl font-black text-slate-700">${x.n}</span>`;
+    return `
+<div class="bg-white border border-slate-200 rounded-xl p-3 flex flex-col items-center gap-1 hover:shadow-sm transition cursor-pointer" onclick="speakTextLang('${esc(x.w)}','${langCode}')">
+${top}
+<span class="text-sm font-semibold text-slate-700 mt-1">${x.w}</span>
+${x.ph ? `<span class="text-[10px] text-slate-400 italic">${x.ph}</span>` : ''}
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`;
+  }).join('');
+}
+function renderKidGrid(gridId, arr, langCode, themeIdx) {
+  const el = document.getElementById(gridId); if (!el) return;
+  const t = KID_THEME[themeIdx] || KID_THEME[1];
+  if (t.isColor) {
+    el.innerHTML = arr.map(x => `
+<div class="bg-white border-2 rounded-2xl p-4 flex flex-col items-center gap-2 card-zoom cursor-pointer shadow-sm" style="border-color:${x.hex}" onclick="playKidCardLang('${esc(x.w)}','${langCode}')">
+<span class="block w-12 h-12 rounded-full" style="background:${x.hex}"></span>
+<span class="text-sm font-black text-slate-800">${x.w}</span>
+${x.ph ? `<span class="text-[10px] text-slate-400 italic">${x.ph}</span>` : ''}
+<span class="text-[11px] text-slate-400">${x.ar}</span>
+</div>`).join('');
+    return;
+  }
+  el.innerHTML = arr.map(x => {
+    const letterBadge = x.l ? `<span class="text-lg font-black ${t.text}">${x.l}${x.ll || x.l.toLowerCase()}</span>` : '';
+    return `
+<div class="${t.bg} border-2 ${t.border} rounded-2xl p-4 flex flex-col items-center gap-1 card-zoom cursor-pointer shadow-sm" onclick="playKidCardLang('${esc(x.w)}','${langCode}')">
+<span class="text-4xl">${x.e || ''}</span>
+${letterBadge}
+<span class="text-sm font-black ${t.text} mt-1">${x.w}</span>
+${x.ph ? `<span class="text-[10px] ${t.sub} italic">${x.ph}</span>` : ''}
+<span class="text-[11px] ${t.sub}">${x.ar}</span>
+</div>`;
+  }).join('');
+}
+// Re-render French with the refined renderers (idempotent, harmless).
+buildAdultTrack('fr-', 'fr', FR_ADULT_LESSONS);
+buildKidTrack('fr-', 'fr', FR_KID_LESSONS);
+
+// Register new languages
+ALL_LANGS.push('tr', 'ko', 'zh');
+LAX.tr = {
+  code: 'tr-TR',
+  gradient: 'from-red-600 to-red-800',
+  adultPillActive: 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-red-600 text-white border-red-600 shadow-sm',
+  adultBtnActive: 'px-4 py-2 rounded-lg font-bold text-sm bg-white text-red-600 shadow-sm transition',
+  adultBtnInactive: 'px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-red-600 transition'
+};
+LAX.ko = {
+  code: 'ko-KR',
+  gradient: 'from-cyan-600 to-cyan-800',
+  adultPillActive: 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-cyan-600 text-white border-cyan-600 shadow-sm',
+  adultBtnActive: 'px-4 py-2 rounded-lg font-bold text-sm bg-white text-cyan-600 shadow-sm transition',
+  adultBtnInactive: 'px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-cyan-600 transition'
+};
+LAX.zh = {
+  code: 'zh-CN',
+  gradient: 'from-amber-600 to-amber-800',
+  adultPillActive: 'px-3 py-1.5 rounded-full text-xs sm:text-sm font-bold border transition bg-amber-600 text-white border-amber-600 shadow-sm',
+  adultBtnActive: 'px-4 py-2 rounded-lg font-bold text-sm bg-white text-amber-600 shadow-sm transition',
+  adultBtnInactive: 'px-4 py-2 rounded-lg font-bold text-sm text-slate-600 hover:text-amber-600 transition'
+};
+
+// =====================================================================
+// TURKISH (tr-TR) CONTENT
+// =====================================================================
+const TR_ALPHABET = [
+  {l:'A', w:'Araba', ar:'سيارة', e:'🚗'},
+  {l:'B', w:'Balık', ar:'سمكة', e:'🐟'},
+  {l:'C', w:'Ceviz', ar:'جوز', e:'🌰'},
+  {l:'Ç', w:'Çilek', ar:'فراولة', e:'🍓'},
+  {l:'D', w:'Dede', ar:'جد', e:'👴'},
+  {l:'E', w:'Elma', ar:'تفاحة', e:'🍎'},
+  {l:'F', w:'Fil', ar:'فيل', e:'🐘'},
+  {l:'G', w:'Gül', ar:'وردة', e:'🌹'},
+  {l:'Ğ', w:'Ağaç', ar:'شجرة (حرف يطيل الحرف قبله، لا يبدأ به أي كلمة)', e:'🌳'},
+  {l:'H', w:'Hediye', ar:'هدية', e:'🎁'},
+  {l:'I', ll:'ı', w:'Irmak', ar:'نهر', e:'🌊'},
+  {l:'İ', ll:'i', w:'İnek', ar:'بقرة', e:'🐄'},
+  {l:'J', w:'Jaguar', ar:'نمر مرقط', e:'🐆'},
+  {l:'K', w:'Kedi', ar:'قطة', e:'🐱'},
+  {l:'L', w:'Limon', ar:'ليمون', e:'🍋'},
+  {l:'M', w:'Masa', ar:'طاولة', e:'🍽️'},
+  {l:'N', w:'Nar', ar:'رمان', e:'🔴'},
+  {l:'O', w:'Okul', ar:'مدرسة', e:'🏫'},
+  {l:'Ö', w:'Ördek', ar:'بطة', e:'🦆'},
+  {l:'P', w:'Papağan', ar:'ببغاء', e:'🦜'},
+  {l:'R', w:'Radyo', ar:'راديو', e:'📻'},
+  {l:'S', w:'Simit', ar:'خبز تركي دائري', e:'🥯'},
+  {l:'Ş', w:'Şemsiye', ar:'مظلة', e:'☂️'},
+  {l:'T', w:'Tavşan', ar:'أرنب', e:'🐰'},
+  {l:'U', w:'Uçak', ar:'طائرة', e:'✈️'},
+  {l:'Ü', w:'Üzüm', ar:'عنب', e:'🍇'},
+  {l:'V', w:'Vazo', ar:'مزهرية', e:'🏺'},
+  {l:'Y', w:'Yıldız', ar:'نجمة', e:'⭐'},
+  {l:'Z', w:'Zürafa', ar:'زرافة', e:'🦒'}
+];
+const TR_NUMBERS = [
+  {n:1, w:'Bir', ar:'واحد'}, {n:2, w:'İki', ar:'اثنان'}, {n:3, w:'Üç', ar:'ثلاثة'},
+  {n:4, w:'Dört', ar:'أربعة'}, {n:5, w:'Beş', ar:'خمسة'}, {n:6, w:'Altı', ar:'ستة'},
+  {n:7, w:'Yedi', ar:'سبعة'}, {n:8, w:'Sekiz', ar:'ثمانية'}, {n:9, w:'Dokuz', ar:'تسعة'},
+  {n:10, w:'On', ar:'عشرة'}
+];
+const TR_COLORS = [
+  {w:'Kırmızı', ar:'أحمر', hex:'#ef4444'}, {w:'Mavi', ar:'أزرق', hex:'#3b82f6'},
+  {w:'Sarı', ar:'أصفر', hex:'#eab308'}, {w:'Yeşil', ar:'أخضر', hex:'#22c55e'},
+  {w:'Mor', ar:'بنفسجي', hex:'#a855f7'}, {w:'Turuncu', ar:'برتقالي', hex:'#f97316'}
+];
+
+const TR_ADULT_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:TR_ALPHABET, gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-6',
+    title:'الدرس 1: الأبجدية التركية (Türk alfabesi)',
+    desc:'الأبجدية التركية فيها 29 حرفاً، منها حروف خاصة غير موجودة بالإنجليزية مثل Ç وĞ وÖ وŞ وÜ، وحرفا I المختلفان (بدون نقطة ومع نقطة).',
+    audio:'الأبجدية التركية فيها تسعة وعشرون حرفاً. من أهم الفروقات وجود حرفين لصوت الياء، حرف I بدون نقطة وحرف İ بنقطة، وهما صوتان مختلفان تماماً. استمع لكل بطاقة وحاول تكرار النطق.',
+    quiz:{ q:'بأي حرف تبدأ كلمة Kedi (قطة) بالتركية؟', options:[
+      {text:'K', correct:true, feedback:'إجابة صحيحة! حرف K هو بداية كلمة Kedi.'},
+      {text:'L', correct:false, feedback:'ليست إجابة صحيحة، كلمة Kedi تبدأ بحرف K.'},
+      {text:'M', correct:false, feedback:'ليست إجابة صحيحة، كلمة Kedi تبدأ بحرف K.'}
+    ]} },
+  { pill:'الدرس 2: التحيات', topic:'greetings', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'Günaydın', ar:'صباح الخير', e:'🌅'},
+      {w:'İyi akşamlar', ar:'مساء الخير', e:'🌆'},
+      {w:'Merhaba', ar:'مرحباً', e:'👋'},
+      {w:'Nasılsın?', ar:'كيف حالك؟', e:'🤔'},
+      {w:'İyiyim, teşekkürler.', ar:'أنا بخير، شكراً', e:'😊'},
+      {w:'Memnun oldum.', ar:'سعدت بلقائك', e:'🤝'},
+      {w:'Hoşça kal.', ar:'إلى اللقاء', e:'👋'},
+      {w:'Çok teşekkür ederim.', ar:'شكراً جزيلاً', e:'🙏'}
+    ],
+    title:'الدرس 2: التحيات والمجاملات (Selamlaşma)',
+    desc:'التحيات هي أول ما نحتاجه لبدء أي محادثة بالتركية. استمع للأمثلة ثم تدرب على الرد المناسب.',
+    audio:'عند مقابلة شخص جديد نقول ممنون أولدوم، أي سعدت بلقائك. وعند السؤال عن الحال نقول ناسيلسين، أي كيف حالك، ونرد بقول إيييم تشكرلر، أي أنا بخير شكراً.',
+    quiz:{ q:'ما هو الرد المناسب على: "Nasılsın?"', options:[
+      {text:'أ) İyiyim, teşekkürler.', correct:true, feedback:'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.'},
+      {text:'ب) Hoşça kal.', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'},
+      {text:'ج) Lütfen.', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:TR_NUMBERS, gridCols:'grid-cols-3 sm:grid-cols-5',
+    title:'الدرس 3: الأرقام (Sayılar)',
+    desc:'الأرقام من 1 إلى 10 من أهم أساسيات أي لغة. استمع لنطق كل رقم بالضغط عليه.',
+    audio:'الأرقام من واحد إلى عشرة من أهم أساسيات اللغة التركية. بير يعني واحد، وإيكي يعني اثنان، وأوتش يعني ثلاثة. استمع لكل رقم وحاول تكراره بصوت مرتفع.',
+    quiz:{ q:'كيف نكتب الرقم 7 بالتركية؟', options:[
+      {text:'أ) Yedi', correct:true, feedback:'إجابة صحيحة! Yedi تعني سبعة.'},
+      {text:'ب) Altı', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'},
+      {text:'ج) Sekiz', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 4: العائلة', topic:'family', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Anne', ar:'أم', e:'👩'}, {w:'Baba', ar:'أب', e:'👨'},
+      {w:'Kız kardeş', ar:'أخت', e:'👧'}, {w:'Erkek kardeş', ar:'أخ', e:'👦'},
+      {w:'Büyükanne', ar:'جدة', e:'👵'}, {w:'Büyükbaba', ar:'جد', e:'👴'}
+    ],
+    title:'الدرس 4: العائلة (Aile)',
+    desc:'تعرّف على كيفية تسمية أفراد العائلة بالتركية، من أكثر الكلمات استخداماً في المحادثات اليومية.',
+    audio:'آنّه تعني أم، وبابا تعني أب، وكيز كارداش تعني أخت، وإركّاك كارداش تعني أخ. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ماذا نسمي "أخت" بالتركية؟', options:[
+      {text:'أ) Kız kardeş', correct:true, feedback:'إجابة صحيحة! Kız kardeş تعني أخت.'},
+      {text:'ب) Erkek kardeş', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Büyükanne', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 5: المقهى', topic:'cafe', gridCols:'grid-cols-2 sm:grid-cols-2',
+    vocab:[
+      {w:'Bir kahve alabilir miyim, lütfen?', ar:'هل يمكنني الحصول على قهوة من فضلك؟', e:'☕'},
+      {w:'Biraz su alabilir miyim, lütfen?', ar:'هل يمكنني الحصول على ماء من فضلك؟', e:'💧'},
+      {w:'Hesap lütfen.', ar:'الفاتورة من فضلك', e:'🧾'},
+      {w:'Çok lezzetli!', ar:'هذا لذيذ جداً!', e:'😋'}
+    ],
+    title:'الدرس 5: المقهى والطعام (Kafede)',
+    desc:'كيف تطلب القهوة والماء بلباقة في المقهى أو المطعم التركي.',
+    audio:'عندما تطلب شيئاً في المقهى، استخدم صيغة أَلَبيلير مييم، أي هل يمكنني الحصول على، ثم كلمة لطفن في النهاية لتكون مهذباً.',
+    quiz:{ q:'ما هي الجملة الصحيحة لطلب كوب شاي بأدب؟', options:[
+      {text:'أ) Bir çay alabilir miyim, lütfen?', correct:true, feedback:'إجابة صحيحة! هذه هي الصيغة المهذبة لطلب الشاي.'},
+      {text:'ب) Çay ver hemen.', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'},
+      {text:'ج) Çay istiyorum şimdi.', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 6: الوقت والأيام', topic:'days', gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-7',
+    vocab:[
+      {w:'Pazar', ar:'الأحد'}, {w:'Pazartesi', ar:'الاثنين'}, {w:'Salı', ar:'الثلاثاء'},
+      {w:'Çarşamba', ar:'الأربعاء'}, {w:'Perşembe', ar:'الخميس'}, {w:'Cuma', ar:'الجمعة'},
+      {w:'Cumartesi', ar:'السبت'}
+    ],
+    title:'الدرس 6: الوقت والأيام (Günler ve saat)',
+    desc:'تعرّف على أيام الأسبوع بالتركية وكيفية السؤال عن الوقت.',
+    audio:'أيام الأسبوع بالتركية سبعة أيام. للسؤال عن الوقت نقول ساعت كاچ، أي كم الساعة الآن. استمع لكل يوم وحاول حفظ ترتيبه.',
+    quiz:{ q:'كيف نسأل بأدب عن الوقت الحالي بالتركية؟', options:[
+      {text:'أ) Saat kaç?', correct:true, feedback:'إجابة صحيحة! Saat kaç؟ تعني كم الساعة الآن.'},
+      {text:'ب) Adın ne?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Kaç yaşındasın?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 7: الطعام', topic:'food', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'Ekmek', ar:'خبز', e:'🍞'}, {w:'Pirinç', ar:'أرز', e:'🍚'},
+      {w:'Tavuk', ar:'دجاج', e:'🍗'}, {w:'Sebze', ar:'خضار', e:'🥦'},
+      {w:'Süt', ar:'حليب', e:'🥛'}, {w:'Yumurta', ar:'بيض', e:'🥚'},
+      {w:'Meyve', ar:'فاكهة', e:'🍎'}, {w:'Balık', ar:'سمك', e:'🐟'}
+    ],
+    title:'الدرس 7: الطعام (Yiyecekler)',
+    desc:'تعلّم أسماء الأطعمة الأساسية بالتركية، وكيفية طلب ما تريد بلباقة.',
+    audio:'لطلب الطعام بأدب، استخدم عبارة ألابيلير مييم متبوعة باسم الطعام. مثال: بيرينچ ألابيلير مييم، أي هل يمكنني الحصول على أرز. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ما هي الترجمة الصحيحة لكلمة "أرز"؟', options:[
+      {text:'أ) Pirinç', correct:true, feedback:'إجابة صحيحة! Pirinç تعني أرز.'},
+      {text:'ب) Ekmek', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Yumurta', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 8: التسوق', topic:'clothes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Gömlek', ar:'قميص', e:'👕'}, {w:'Pantolon', ar:'بنطال', e:'👖'},
+      {w:'Ayakkabı', ar:'حذاء', e:'👟'}, {w:'Elbise', ar:'فستان', e:'👗'},
+      {w:'Ceket', ar:'جاكيت', e:'🧥'}, {w:'Şapka', ar:'قبعة', e:'🎩'}
+    ],
+    title:'الدرس 8: التسوق والملابس (Alışveriş)',
+    desc:'تعلّم أسماء الملابس الشائعة بالتركية، وكيفية السؤال عن السعر عند التسوق.',
+    audio:'للسؤال عن السعر في المتجر نقول بو نه كادار، أي كم سعر هذا. استمع لأسماء الملابس التالية وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'كيف تسأل بأدب عن سعر شيء ما بالتركية؟', options:[
+      {text:'أ) Bu ne kadar?', correct:true, feedback:'إجابة صحيحة! Bu ne kadar؟ تعني كم سعر هذا.'},
+      {text:'ب) Bu ne?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) Nerede?', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 9: الاتجاهات', topic:'places', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Hastane', ar:'مستشفى', e:'🏥'}, {w:'Okul', ar:'مدرسة', e:'🏫'},
+      {w:'Banka', ar:'بنك', e:'🏦'}, {w:'Havaalanı', ar:'مطار', e:'✈️'},
+      {w:'Restoran', ar:'مطعم', e:'🍽️'}, {w:'Çarşı', ar:'سوق', e:'🏬'}
+    ],
+    title:'الدرس 9: الاتجاهات والأماكن (Yerler)',
+    desc:'تعرّف على أسماء الأماكن الشائعة في المدينة بالتركية، وكيفية السؤال بأدب عن الاتجاهات.',
+    audio:'للسؤال بأدب عن مكان ما، نبدأ بكلمة آفّدرسينيز أي المعذرة، ثم نقول نيريدي، أي أين يوجد، متبوعة باسم المكان. مثال: آفّدرسينيز، بانكا نيريدي، أي المعذرة أين البنك.',
+    quiz:{ q:'كيف تسأل بأدب عن مكان البنك؟', options:[
+      {text:'أ) Affedersiniz, banka nerede?', correct:true, feedback:'إجابة صحيحة! هذا هو الأسلوب المهذب للسؤال عن الاتجاهات.'},
+      {text:'ب) Banka hemen!', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'},
+      {text:'ج) Banka istiyorum.', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 10: الأفعال اليومية', topic:'verbs', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Uyanmak', ar:'أستيقظ', e:'⏰'}, {w:'Yemek', ar:'آكل', e:'🍽️'},
+      {w:'Ders çalışmak', ar:'أدرس', e:'📚'}, {w:'Çalışmak', ar:'أعمل', e:'💼'},
+      {w:'İçmek', ar:'أشرب', e:'🥤'}, {w:'Uyumak', ar:'أنام', e:'😴'}
+    ],
+    title:'الدرس 10: الأفعال اليومية (Günlük fiiller)',
+    desc:'تعلّم أهم الأفعال التي تصف روتينك اليومي بالتركية.',
+    audio:'الأفعال اليومية تساعدك على وصف روتينك بجمل بسيطة. مثال: سآت يديده أويانيريم، أي أستيقظ في الساعة السابعة. استمع لكل فعل وحاول تكوين جملة بسيطة به.',
+    quiz:{ q:'ماذا تعني كلمة "Uyumak"؟', options:[
+      {text:'أ) أنام', correct:true, feedback:'إجابة صحيحة! Uyumak تعني أنام.'},
+      {text:'ب) أعمل', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) أدرس', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} }
+];
+
+const TR_KID_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:TR_ALPHABET, gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    title:'حروفي التركية 🔤', desc:'اضغط على أي بطاقة لتسمع الحرف والكلمة وتحصل على نجمة ⭐!',
+    quiz:{ q:'بأي حرف تبدأ هذه الكلمة: 🐱 Kedi؟', options:[
+      {text:'K', correct:true, feedback:'رائع! حرف K هو بداية كلمة Kedi 🎉'},
+      {text:'L', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'M', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 2: الألوان', topic:'colors', vocab:TR_COLORS, gridCols:'grid-cols-2 sm:grid-cols-3',
+    title:'عالم الألوان 🎨', desc:'الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالتركية.',
+    quiz:{ q:'ما هو اللون الأحمر بالتركية؟', options:[
+      {text:'Kırmızı', correct:true, feedback:'صحيح! Kırmızı يعني أحمر 🔴'},
+      {text:'Mavi', correct:false, feedback:'قريب! حاول مرة ثانية.'},
+      {text:'Yeşil', correct:false, feedback:'قريب! حاول مرة ثانية.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:TR_NUMBERS, gridCols:'grid-cols-2 sm:grid-cols-5',
+    title:'هيا نعد! 🔢', desc:'هيا نتعلم العد بالتركية من 1 إلى 10!',
+    quiz:{ q:'كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالتركية', options:[
+      {text:'Beş', correct:true, feedback:'ممتاز! 2 + 3 = Beş (خمسة) 🌟'},
+      {text:'Dört', correct:false, feedback:'فكر مرة أخرى يا بطل!'},
+      {text:'Altı', correct:false, feedback:'فكر مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 4: الحيوانات', topic:'animals', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'Kedi', ar:'قطة', e:'🐱'}, {w:'Köpek', ar:'كلب', e:'🐶'}, {w:'Aslan', ar:'أسد', e:'🦁'},
+      {w:'Fil', ar:'فيل', e:'🐘'}, {w:'Balık', ar:'سمكة', e:'🐟'}, {w:'Kuş', ar:'عصفور', e:'🐦'}
+    ],
+    title:'عالم الحيوانات 🎈', desc:'اضغط على كل حيوان لسماع اسمه بالتركية والحصول على نجوم!',
+    quiz:{ q:'ما اسم هذا الحيوان: 🐶؟', options:[
+      {text:'Köpek', correct:true, feedback:'رائع! 🐶 هو Köpek (كلب)'},
+      {text:'Kedi', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Aslan', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 5: الأشكال', topic:'shapes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    vocab:[
+      {w:'Daire', ar:'دائرة', e:'⚪'}, {w:'Kare', ar:'مربع', e:'⬛'},
+      {w:'Üçgen', ar:'مثلث', e:'🔺'}, {w:'Yıldız', ar:'نجمة', e:'⭐'}, {w:'Kalp', ar:'قلب', e:'❤️'}
+    ],
+    title:'الأشكال من حولنا 🔺', desc:'اضغط على كل شكل لتسمع اسمه بالتركية!',
+    quiz:{ q:'ما اسم هذا الشكل: ⭐؟', options:[
+      {text:'Yıldız', correct:true, feedback:'رائع! ⭐ هو Yıldız (نجمة)'},
+      {text:'Daire', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Kare', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 6: الفواكه', topic:'fruits', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Elma', ar:'تفاحة', e:'🍎'}, {w:'Muz', ar:'موزة', e:'🍌'}, {w:'Portakal', ar:'برتقالة', e:'🍊'},
+      {w:'Üzüm', ar:'عنب', e:'🍇'}, {w:'Çilek', ar:'فراولة', e:'🍓'}, {w:'Karpuz', ar:'بطيخ', e:'🍉'}
+    ],
+    title:'الفواكه اللذيذة 🍉', desc:'اضغط على كل فاكهة لتسمع اسمها بالتركية!',
+    quiz:{ q:'ما هي الفاكهة الصفراء المنحنية؟', options:[
+      {text:'Muz', correct:true, feedback:'رائع! Muz هي الموزة 🍌'},
+      {text:'Elma', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Üzüm', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 7: عائلتي', topic:'kidfamily', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Anne', ar:'ماما', e:'👩'}, {w:'Baba', ar:'بابا', e:'👨'},
+      {w:'Kız kardeşim', ar:'أختي', e:'👧'}, {w:'Erkek kardeşim', ar:'أخي', e:'👦'},
+      {w:'Bebek', ar:'طفل', e:'👶'}, {w:'Babaanne', ar:'جدتي', e:'👵'}
+    ],
+    title:'عائلتي الصغيرة 👨‍👩‍👧‍👦', desc:'اضغط على كل بطاقة لتسمع اسم فرد العائلة بالتركية!',
+    quiz:{ q:'كيف نقول "ماما" بالتركية؟', options:[
+      {text:'Anne', correct:true, feedback:'صحيح! Anne تعني ماما 👩'},
+      {text:'Baba', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Bebek', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 8: الطقس', topic:'weather', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Güneşli', ar:'مشمس', e:'☀️'}, {w:'Yağmurlu', ar:'ممطر', e:'🌧️'},
+      {w:'Bulutlu', ar:'غائم', e:'☁️'}, {w:'Karlı', ar:'ثلجي', e:'❄️'},
+      {w:'Rüzgarlı', ar:'عاصف', e:'💨'}, {w:'Sıcak', ar:'حار', e:'🔥'}
+    ],
+    title:'أحوال الطقس ☀️', desc:'كيف حال الطقس اليوم؟ اضغط لتسمع كل حالة بالتركية!',
+    quiz:{ q:'كيف نقول "ممطر" بالتركية؟', options:[
+      {text:'Yağmurlu', correct:true, feedback:'رائع! Yağmurlu تعني ممطر 🌧️'},
+      {text:'Güneşli', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Karlı', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 9: النقل', topic:'transport', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Araba', ar:'سيارة', e:'🚗'}, {w:'Otobüs', ar:'حافلة', e:'🚌'},
+      {w:'Bisiklet', ar:'دراجة', e:'🚲'}, {w:'Tren', ar:'قطار', e:'🚆'},
+      {w:'Uçak', ar:'طائرة', e:'✈️'}, {w:'Tekne', ar:'قارب', e:'🚤'}
+    ],
+    title:'وسائل النقل 🚗', desc:'كيف نتنقل من مكان لآخر؟ اضغط لتسمع اسم كل وسيلة بالتركية!',
+    quiz:{ q:'أي وسيلة نقل تطير في السماء؟', options:[
+      {text:'Uçak', correct:true, feedback:'رائع! Uçak تطير في السماء ✈️'},
+      {text:'Araba', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Bisiklet', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 10: مشاعري', topic:'emotions', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'Mutlu', ar:'سعيد', e:'😄'}, {w:'Üzgün', ar:'حزين', e:'😢'},
+      {w:'Kızgın', ar:'غاضب', e:'😠'}, {w:'Korkmuş', ar:'خائف', e:'😱'},
+      {w:'Uykulu', ar:'نعسان', e:'😴'}, {w:'Heyecanlı', ar:'متحمس', e:'🤩'}
+    ],
+    title:'مشاعري 🤗', desc:'كيف تشعر اليوم؟ اضغط على كل بطاقة لتسمع اسم الشعور بالتركية!',
+    quiz:{ q:'كيف نقول "سعيد" بالتركية؟', options:[
+      {text:'Mutlu', correct:true, feedback:'رائع! Mutlu تعني سعيد 😄'},
+      {text:'Üzgün', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'Kızgın', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} }
+];
+
+buildAdultTrack('tr-', 'tr', TR_ADULT_LESSONS);
+buildKidTrack('tr-', 'tr', TR_KID_LESSONS);
+
+// =====================================================================
+// KOREAN (ko-KR) CONTENT — romanization is included in the `ph` field
+// and echoed inside quiz options since Hangul isn't readable at sight
+// for an Arabic-speaking beginner.
+// =====================================================================
+const KO_HANGUL = [
+  {l:'ㄱ', ll:'', w:'가방', ph:'gabang', ar:'حقيبة', e:'🎒'},
+  {l:'ㄴ', ll:'', w:'나무', ph:'namu', ar:'شجرة', e:'🌳'},
+  {l:'ㄷ', ll:'', w:'다리', ph:'dari', ar:'جسر', e:'🌉'},
+  {l:'ㄹ', ll:'', w:'라면', ph:'ramyeon', ar:'نودلز', e:'🍜'},
+  {l:'ㅁ', ll:'', w:'물', ph:'mul', ar:'ماء', e:'💧'},
+  {l:'ㅂ', ll:'', w:'바나나', ph:'banana', ar:'موزة', e:'🍌'},
+  {l:'ㅅ', ll:'', w:'사과', ph:'sagwa', ar:'تفاحة', e:'🍎'},
+  {l:'ㅇ', ll:'', w:'우유', ph:'uyu', ar:'حليب', e:'🥛'},
+  {l:'ㅈ', ll:'', w:'자동차', ph:'jadongcha', ar:'سيارة', e:'🚗'},
+  {l:'ㅊ', ll:'', w:'치즈', ph:'chijeu', ar:'جبنة', e:'🧀'},
+  {l:'ㅋ', ll:'', w:'커피', ph:'keopi', ar:'قهوة', e:'☕'},
+  {l:'ㅌ', ll:'', w:'토끼', ph:'tokki', ar:'أرنب', e:'🐰'},
+  {l:'ㅍ', ll:'', w:'포도', ph:'podo', ar:'عنب', e:'🍇'},
+  {l:'ㅎ', ll:'', w:'학교', ph:'hakgyo', ar:'مدرسة', e:'🏫'},
+  {l:'ㅏ', ll:'', w:'아빠', ph:'appa', ar:'بابا', e:'👨'},
+  {l:'ㅑ', ll:'', w:'야구', ph:'yagu', ar:'كرة القاعدة', e:'⚾'},
+  {l:'ㅓ', ll:'', w:'어머니', ph:'eomeoni', ar:'أم', e:'👩'},
+  {l:'ㅕ', ll:'', w:'여우', ph:'yeou', ar:'ثعلب', e:'🦊'},
+  {l:'ㅗ', ll:'', w:'오리', ph:'ori', ar:'بطة', e:'🦆'},
+  {l:'ㅛ', ll:'', w:'요리', ph:'yori', ar:'طبخ', e:'🍳'},
+  {l:'ㅜ', ll:'', w:'우산', ph:'usan', ar:'مظلة', e:'☂️'},
+  {l:'ㅠ', ll:'', w:'유리', ph:'yuri', ar:'زجاج', e:'🪟'},
+  {l:'ㅡ', ll:'', w:'그림', ph:'geurim', ar:'رسمة', e:'🖼️'},
+  {l:'ㅣ', ll:'', w:'이빨', ph:'ippal', ar:'سن', e:'🦷'}
+];
+const KO_NUMBERS = [
+  {n:1, w:'일', ph:'il', ar:'واحد'}, {n:2, w:'이', ph:'i', ar:'اثنان'}, {n:3, w:'삼', ph:'sam', ar:'ثلاثة'},
+  {n:4, w:'사', ph:'sa', ar:'أربعة'}, {n:5, w:'오', ph:'o', ar:'خمسة'}, {n:6, w:'육', ph:'yuk', ar:'ستة'},
+  {n:7, w:'칠', ph:'chil', ar:'سبعة'}, {n:8, w:'팔', ph:'pal', ar:'ثمانية'}, {n:9, w:'구', ph:'gu', ar:'تسعة'},
+  {n:10, w:'십', ph:'sip', ar:'عشرة'}
+];
+const KO_COLORS = [
+  {w:'빨간색', ph:'ppalgansaek', ar:'أحمر', hex:'#ef4444'}, {w:'파란색', ph:'paransaek', ar:'أزرق', hex:'#3b82f6'},
+  {w:'노란색', ph:'noransaek', ar:'أصفر', hex:'#eab308'}, {w:'초록색', ph:'choroksaek', ar:'أخضر', hex:'#22c55e'},
+  {w:'보라색', ph:'borasaek', ar:'بنفسجي', hex:'#a855f7'}, {w:'주황색', ph:'juhwangsaek', ar:'برتقالي', hex:'#f97316'}
+];
+
+const KO_ADULT_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:KO_HANGUL, gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-6',
+    title:'الدرس 1: أساسيات الهانغل (한글)',
+    desc:'الهانغل هو نظام الكتابة الكوري: 14 حرف ساكن أساسي و10 حروف متحركة أساسية. اضغط على كل بطاقة لتسمع الكلمة مع النطق اللاتيني.',
+    audio:'الهانغل نظام كتابة كوري مكوّن من حروف ساكنة ومتحركة تُجمع معاً لتكوين مقاطع. استمع لكل حرف مع كلمة مثال، وحاول تكرار النطق بصوت مسموع.',
+    quiz:{ q:'أي كلمة تعني "قهوة" بالكورية؟', options:[
+      {text:'커피 (keopi)', correct:true, feedback:'إجابة صحيحة! 커피 (keopi) تعني قهوة.'},
+      {text:'우유 (uyu)', correct:false, feedback:'ليست إجابة صحيحة، 우유 تعني حليب.'},
+      {text:'물 (mul)', correct:false, feedback:'ليست إجابة صحيحة، 물 تعني ماء.'}
+    ]} },
+  { pill:'الدرس 2: التحيات', topic:'greetings', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'안녕하세요', ph:'annyeonghaseyo', ar:'مرحباً (رسمية)', e:'👋'},
+      {w:'안녕히 가세요', ph:'annyeonghi gaseyo', ar:'إلى اللقاء', e:'👋'},
+      {w:'감사합니다', ph:'gamsahamnida', ar:'شكراً', e:'🙏'},
+      {w:'만나서 반갑습니다', ph:'mannaseo bangapseumnida', ar:'سعدت بلقائك', e:'🤝'},
+      {w:'어떻게 지내세요?', ph:'eotteoke jinaeseyo?', ar:'كيف حالك؟', e:'🤔'},
+      {w:'저는 잘 지내요, 감사합니다', ph:'jeoneun jal jinaeyo, gamsahamnida', ar:'أنا بخير، شكراً', e:'😊'}
+    ],
+    title:'الدرس 2: التحيات والمجاملات (인사)',
+    desc:'التحيات هي أول ما نحتاجه لبدء أي محادثة بالكورية. استمع للأمثلة ثم تدرب على الرد المناسب.',
+    audio:'التحية الرسمية الأشهر هي أنيونغهاسييو، وتعني مرحباً. وللسؤال عن الحال نقول أوتّوكيه جينيسييو، ونرد بقول جونون جال جينييو كامسهامنيدا، أي أنا بخير شكراً.',
+    quiz:{ q:'ما هو الرد المناسب على: "어떻게 지내세요?" (eotteoke jinaeseyo?)', options:[
+      {text:'أ) 저는 잘 지내요, 감사합니다 (jeoneun jal jinaeyo)', correct:true, feedback:'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.'},
+      {text:'ب) 안녕히 가세요 (annyeonghi gaseyo)', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'},
+      {text:'ج) 감사합니다 (gamsahamnida)', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:KO_NUMBERS, gridCols:'grid-cols-3 sm:grid-cols-5',
+    title:'الدرس 3: الأرقام (숫자)',
+    desc:'هذه أرقام سينو-كورية (المستخدمة للهاتف والنقود والتواريخ). استمع لنطق كل رقم بالضغط عليه.',
+    audio:'إيل يعني واحد، وإي يعني اثنان، وسام يعني ثلاثة. هذه الأرقام تُستخدم للتواريخ والنقود وأرقام الهاتف. استمع لكل رقم وحاول تكراره بصوت مرتفع.',
+    quiz:{ q:'كيف نقول الرقم 7 بالكورية؟', options:[
+      {text:'أ) 칠 (chil)', correct:true, feedback:'إجابة صحيحة! 칠 (chil) تعني سبعة.'},
+      {text:'ب) 육 (yuk)', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'},
+      {text:'ج) 팔 (pal)', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 4: العائلة', topic:'family', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'엄마', ph:'eomma', ar:'أم', e:'👩'}, {w:'아빠', ph:'appa', ar:'أب', e:'👨'},
+      {w:'여동생', ph:'yeodongsaeng', ar:'أخت (أصغر)', e:'👧'}, {w:'남동생', ph:'namdongsaeng', ar:'أخ (أصغر)', e:'👦'},
+      {w:'할머니', ph:'halmeoni', ar:'جدة', e:'👵'}, {w:'할아버지', ph:'harabeoji', ar:'جد', e:'👴'}
+    ],
+    title:'الدرس 4: العائلة (가족)',
+    desc:'تعرّف على كيفية تسمية أفراد العائلة بالكورية، من أكثر الكلمات استخداماً في المحادثات اليومية.',
+    audio:'أومّا تعني أم، وآپّا تعني أب، ويودونغسينغ تعني الأخت الأصغر، ونامدونغسينغ تعني الأخ الأصغر. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ماذا نسمي "أخت أصغر" بالكورية؟', options:[
+      {text:'أ) 여동생 (yeodongsaeng)', correct:true, feedback:'إجابة صحيحة! 여동생 تعني أخت أصغر.'},
+      {text:'ب) 남동생 (namdongsaeng)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 할머니 (halmeoni)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 5: المقهى', topic:'cafe', gridCols:'grid-cols-2 sm:grid-cols-2',
+    vocab:[
+      {w:'커피 주세요', ph:'keopi juseyo', ar:'قهوة من فضلك', e:'☕'},
+      {w:'물 좀 주세요', ph:'mul jom juseyo', ar:'ماء من فضلك', e:'💧'},
+      {w:'계산서 주세요', ph:'gyesanseo juseyo', ar:'الفاتورة من فضلك', e:'🧾'},
+      {w:'정말 맛있어요!', ph:'jeongmal masisseoyo!', ar:'هذا لذيذ حقاً!', e:'😋'}
+    ],
+    title:'الدرس 5: المقهى والطعام (카페에서)',
+    desc:'كيف تطلب القهوة والماء بلباقة في المقهى أو المطعم الكوري.',
+    audio:'لطلب شيء بأدب، أضف كلمة جوسييو بعد اسم الطلب، وتعني من فضلك أعطني. مثال: كيوپي جوسييو، أي قهوة من فضلك.',
+    quiz:{ q:'ما هي الجملة الصحيحة لطلب الشاي بأدب؟', options:[
+      {text:'أ) 차 주세요 (cha juseyo)', correct:true, feedback:'إجابة صحيحة! هذه هي الصيغة المهذبة لطلب الشاي.'},
+      {text:'ب) 차! 빨리! (cha! ppalli!)', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'},
+      {text:'ج) 차 줘 (cha jwo)', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 6: الوقت والأيام', topic:'days', gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-7',
+    vocab:[
+      {w:'일요일', ph:'iryoil', ar:'الأحد'}, {w:'월요일', ph:'woryoil', ar:'الاثنين'}, {w:'화요일', ph:'hwayoil', ar:'الثلاثاء'},
+      {w:'수요일', ph:'suyoil', ar:'الأربعاء'}, {w:'목요일', ph:'mogyoil', ar:'الخميس'}, {w:'금요일', ph:'geumyoil', ar:'الجمعة'},
+      {w:'토요일', ph:'toyoil', ar:'السبت'}
+    ],
+    title:'الدرس 6: الوقت والأيام (요일과 시간)',
+    desc:'تعرّف على أيام الأسبوع بالكورية وكيفية السؤال عن الوقت.',
+    audio:'أيام الأسبوع بالكورية سبعة أيام، وكلها تنتهي بكلمة يوئيل، أي يوم. للسؤال عن الوقت نقول جيغوم ميوت سييييو، أي كم الساعة الآن.',
+    quiz:{ q:'كيف نسأل بأدب عن الوقت الحالي بالكورية؟', options:[
+      {text:'أ) 지금 몇 시예요؟ (jigeum myeot siyeyo?)', correct:true, feedback:'إجابة صحيحة! هذه الجملة تعني كم الساعة الآن.'},
+      {text:'ب) 이름이 뭐예요؟ (ireumi mwoyeyo?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 몇 살이에요؟ (myeot sarieyo?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 7: الطعام', topic:'food', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'빵', ph:'ppang', ar:'خبز', e:'🍞'}, {w:'밥', ph:'bap', ar:'أرز', e:'🍚'},
+      {w:'닭고기', ph:'dakgogi', ar:'دجاج', e:'🍗'}, {w:'채소', ph:'chaeso', ar:'خضار', e:'🥦'},
+      {w:'우유', ph:'uyu', ar:'حليب', e:'🥛'}, {w:'계란', ph:'gyeran', ar:'بيض', e:'🥚'},
+      {w:'과일', ph:'gwail', ar:'فاكهة', e:'🍎'}, {w:'생선', ph:'saengseon', ar:'سمك', e:'🐟'}
+    ],
+    title:'الدرس 7: الطعام (음식)',
+    desc:'تعلّم أسماء الأطعمة الأساسية بالكورية، وكيفية طلب ما تريد بلباقة.',
+    audio:'باپ تعني أرز، وهو الطعام الأساسي في الوجبة الكورية. استمع لكل كلمة طعام وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'ما هي الترجمة الصحيحة لكلمة "أرز"؟', options:[
+      {text:'أ) 밥 (bap)', correct:true, feedback:'إجابة صحيحة! 밥 (bap) تعني أرز.'},
+      {text:'ب) 빵 (ppang)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 계란 (gyeran)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 8: التسوق', topic:'clothes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'셔츠', ph:'syeocheu', ar:'قميص', e:'👕'}, {w:'바지', ph:'baji', ar:'بنطال', e:'👖'},
+      {w:'신발', ph:'sinbal', ar:'حذاء', e:'👟'}, {w:'원피스', ph:'wonpiseu', ar:'فستان', e:'👗'},
+      {w:'재킷', ph:'jaekit', ar:'جاكيت', e:'🧥'}, {w:'모자', ph:'moja', ar:'قبعة', e:'🎩'}
+    ],
+    title:'الدرس 8: التسوق والملابس (쇼핑)',
+    desc:'تعلّم أسماء الملابس الشائعة بالكورية، وكيفية السؤال عن السعر عند التسوق.',
+    audio:'للسؤال عن السعر في المتجر نقول إيغو أُلمايييو، أي كم سعر هذا. استمع لأسماء الملابس التالية وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'كيف تسأل بأدب عن سعر شيء ما بالكورية؟', options:[
+      {text:'أ) 이거 얼마예요؟ (igeo eolmayeyo?)', correct:true, feedback:'إجابة صحيحة! هذه الجملة تعني كم سعر هذا.'},
+      {text:'ب) 이게 뭐예요؟ (ige mwoyeyo?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 어디예요؟ (eodiyeyo?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 9: الاتجاهات', topic:'places', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'병원', ph:'byeongwon', ar:'مستشفى', e:'🏥'}, {w:'학교', ph:'hakgyo', ar:'مدرسة', e:'🏫'},
+      {w:'은행', ph:'eunhaeng', ar:'بنك', e:'🏦'}, {w:'공항', ph:'gonghang', ar:'مطار', e:'✈️'},
+      {w:'식당', ph:'sikdang', ar:'مطعم', e:'🍽️'}, {w:'시장', ph:'sijang', ar:'سوق', e:'🏬'}
+    ],
+    title:'الدرس 9: الاتجاهات والأماكن (장소)',
+    desc:'تعرّف على أسماء الأماكن الشائعة في المدينة بالكورية، وكيفية السؤال بأدب عن الاتجاهات.',
+    audio:'للسؤال بأدب عن مكان ما، نبدأ بكلمة سيلّييهامنيدا أي المعذرة، ثم نسأل أُودي إيسّويو، أي أين يوجد.',
+    quiz:{ q:'كيف تسأل بأدب عن مكان البنك؟', options:[
+      {text:'أ) 실례합니다, 은행이 어디에 있어요؟', correct:true, feedback:'إجابة صحيحة! هذا هو الأسلوب المهذب للسؤال عن الاتجاهات.'},
+      {text:'ب) 은행! 빨리! (eunhaeng! ppalli!)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'},
+      {text:'ج) 은행 원해요 (eunhaeng wonhaeyo)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 10: الأفعال اليومية', topic:'verbs', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'일어나다', ph:'ireonada', ar:'أستيقظ', e:'⏰'}, {w:'먹다', ph:'meokda', ar:'آكل', e:'🍽️'},
+      {w:'공부하다', ph:'gongbuhada', ar:'أدرس', e:'📚'}, {w:'일하다', ph:'ilhada', ar:'أعمل', e:'💼'},
+      {w:'마시다', ph:'masida', ar:'أشرب', e:'🥤'}, {w:'자다', ph:'jada', ar:'أنام', e:'😴'}
+    ],
+    title:'الدرس 10: الأفعال اليومية (일상 동사)',
+    desc:'تعلّم أهم الأفعال التي تصف روتينك اليومي بالكورية.',
+    audio:'الأفعال اليومية تساعدك على وصف روتينك بجمل بسيطة. مثال: إيغونادا يعني أستيقظ. استمع لكل فعل وحاول تكوين جملة بسيطة به.',
+    quiz:{ q:'ماذا تعني كلمة "자다" (jada)؟', options:[
+      {text:'أ) أنام', correct:true, feedback:'إجابة صحيحة! 자다 (jada) تعني أنام.'},
+      {text:'ب) أعمل', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) أدرس', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} }
+];
+
+const KO_KID_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:KO_HANGUL, gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    title:'حروف الهانغل 🔤', desc:'اضغط على أي بطاقة لتسمع الحرف والكلمة وتحصل على نجمة ⭐!',
+    quiz:{ q:'أي كلمة تعني "قطة" بالكورية؟ (تلميح: 고양이 = goyangi)', options:[
+      {text:'고양이 (goyangi)', correct:true, feedback:'رائع! 고양이 (goyangi) تعني قطة 🎉'},
+      {text:'강아지 (gangaji)', correct:false, feedback:'حاول مرة أخرى يا بطل! هذه تعني كلب.'},
+      {text:'사자 (saja)', correct:false, feedback:'حاول مرة أخرى يا بطل! هذه تعني أسد.'}
+    ]} },
+  { pill:'الدرس 2: الألوان', topic:'colors', vocab:KO_COLORS, gridCols:'grid-cols-2 sm:grid-cols-3',
+    title:'عالم الألوان 🎨', desc:'الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالكورية.',
+    quiz:{ q:'ما هو اللون الأحمر بالكورية؟', options:[
+      {text:'빨간색 (ppalgansaek)', correct:true, feedback:'صحيح! 빨간색 يعني أحمر 🔴'},
+      {text:'파란색 (paransaek)', correct:false, feedback:'قريب! حاول مرة ثانية.'},
+      {text:'초록색 (choroksaek)', correct:false, feedback:'قريب! حاول مرة ثانية.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:KO_NUMBERS, gridCols:'grid-cols-2 sm:grid-cols-5',
+    title:'هيا نعد! 🔢', desc:'هيا نتعلم العد بالكورية من 1 إلى 10!',
+    quiz:{ q:'كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالكورية', options:[
+      {text:'오 (o)', correct:true, feedback:'ممتاز! 2 + 3 = 오 (خمسة) 🌟'},
+      {text:'사 (sa)', correct:false, feedback:'فكر مرة أخرى يا بطل!'},
+      {text:'육 (yuk)', correct:false, feedback:'فكر مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 4: الحيوانات', topic:'animals', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'고양이', ph:'goyangi', ar:'قطة', e:'🐱'}, {w:'강아지', ph:'gangaji', ar:'كلب', e:'🐶'}, {w:'사자', ph:'saja', ar:'أسد', e:'🦁'},
+      {w:'코끼리', ph:'kokkiri', ar:'فيل', e:'🐘'}, {w:'물고기', ph:'mulgogi', ar:'سمكة', e:'🐟'}, {w:'새', ph:'sae', ar:'عصفور', e:'🐦'}
+    ],
+    title:'عالم الحيوانات 🎈', desc:'اضغط على كل حيوان لسماع اسمه بالكورية والحصول على نجوم!',
+    quiz:{ q:'ما اسم هذا الحيوان: 🐶؟', options:[
+      {text:'강아지 (gangaji)', correct:true, feedback:'رائع! 🐶 هو 강아지 (كلب)'},
+      {text:'고양이 (goyangi)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'사자 (saja)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 5: الأشكال', topic:'shapes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    vocab:[
+      {w:'원', ph:'won', ar:'دائرة', e:'⚪'}, {w:'사각형', ph:'sagakhyeong', ar:'مربع', e:'⬛'},
+      {w:'삼각형', ph:'samgakhyeong', ar:'مثلث', e:'🔺'}, {w:'별', ph:'byeol', ar:'نجمة', e:'⭐'}, {w:'하트', ph:'hateu', ar:'قلب', e:'❤️'}
+    ],
+    title:'الأشكال من حولنا 🔺', desc:'اضغط على كل شكل لتسمع اسمه بالكورية!',
+    quiz:{ q:'ما اسم هذا الشكل: ⭐؟', options:[
+      {text:'별 (byeol)', correct:true, feedback:'رائع! ⭐ هو 별 (نجمة)'},
+      {text:'원 (won)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'사각형 (sagakhyeong)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 6: الفواكه', topic:'fruits', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'사과', ph:'sagwa', ar:'تفاحة', e:'🍎'}, {w:'바나나', ph:'banana', ar:'موزة', e:'🍌'}, {w:'오렌지', ph:'orenji', ar:'برتقالة', e:'🍊'},
+      {w:'포도', ph:'podo', ar:'عنب', e:'🍇'}, {w:'딸기', ph:'ttalgi', ar:'فراولة', e:'🍓'}, {w:'수박', ph:'subak', ar:'بطيخ', e:'🍉'}
+    ],
+    title:'الفواكه اللذيذة 🍉', desc:'اضغط على كل فاكهة لتسمع اسمها بالكورية!',
+    quiz:{ q:'ما هي الفاكهة الصفراء المنحنية؟', options:[
+      {text:'바나나 (banana)', correct:true, feedback:'رائع! 바나나 هي الموزة 🍌'},
+      {text:'사과 (sagwa)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'포도 (podo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 7: عائلتي', topic:'kidfamily', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'엄마', ph:'eomma', ar:'ماما', e:'👩'}, {w:'아빠', ph:'appa', ar:'بابا', e:'👨'},
+      {w:'여동생', ph:'yeodongsaeng', ar:'أختي', e:'👧'}, {w:'남동생', ph:'namdongsaeng', ar:'أخي', e:'👦'},
+      {w:'아기', ph:'agi', ar:'طفل', e:'👶'}, {w:'할머니', ph:'halmeoni', ar:'جدتي', e:'👵'}
+    ],
+    title:'عائلتي الصغيرة 👨‍👩‍👧‍👦', desc:'اضغط على كل بطاقة لتسمع اسم فرد العائلة بالكورية!',
+    quiz:{ q:'كيف نقول "ماما" بالكورية؟', options:[
+      {text:'엄마 (eomma)', correct:true, feedback:'صحيح! 엄마 تعني ماما 👩'},
+      {text:'아빠 (appa)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'아기 (agi)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 8: الطقس', topic:'weather', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'맑음', ph:'malgeum', ar:'مشمس', e:'☀️'}, {w:'비', ph:'bi', ar:'ممطر', e:'🌧️'},
+      {w:'흐림', ph:'heurim', ar:'غائم', e:'☁️'}, {w:'눈', ph:'nun', ar:'ثلجي', e:'❄️'},
+      {w:'바람', ph:'baram', ar:'عاصف', e:'💨'}, {w:'더움', ph:'deoum', ar:'حار', e:'🔥'}
+    ],
+    title:'أحوال الطقس ☀️', desc:'كيف حال الطقس اليوم؟ اضغط لتسمع كل حالة بالكورية!',
+    quiz:{ q:'كيف نقول "ممطر" بالكورية؟', options:[
+      {text:'비 (bi)', correct:true, feedback:'رائع! 비 تعني ممطر 🌧️'},
+      {text:'맑음 (malgeum)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'눈 (nun)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 9: النقل', topic:'transport', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'자동차', ph:'jadongcha', ar:'سيارة', e:'🚗'}, {w:'버스', ph:'beoseu', ar:'حافلة', e:'🚌'},
+      {w:'자전거', ph:'jajeongeo', ar:'دراجة', e:'🚲'}, {w:'기차', ph:'gicha', ar:'قطار', e:'🚆'},
+      {w:'비행기', ph:'bihaenggi', ar:'طائرة', e:'✈️'}, {w:'배', ph:'bae', ar:'قارب', e:'🚤'}
+    ],
+    title:'وسائل النقل 🚗', desc:'كيف نتنقل من مكان لآخر؟ اضغط لتسمع اسم كل وسيلة بالكورية!',
+    quiz:{ q:'أي وسيلة نقل تطير في السماء؟', options:[
+      {text:'비행기 (bihaenggi)', correct:true, feedback:'رائع! 비행기 تطير في السماء ✈️'},
+      {text:'자동차 (jadongcha)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'자전거 (jajeongeo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 10: مشاعري', topic:'emotions', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'행복해요', ph:'haengbokhaeyo', ar:'سعيد', e:'😄'}, {w:'슬퍼요', ph:'seulpeoyo', ar:'حزين', e:'😢'},
+      {w:'화나요', ph:'hwanayo', ar:'غاضب', e:'😠'}, {w:'무서워요', ph:'museowoyo', ar:'خائف', e:'😱'},
+      {w:'졸려요', ph:'jollyeoyo', ar:'نعسان', e:'😴'}, {w:'신나요', ph:'sinnayo', ar:'متحمس', e:'🤩'}
+    ],
+    title:'مشاعري 🤗', desc:'كيف تشعر اليوم؟ اضغط على كل بطاقة لتسمع اسم الشعور بالكورية!',
+    quiz:{ q:'كيف نقول "سعيد" بالكورية؟', options:[
+      {text:'행복해요 (haengbokhaeyo)', correct:true, feedback:'رائع! 행복해요 تعني سعيد 😄'},
+      {text:'슬퍼요 (seulpeoyo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'화나요 (hwanayo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} }
+];
+
+buildAdultTrack('ko-', 'ko', KO_ADULT_LESSONS);
+buildKidTrack('ko-', 'ko', KO_KID_LESSONS);
+
+// =====================================================================
+// CHINESE (zh-CN, Simplified) CONTENT — pinyin included in the `ph` field
+// and echoed inside quiz options for readability.
+// =====================================================================
+const ZH_BASICS = [
+  {w:'人', ph:'rén', ar:'إنسان', e:'🧍'},
+  {w:'大', ph:'dà', ar:'كبير', e:'🐘'},
+  {w:'小', ph:'xiǎo', ar:'صغير', e:'🐜'},
+  {w:'山', ph:'shān', ar:'جبل', e:'⛰️'},
+  {w:'水', ph:'shuǐ', ar:'ماء', e:'💧'},
+  {w:'火', ph:'huǒ', ar:'نار', e:'🔥'},
+  {w:'木', ph:'mù', ar:'شجرة / خشب', e:'🌳'},
+  {w:'日', ph:'rì', ar:'شمس / يوم', e:'☀️'},
+  {w:'月', ph:'yuè', ar:'قمر / شهر', e:'🌙'},
+  {w:'天', ph:'tiān', ar:'سماء / يوم', e:'🌤️'},
+  {w:'口', ph:'kǒu', ar:'فم', e:'👄'},
+  {w:'手', ph:'shǒu', ar:'يد', e:'✋'},
+  {w:'好', ph:'hǎo', ar:'جيد', e:'👍'},
+  {w:'爱', ph:'ài', ar:'حب', e:'❤️'},
+  {w:'学', ph:'xué', ar:'يتعلّم', e:'📚'},
+  {w:'门', ph:'mén', ar:'باب', e:'🚪'}
+];
+const ZH_NUMBERS = [
+  {n:1, w:'一', ph:'yī', ar:'واحد'}, {n:2, w:'二', ph:'èr', ar:'اثنان'}, {n:3, w:'三', ph:'sān', ar:'ثلاثة'},
+  {n:4, w:'四', ph:'sì', ar:'أربعة'}, {n:5, w:'五', ph:'wǔ', ar:'خمسة'}, {n:6, w:'六', ph:'liù', ar:'ستة'},
+  {n:7, w:'七', ph:'qī', ar:'سبعة'}, {n:8, w:'八', ph:'bā', ar:'ثمانية'}, {n:9, w:'九', ph:'jiǔ', ar:'تسعة'},
+  {n:10, w:'十', ph:'shí', ar:'عشرة'}
+];
+const ZH_COLORS = [
+  {w:'红色', ph:'hóngsè', ar:'أحمر', hex:'#ef4444'}, {w:'蓝色', ph:'lánsè', ar:'أزرق', hex:'#3b82f6'},
+  {w:'黄色', ph:'huángsè', ar:'أصفر', hex:'#eab308'}, {w:'绿色', ph:'lǜsè', ar:'أخضر', hex:'#22c55e'},
+  {w:'紫色', ph:'zǐsè', ar:'بنفسجي', hex:'#a855f7'}, {w:'橙色', ph:'chéngsè', ar:'برتقالي', hex:'#f97316'}
+];
+
+const ZH_ADULT_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:ZH_BASICS, gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-6',
+    title:'الدرس 1: أساسيات الحروف الصينية (基础汉字)',
+    desc:'الصينية لا تملك أبجدية، بل رموزاً (حروفاً صينية). هذه أبسط وأشهر الرموز الأساسية مع نطقها بالبينيين (Pinyin). اضغط على كل بطاقة لتسمع النطق.',
+    audio:'اللغة الصينية تُكتب برموز تسمى هانزي، وكل رمز يمثل معنى كاملاً وليس صوتاً واحداً. البينيين هو نظام كتابة النطق بالحروف اللاتينية لمساعدتك على القراءة. استمع لكل رمز وحاول تكرار النطق.',
+    quiz:{ q:'أي رمز يعني "ماء" بالصينية؟', options:[
+      {text:'水 (shuǐ)', correct:true, feedback:'إجابة صحيحة! 水 (shuǐ) تعني ماء.'},
+      {text:'火 (huǒ)', correct:false, feedback:'ليست إجابة صحيحة، 火 تعني نار.'},
+      {text:'山 (shān)', correct:false, feedback:'ليست إجابة صحيحة، 山 تعني جبل.'}
+    ]} },
+  { pill:'الدرس 2: التحيات', topic:'greetings', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'你好', ph:'nǐ hǎo', ar:'مرحباً', e:'👋'},
+      {w:'早上好', ph:'zǎoshang hǎo', ar:'صباح الخير', e:'🌅'},
+      {w:'谢谢', ph:'xièxie', ar:'شكراً', e:'🙏'},
+      {w:'很高兴认识你', ph:'hěn gāoxìng rènshi nǐ', ar:'سعدت بلقائك', e:'🤝'},
+      {w:'你好吗?', ph:'nǐ hǎo ma?', ar:'كيف حالك؟', e:'🤔'},
+      {w:'我很好,谢谢', ph:'wǒ hěn hǎo, xièxie', ar:'أنا بخير، شكراً', e:'😊'}
+    ],
+    title:'الدرس 2: التحيات والمجاملات (问候语)',
+    desc:'التحيات هي أول ما نحتاجه لبدء أي محادثة بالصينية. استمع للأمثلة ثم تدرب على الرد المناسب.',
+    audio:'ني هاو تعني مرحباً، وهي أشهر كلمة صينية على الإطلاق. للسؤال عن الحال نقول ني هاو ما، ونرد بقول وو هن هاو شيه شيه، أي أنا بخير شكراً.',
+    quiz:{ q:'ما هو الرد المناسب على: "你好吗?" (nǐ hǎo ma?)', options:[
+      {text:'أ) 我很好,谢谢 (wǒ hěn hǎo, xièxie)', correct:true, feedback:'إجابة صحيحة! هذا هو الرد الطبيعي عند السؤال عن حالك.'},
+      {text:'ب) 谢谢 (xièxie)', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'},
+      {text:'ج) 你好 (nǐ hǎo)', correct:false, feedback:'حاول مجدداً، فكر في رد يصف شعورك.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:ZH_NUMBERS, gridCols:'grid-cols-3 sm:grid-cols-5',
+    title:'الدرس 3: الأرقام (数字)',
+    desc:'الأرقام من 1 إلى 10 من أهم أساسيات أي لغة. استمع لنطق كل رقم بالضغط عليه.',
+    audio:'يي يعني واحد، وإر يعني اثنان، وسان يعني ثلاثة. الأرقام الصينية بسيطة جداً وتُبنى عليها الأرقام الأكبر. استمع لكل رقم وحاول تكراره بصوت مرتفع.',
+    quiz:{ q:'كيف نقول الرقم 7 بالصينية؟', options:[
+      {text:'أ) 七 (qī)', correct:true, feedback:'إجابة صحيحة! 七 (qī) تعني سبعة.'},
+      {text:'ب) 六 (liù)', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'},
+      {text:'ج) 八 (bā)', correct:false, feedback:'ليست صحيحة، حاول الاستماع للأرقام أعلاه مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 4: العائلة', topic:'family', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'妈妈', ph:'māma', ar:'أم', e:'👩'}, {w:'爸爸', ph:'bàba', ar:'أب', e:'👨'},
+      {w:'姐姐', ph:'jiějie', ar:'أخت (أكبر)', e:'👧'}, {w:'哥哥', ph:'gēge', ar:'أخ (أكبر)', e:'👦'},
+      {w:'奶奶', ph:'nǎinai', ar:'جدة', e:'👵'}, {w:'爷爷', ph:'yéye', ar:'جد', e:'👴'}
+    ],
+    title:'الدرس 4: العائلة (家庭)',
+    desc:'تعرّف على كيفية تسمية أفراد العائلة بالصينية، من أكثر الكلمات استخداماً في المحادثات اليومية.',
+    audio:'ماما تعني أم، وباّبا تعني أب، وجيّه جيّه تعني الأخت الكبرى، وغّه غّه تعني الأخ الأكبر. استمع لكل كلمة وحاول تكرارها.',
+    quiz:{ q:'ماذا نسمي "أخت أكبر" بالصينية؟', options:[
+      {text:'أ) 姐姐 (jiějie)', correct:true, feedback:'إجابة صحيحة! 姐姐 تعني أخت أكبر.'},
+      {text:'ب) 哥哥 (gēge)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 奶奶 (nǎinai)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 5: المقهى', topic:'cafe', gridCols:'grid-cols-2 sm:grid-cols-2',
+    vocab:[
+      {w:'我要一杯咖啡', ph:'wǒ yào yì bēi kāfēi', ar:'أريد كوب قهوة', e:'☕'},
+      {w:'请给我一些水', ph:'qǐng gěi wǒ yìxiē shuǐ', ar:'أعطني بعض الماء من فضلك', e:'💧'},
+      {w:'买单,谢谢', ph:'mǎidān, xièxie', ar:'الفاتورة من فضلك', e:'🧾'},
+      {w:'很好吃!', ph:'hěn hǎochī!', ar:'هذا لذيذ جداً!', e:'😋'}
+    ],
+    title:'الدرس 5: المقهى والطعام (在咖啡馆)',
+    desc:'كيف تطلب القهوة والماء بلباقة في المقهى أو المطعم الصيني.',
+    audio:'لطلب شيء بأدب، استخدم عبارة وو ياو، أي أنا أريد، متبوعة بالطلب. مثال: وو ياو يي بيّ كافيّ، أي أريد كوب قهوة.',
+    quiz:{ q:'ما هي الجملة الصحيحة لطلب كوب شاي بأدب؟', options:[
+      {text:'أ) 我要一杯茶 (wǒ yào yì bēi chá)', correct:true, feedback:'إجابة صحيحة! هذه هي الصيغة المهذبة لطلب الشاي.'},
+      {text:'ب) 茶!快点! (chá! kuài diǎn!)', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'},
+      {text:'ج) 给我茶 (gěi wǒ chá)', correct:false, feedback:'إجابة غير دقيقة، حاول مجدداً باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 6: الوقت والأيام', topic:'days', gridCols:'grid-cols-3 sm:grid-cols-4 md:grid-cols-7',
+    vocab:[
+      {w:'星期日', ph:'xīngqīrì', ar:'الأحد'}, {w:'星期一', ph:'xīngqīyī', ar:'الاثنين'}, {w:'星期二', ph:"xīngqī'èr", ar:'الثلاثاء'},
+      {w:'星期三', ph:'xīngqīsān', ar:'الأربعاء'}, {w:'星期四', ph:'xīngqīsì', ar:'الخميس'}, {w:'星期五', ph:'xīngqīwǔ', ar:'الجمعة'},
+      {w:'星期六', ph:'xīngqīliù', ar:'السبت'}
+    ],
+    title:'الدرس 6: الوقت والأيام (星期和时间)',
+    desc:'تعرّف على أيام الأسبوع بالصينية وكيفية السؤال عن الوقت.',
+    audio:'أيام الأسبوع بالصينية تبدأ كلها بكلمة شينغ تشي، ثم رقم اليوم. للسؤال عن الوقت نقول شيان زاي جي ديان، أي كم الساعة الآن.',
+    quiz:{ q:'كيف نسأل بأدب عن الوقت الحالي بالصينية؟', options:[
+      {text:'أ) 现在几点؟ (xiànzài jǐ diǎn?)', correct:true, feedback:'إجابة صحيحة! هذه الجملة تعني كم الساعة الآن.'},
+      {text:'ب) 你叫什么名字؟ (nǐ jiào shénme míngzì?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 你多大؟ (nǐ duō dà?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 7: الطعام', topic:'food', gridCols:'grid-cols-2 sm:grid-cols-4',
+    vocab:[
+      {w:'面包', ph:'miànbāo', ar:'خبز', e:'🍞'}, {w:'米饭', ph:'mǐfàn', ar:'أرز', e:'🍚'},
+      {w:'鸡肉', ph:'jīròu', ar:'دجاج', e:'🍗'}, {w:'蔬菜', ph:'shūcài', ar:'خضار', e:'🥦'},
+      {w:'牛奶', ph:'niúnǎi', ar:'حليب', e:'🥛'}, {w:'鸡蛋', ph:'jīdàn', ar:'بيض', e:'🥚'},
+      {w:'水果', ph:'shuǐguǒ', ar:'فاكهة', e:'🍎'}, {w:'鱼', ph:'yú', ar:'سمك', e:'🐟'}
+    ],
+    title:'الدرس 7: الطعام (食物)',
+    desc:'تعلّم أسماء الأطعمة الأساسية بالصينية، وكيفية طلب ما تريد بلباقة.',
+    audio:'مي فان تعني أرز مطبوخ، وهو الطعام الأساسي في الوجبة الصينية. استمع لكل كلمة طعام وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'ما هي الترجمة الصحيحة لكلمة "أرز"؟', options:[
+      {text:'أ) 米饭 (mǐfàn)', correct:true, feedback:'إجابة صحيحة! 米饭 (mǐfàn) تعني أرز.'},
+      {text:'ب) 面包 (miànbāo)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 鸡蛋 (jīdàn)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 8: التسوق', topic:'clothes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'衬衫', ph:'chènshān', ar:'قميص', e:'👕'}, {w:'裤子', ph:'kùzi', ar:'بنطال', e:'👖'},
+      {w:'鞋子', ph:'xiézi', ar:'حذاء', e:'👟'}, {w:'连衣裙', ph:'liányīqún', ar:'فستان', e:'👗'},
+      {w:'夹克', ph:'jiákè', ar:'جاكيت', e:'🧥'}, {w:'帽子', ph:'màozi', ar:'قبعة', e:'🎩'}
+    ],
+    title:'الدرس 8: التسوق والملابس (购物)',
+    desc:'تعلّم أسماء الملابس الشائعة بالصينية، وكيفية السؤال عن السعر عند التسوق.',
+    audio:'للسؤال عن السعر في المتجر نقول تشه قه دوو شاو تشيان، أي كم سعر هذا. استمع لأسماء الملابس التالية وحاول تكرارها بصوت مسموع.',
+    quiz:{ q:'كيف تسأل بأدب عن سعر شيء ما بالصينية؟', options:[
+      {text:'أ) 这个多少钱؟ (zhège duōshǎo qián?)', correct:true, feedback:'إجابة صحيحة! هذه الجملة تعني كم سعر هذا.'},
+      {text:'ب) 这是什么؟ (zhè shì shénme?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) 在哪里؟ (zài nǎlǐ?)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} },
+  { pill:'الدرس 9: الاتجاهات', topic:'places', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'医院', ph:'yīyuàn', ar:'مستشفى', e:'🏥'}, {w:'学校', ph:'xuéxiào', ar:'مدرسة', e:'🏫'},
+      {w:'银行', ph:'yínháng', ar:'بنك', e:'🏦'}, {w:'机场', ph:'jīchǎng', ar:'مطار', e:'✈️'},
+      {w:'餐厅', ph:'cāntīng', ar:'مطعم', e:'🍽️'}, {w:'市场', ph:'shìchǎng', ar:'سوق', e:'🏬'}
+    ],
+    title:'الدرس 9: الاتجاهات والأماكن (地方)',
+    desc:'تعرّف على أسماء الأماكن الشائعة في المدينة بالصينية، وكيفية السؤال بأدب عن الاتجاهات.',
+    audio:'للسؤال بأدب عن مكان ما، نبدأ بعبارة تشينغ وين أي المعذرة أو من فضلك، ثم نسأل زاي نالي، أي أين يوجد.',
+    quiz:{ q:'كيف تسأل بأدب عن مكان البنك؟', options:[
+      {text:'أ) 请问,银行在哪里؟', correct:true, feedback:'إجابة صحيحة! هذا هو الأسلوب المهذب للسؤال عن الاتجاهات.'},
+      {text:'ب) 银行!快点! (yínháng! kuài diǎn!)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'},
+      {text:'ج) 我要银行 (wǒ yào yínháng)', correct:false, feedback:'غير صحيحة، حاول مرة أخرى باختيار الصيغة المهذبة.'}
+    ]} },
+  { pill:'الدرس 10: الأفعال اليومية', topic:'verbs', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'起床', ph:'qǐchuáng', ar:'أستيقظ', e:'⏰'}, {w:'吃饭', ph:'chīfàn', ar:'آكل', e:'🍽️'},
+      {w:'学习', ph:'xuéxí', ar:'أدرس', e:'📚'}, {w:'工作', ph:'gōngzuò', ar:'أعمل', e:'💼'},
+      {w:'喝', ph:'hē', ar:'أشرب', e:'🥤'}, {w:'睡觉', ph:'shuìjiào', ar:'أنام', e:'😴'}
+    ],
+    title:'الدرس 10: الأفعال اليومية (日常动词)',
+    desc:'تعلّم أهم الأفعال التي تصف روتينك اليومي بالصينية.',
+    audio:'الأفعال اليومية تساعدك على وصف روتينك بجمل بسيطة. مثال: تشي تشوانغ يعني أستيقظ. استمع لكل فعل وحاول تكوين جملة بسيطة به.',
+    quiz:{ q:'ماذا تعني كلمة "睡觉" (shuìjiào)؟', options:[
+      {text:'أ) أنام', correct:true, feedback:'إجابة صحيحة! 睡觉 (shuìjiào) تعني أنام.'},
+      {text:'ب) أعمل', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'},
+      {text:'ج) أدرس', correct:false, feedback:'غير صحيحة، حاول مرة أخرى.'}
+    ]} }
+];
+
+const ZH_KID_LESSONS = [
+  { pill:'الدرس 1: الحروف', topic:'alphabet', vocab:ZH_BASICS, gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    title:'حروفي الصينية 🔤', desc:'اضغط على أي بطاقة لتسمع الرمز وتحصل على نجمة ⭐!',
+    quiz:{ q:'أي رمز يعني "كبير" بالصينية؟', options:[
+      {text:'大 (dà)', correct:true, feedback:'رائع! 大 (dà) تعني كبير 🎉'},
+      {text:'小 (xiǎo)', correct:false, feedback:'حاول مرة أخرى يا بطل! هذه تعني صغير.'},
+      {text:'水 (shuǐ)', correct:false, feedback:'حاول مرة أخرى يا بطل! هذه تعني ماء.'}
+    ]} },
+  { pill:'الدرس 2: الألوان', topic:'colors', vocab:ZH_COLORS, gridCols:'grid-cols-2 sm:grid-cols-3',
+    title:'عالم الألوان 🎨', desc:'الألوان تجعل العالم أجمل! اضغط على كل لون لتسمع اسمه بالصينية.',
+    quiz:{ q:'ما هو اللون الأحمر بالصينية؟', options:[
+      {text:'红色 (hóngsè)', correct:true, feedback:'صحيح! 红色 يعني أحمر 🔴'},
+      {text:'蓝色 (lánsè)', correct:false, feedback:'قريب! حاول مرة ثانية.'},
+      {text:'绿色 (lǜsè)', correct:false, feedback:'قريب! حاول مرة ثانية.'}
+    ]} },
+  { pill:'الدرس 3: الأرقام', topic:'numbers', vocab:ZH_NUMBERS, gridCols:'grid-cols-2 sm:grid-cols-5',
+    title:'هيا نعد! 🔢', desc:'هيا نتعلم العد بالصينية من 1 إلى 10!',
+    quiz:{ q:'كم يساوي 2 + 3؟ اختر الكتابة الصحيحة بالصينية', options:[
+      {text:'五 (wǔ)', correct:true, feedback:'ممتاز! 2 + 3 = 五 (خمسة) 🌟'},
+      {text:'四 (sì)', correct:false, feedback:'فكر مرة أخرى يا بطل!'},
+      {text:'六 (liù)', correct:false, feedback:'فكر مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 4: الحيوانات', topic:'animals', gridCols:'grid-cols-2 sm:grid-cols-3',
+    vocab:[
+      {w:'猫', ph:'māo', ar:'قطة', e:'🐱'}, {w:'狗', ph:'gǒu', ar:'كلب', e:'🐶'}, {w:'狮子', ph:'shīzi', ar:'أسد', e:'🦁'},
+      {w:'大象', ph:'dàxiàng', ar:'فيل', e:'🐘'}, {w:'鱼', ph:'yú', ar:'سمكة', e:'🐟'}, {w:'鸟', ph:'niǎo', ar:'عصفور', e:'🐦'}
+    ],
+    title:'عالم الحيوانات 🎈', desc:'اضغط على كل حيوان لسماع اسمه بالصينية والحصول على نجوم!',
+    quiz:{ q:'ما اسم هذا الحيوان: 🐶؟', options:[
+      {text:'狗 (gǒu)', correct:true, feedback:'رائع! 🐶 هو 狗 (كلب)'},
+      {text:'猫 (māo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'狮子 (shīzi)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 5: الأشكال', topic:'shapes', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-5',
+    vocab:[
+      {w:'圆形', ph:'yuánxíng', ar:'دائرة', e:'⚪'}, {w:'正方形', ph:'zhèngfāngxíng', ar:'مربع', e:'⬛'},
+      {w:'三角形', ph:'sānjiǎoxíng', ar:'مثلث', e:'🔺'}, {w:'星星', ph:'xīngxīng', ar:'نجمة', e:'⭐'}, {w:'心形', ph:'xīnxíng', ar:'قلب', e:'❤️'}
+    ],
+    title:'الأشكال من حولنا 🔺', desc:'اضغط على كل شكل لتسمع اسمه بالصينية!',
+    quiz:{ q:'ما اسم هذا الشكل: ⭐؟', options:[
+      {text:'星星 (xīngxīng)', correct:true, feedback:'رائع! ⭐ هو 星星 (نجمة)'},
+      {text:'圆形 (yuánxíng)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'正方形 (zhèngfāngxíng)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 6: الفواكه', topic:'fruits', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'苹果', ph:'píngguǒ', ar:'تفاحة', e:'🍎'}, {w:'香蕉', ph:'xiāngjiāo', ar:'موزة', e:'🍌'}, {w:'橙子', ph:'chéngzi', ar:'برتقالة', e:'🍊'},
+      {w:'葡萄', ph:'pútáo', ar:'عنب', e:'🍇'}, {w:'草莓', ph:'cǎoméi', ar:'فراولة', e:'🍓'}, {w:'西瓜', ph:'xīguā', ar:'بطيخ', e:'🍉'}
+    ],
+    title:'الفواكه اللذيذة 🍉', desc:'اضغط على كل فاكهة لتسمع اسمها بالصينية!',
+    quiz:{ q:'ما هي الفاكهة الصفراء المنحنية؟', options:[
+      {text:'香蕉 (xiāngjiāo)', correct:true, feedback:'رائع! 香蕉 هي الموزة 🍌'},
+      {text:'苹果 (píngguǒ)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'葡萄 (pútáo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 7: عائلتي', topic:'kidfamily', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'妈妈', ph:'māma', ar:'ماما', e:'👩'}, {w:'爸爸', ph:'bàba', ar:'بابا', e:'👨'},
+      {w:'妹妹', ph:'mèimei', ar:'أختي', e:'👧'}, {w:'弟弟', ph:'dìdi', ar:'أخي', e:'👦'},
+      {w:'宝宝', ph:'bǎobǎo', ar:'طفل', e:'👶'}, {w:'奶奶', ph:'nǎinai', ar:'جدتي', e:'👵'}
+    ],
+    title:'عائلتي الصغيرة 👨‍👩‍👧‍👦', desc:'اضغط على كل بطاقة لتسمع اسم فرد العائلة بالصينية!',
+    quiz:{ q:'كيف نقول "ماما" بالصينية؟', options:[
+      {text:'妈妈 (māma)', correct:true, feedback:'صحيح! 妈妈 تعني ماما 👩'},
+      {text:'爸爸 (bàba)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'宝宝 (bǎobǎo)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 8: الطقس', topic:'weather', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'晴天', ph:'qíngtiān', ar:'مشمس', e:'☀️'}, {w:'雨天', ph:'yǔtiān', ar:'ممطر', e:'🌧️'},
+      {w:'阴天', ph:'yīntiān', ar:'غائم', e:'☁️'}, {w:'雪天', ph:'xuětiān', ar:'ثلجي', e:'❄️'},
+      {w:'刮风', ph:'guāfēng', ar:'عاصف', e:'💨'}, {w:'热', ph:'rè', ar:'حار', e:'🔥'}
+    ],
+    title:'أحوال الطقس ☀️', desc:'كيف حال الطقس اليوم؟ اضغط لتسمع كل حالة بالصينية!',
+    quiz:{ q:'كيف نقول "ممطر" بالصينية؟', options:[
+      {text:'雨天 (yǔtiān)', correct:true, feedback:'رائع! 雨天 تعني ممطر 🌧️'},
+      {text:'晴天 (qíngtiān)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'雪天 (xuětiān)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 9: النقل', topic:'transport', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'汽车', ph:'qìchē', ar:'سيارة', e:'🚗'}, {w:'公共汽车', ph:'gōnggòngqìchē', ar:'حافلة', e:'🚌'},
+      {w:'自行车', ph:'zìxíngchē', ar:'دراجة', e:'🚲'}, {w:'火车', ph:'huǒchē', ar:'قطار', e:'🚆'},
+      {w:'飞机', ph:'fēijī', ar:'طائرة', e:'✈️'}, {w:'船', ph:'chuán', ar:'قارب', e:'🚤'}
+    ],
+    title:'وسائل النقل 🚗', desc:'كيف نتنقل من مكان لآخر؟ اضغط لتسمع اسم كل وسيلة بالصينية!',
+    quiz:{ q:'أي وسيلة نقل تطير في السماء؟', options:[
+      {text:'飞机 (fēijī)', correct:true, feedback:'رائع! 飞机 تطير في السماء ✈️'},
+      {text:'汽车 (qìchē)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'自行车 (zìxíngchē)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} },
+  { pill:'الدرس 10: مشاعري', topic:'emotions', gridCols:'grid-cols-2 sm:grid-cols-3 md:grid-cols-6',
+    vocab:[
+      {w:'开心', ph:'kāixīn', ar:'سعيد', e:'😄'}, {w:'伤心', ph:'shāngxīn', ar:'حزين', e:'😢'},
+      {w:'生气', ph:'shēngqì', ar:'غاضب', e:'😠'}, {w:'害怕', ph:'hàipà', ar:'خائف', e:'😱'},
+      {w:'困', ph:'kùn', ar:'نعسان', e:'😴'}, {w:'兴奋', ph:'xīngfèn', ar:'متحمس', e:'🤩'}
+    ],
+    title:'مشاعري 🤗', desc:'كيف تشعر اليوم؟ اضغط على كل بطاقة لتسمع اسم الشعور بالصينية!',
+    quiz:{ q:'كيف نقول "سعيد" بالصينية؟', options:[
+      {text:'开心 (kāixīn)', correct:true, feedback:'رائع! 开心 تعني سعيد 😄'},
+      {text:'伤心 (shāngxīn)', correct:false, feedback:'حاول مرة أخرى يا بطل!'},
+      {text:'生气 (shēngqì)', correct:false, feedback:'حاول مرة أخرى يا بطل!'}
+    ]} }
+];
+
+buildAdultTrack('zh-', 'zh', ZH_ADULT_LESSONS);
+buildKidTrack('zh-', 'zh', ZH_KID_LESSONS);
+
+</script>
+</body>
+</html>
